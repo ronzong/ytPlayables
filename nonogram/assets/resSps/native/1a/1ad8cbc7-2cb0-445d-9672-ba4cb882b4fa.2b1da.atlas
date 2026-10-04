@@ -1,0 +1,20 @@
+
+action.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+texture/red_002_b
+  rotate: false
+  xy: 2, 2
+  size: 42, 40
+  orig: 42, 40
+  offset: 0, 0
+  index: -1
+texture/red_003_a
+  rotate: false
+  xy: 46, 3
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
