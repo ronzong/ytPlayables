@@ -1,0 +1,130 @@
+你的游戏现在应该暂停了。你的游戏是否以某种方式暂停，导致所有执行都停止，包括游戏过程、音乐、交互、网络调用和渲染？
+
+
+YouTube playabs，也称为油管小游戏。文档链接https://developers.google.com/youtube/gaming/playables/reference/getting_started?hl=zh-cn（有多个跳转），nonogram是打包好的参考游戏（只有插屏，当初接这款时候只支持插屏）。https://developers.google.com/youtube/gaming/playables/test_suite?hl=zh-cn在这里能进行本地测试，并且应该是不需要登录。
+我的核心需求是要接入油管小游戏的sdk完成测试，以便我去提审，我已经获得了油管小游戏的开发者权限。接入游戏将从D:\works\Git\yxl\gamePopStar这里面的本地游戏挑选。
+
+官方示例
+https://github.com/google/web-game-samples
+
+我提供的示例
+D:\works\Git\yxl\ytPlayables\YoutubeMgr.js
+该版本只有插屏，目前油管小游戏sdk已支持激励，因此需要补上激励广告
+同时用通俗的语言整理下必接和推荐接的sdk功能。
+
+本地测试需要https，需要搭建个https服务器，并浏览器先打开一次忽略不安全提示
+先使用nonogram游戏走一遍测试做观察
+之后使用D:\works\Git\yxl\gamePopStar\AntFlow来做接入测试
+本地测试站点https://developers.google.com/youtube/gaming/playables/test_suite?hl=zh-cn 找到输入框（如下元素）后
+<input id="url-input" type="url" placeholder="https://localhost:8000">
+输入本地测试地址
+
+点刷新按钮
+<button id="refresh-button"><span class="material-icons">refresh</span></button>
+
+以下部分为测试平台预检功能
+<div class="requirement-container">
+        <!--?lit$535029100$-->
+      <div class="requirement-section">
+        <div class="requirement-header-container">
+          <div class="requirement-header"><!--?lit$535029100$-->MUST</div>
+          <!--?lit$535029100$-->
+      <span class="requirement-passed-checks-text"><!--?lit$535029100$-->0/<!--?lit$535029100$-->5 passed</span>
+    
+        </div>
+        <div class="requirement-content">
+          <!--?lit$535029100$--><!---->
+              <div class="requirement-entry">
+                <!--?lit$535029100$-->
+    <span class="material-icons untested">circle</span>
+  
+                <div class="requirement-text"><!--?lit$535029100$-->SDK loaded before any game code
+                  <!--?lit$535029100$-->
+                </div>
+              </div>
+            <!----><!---->
+              <div class="requirement-entry">
+                <!--?lit$535029100$-->
+    <span class="material-icons untested">circle</span>
+  
+                <div class="requirement-text"><!--?lit$535029100$-->Initial bundle &lt; 30 MiB
+                  <!--?lit$535029100$-->
+                </div>
+              </div>
+            <!----><!---->
+              <div class="requirement-entry">
+                <!--?lit$535029100$-->
+    <span class="material-icons untested">circle</span>
+  
+                <div class="requirement-text"><!--?lit$535029100$-->firstFrameReady called before gameReady
+                  <!--?lit$535029100$-->
+                </div>
+              </div>
+            <!----><!---->
+              <div class="requirement-entry">
+                <!--?lit$535029100$-->
+    <span class="material-icons untested">circle</span>
+  
+                <div class="requirement-text"><!--?lit$535029100$-->gameReady called
+                  <!--?lit$535029100$-->
+                </div>
+              </div>
+            <!----><!---->
+              <div class="requirement-entry">
+                <!--?lit$535029100$-->
+    <span class="material-icons untested">circle</span>
+  
+                <div class="requirement-text"><!--?lit$535029100$-->Cloud save data &lt; 3 MiB
+                  <!--?lit$535029100$--><div class="observations-cloudsaves-container"><!--?lit$535029100$--> <div class="observations-cloudsaves-content">
+      <!--?lit$535029100$-->
+    </div></div>
+                </div>
+              </div>
+            <!---->
+        </div>
+      </div>
+    
+        <!--?lit$535029100$-->
+      <div class="requirement-section">
+        <div class="requirement-header-container">
+          <div class="requirement-header"><!--?lit$535029100$-->SHOULD</div>
+          <!--?lit$535029100$-->
+        </div>
+        <div class="requirement-content">
+          <!--?lit$535029100$--><!---->
+              <div class="requirement-entry">
+                <!--?lit$535029100$-->
+    <span class="material-icons untested">circle</span>
+  
+                <div class="requirement-text"><!--?lit$535029100$-->gameReady called within 5 seconds
+                  <!--?lit$535029100$-->
+                </div>
+              </div>
+            <!----><!---->
+              <div class="requirement-entry">
+                <!--?lit$535029100$-->
+    <span class="material-icons untested">circle</span>
+  
+                <div class="requirement-text"><!--?lit$535029100$-->sendScore called with an integer
+                  <!--?lit$535029100$-->
+                </div>
+              </div>
+            <!---->
+        </div>
+      </div>
+    
+      </div>
+
+以下部分为游戏运行界面
+<div class="overlay" id="idle-overlay">
+      <div class="overlay-message">
+        Use the Game URL field to start loading a Playable
+      </div>
+    </div>
+
+以下部分为运行日志
+<div class="log-content">
+          <!--?lit$535029100$-->
+        </div>
+
+开发者面板的运行日志同样可以参考

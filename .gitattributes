@@ -1,0 +1,4 @@
+# 批处理文件必须保持 CRLF：cmd.exe 解析 LF-only 批处理（尤其含多行括号块）会错位闪退
+*.bat text eol=crlf
+
+# 其余文本按仓库默认（core.autocrlf）

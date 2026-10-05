@@ -1,0 +1,20 @@
+# 构建产物：只跟踪各游戏的「油管版」（build/<游戏>-yt/），其余一律不入库
+/build/*
+!/build/AntFlow-yt
+# 游戏目录里不跟踪打包 zip（可随时用 tools/build-<游戏>-yt.cjs --zip 重新生成）
+/build/AntFlow-yt/*.zip
+# 诊断/普通 h5 构建的临时目录（也可以放到 %TEMP%\yt-diag，见 AGENTS.md）
+/build/_scratch/
+
+# 本地测试状态：报告、截图、日志、Chrome profile
+/tools/state/
+
+# 抓取下来的官方文档（体积大，需要时用 tools/fetch-docs.cjs 重新拉）
+/.docs/
+
+# 自签证书（本机生成，仅本地测试用）
+/tools/certs/
+
+# 临时文件
+*.log
+*.tmp
