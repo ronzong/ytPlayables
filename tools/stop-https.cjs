@@ -37,7 +37,11 @@ function listeners(port) {
 
 function processName(pid) {
   try {
-    const out = execFileSync('tasklist', ['/FI', 'PID eq ' + pid, '/FO', 'CSV', '/NH'], { encoding: 'utf8' });
+    // 注意：某些环境下 tasklist 会因权限输出 "ERROR: Access denied"，这里吞掉 stderr 避免污染输出
+    const out = execFileSync('tasklist', ['/FI', 'PID eq ' + pid, '/FO', 'CSV', '/NH'], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    });
     const m = out.match(/^"([^"]+)"/);
     return m ? m[1] : '';
   } catch {
