@@ -125,9 +125,12 @@
 | `tools/serve-https.cjs <目录> <端口>` | 本地 https 静态服务：自签证书、官方同款 CSP、gzip、404 日志（`--no-csp` 可关 CSP） |
 | `tools/yt-suite.cjs run` | 跑官方测试套件预检，输出 MUST/SHOULD + 报告/截图/日志 |
 | `tools/yt-suite.cjs pause` / `pause-local` | 暂停合规验证（官方套件按钮 / 离线直连同一条 SDK 路径） |
+| `tools/yt-suite.cjs watch --url ".../#ytdebug"` | 打开官方套件并**持续**打印游戏 iframe 日志，人工点按钮、终端实时看（排查“点了没反应”） |
 | `tools/yt-suite.cjs diag` / `direct` / `harness` / `targets` / `inspect` | 加载诊断：采样资源与日志、直接开页、本地 iframe/sandbox 对照、target 列表、DOM 结构 |
 | `tools/yt-exceptions.cjs <url>` | 捕获被吞掉的异常（排查静默卡死/某段逻辑没生效） |
 | `tools/yt-stack-probe.cjs --url <url>` | 抓「套件里游戏 iframe」的 JS 调用栈与暂停点源码（`Debugger.pause`，卡死定位神器） |
+| `tools/yt-ui-probe.cjs --url <url>` | UI 点击探针：量 iframe 里的画布位置、命中列表、派发点击、读 `#ytdebug` 日志（`--via-suite` 走官方套件） |
+| `tools/probes/*.js` | 配合 `yt-ui-probe --eval-file` 的现成探针：`dom-overlays` 查 DOM 盖层、`input-rect` 查引擎输入坐标缓存、`hit-list` 查谁吞了点击 |
 | `tools/lib/yt-runtime.js` | 各游戏共用的合规运行时（可见性屏蔽 / 暂停闸门 / 音频 / 输入 / 网络 / 外部请求拦截 / 内存存储 / 云存档 / 广告），新游戏优先复用它 |
 | `tools/build-<游戏>-yt.cjs` | 各游戏的 staging 构建（含全部补丁，匹配校验、可重复执行） |
 | `tools/fetch-docs.cjs`、`tools/html2txt.cjs` | 抓取/转换官方文档（需要代理） |
@@ -170,6 +173,19 @@
      且主线程只是“在等”——用 `tools/yt-stack-probe.cjs` 抓栈能确认；处理办法是在适配层里本地应答这些接口。
   7. **混淆的入口脚本里常藏外部接口**（门户壳 / 统计 / 后端）；接新游戏先扫一遍
      `https?://` 与 `\x` 转义字符串，运行时用外部请求闸门兜底，并在文档里记录残留风险。
+  8. **“某个按钮点了没反应、也没有日志”优先查离屏 DOM 遮罩**：外壳会在 `<body>` 下放负坐标定位的隐藏节点
+     （字体预加载 `<div style="left:-100px;top:-100px">` 实测盒子 178×876，覆盖画布左侧一条），
+     桌面版画布靠右压不到、Playables 竖屏里正好被吃掉。runtime 已统一把负坐标定位的 `absolute/fixed`
+     子节点设 `pointer-events:none`（`neutralizeOffscreenOverlays()`）。
+  9. **“只有顶部/边缘的按钮点不动”优先查引擎的输入坐标缓存**：Cocos 2.x 只在 `window.resize` 重算
+     `cc.inputManager._canvasBoundingRect`，而画布常是加载完才被撑到最终尺寸（还有顶部偏移），
+     之后没有 resize → 坐标整体偏移。runtime 已有 `refreshEngineInputRect()` 定期 + ResizeObserver 兜底。
+  10. **必须持久化“全部”存档键，不能只同步业务白名单**：外壳/引导状态存在别的键里，漏同步会让
+      Playables 里每次都是“新玩家”，新手引导全屏遮罩常驻，看起来就像按钮点不动。用 `P.save.init(null)`。
+  11. **UI 排查三板斧**：`#ytdebug`（每次 input 的目标元素 + `node click -> 按钮名` + `PopupManager.open`）、
+      `tools/yt-suite.cjs watch`（套件里实时看日志）、`tools/yt-ui-probe.cjs`（量 iframe 画布 rect、
+      命中列表、派发点击）。坐标换算：`rect.left + screen.x/visible.width*rect.width`（y 轴要翻转），
+      套件页会滚动，点之前必须重新量 iframe。
 - 测试完及时关掉本次创建的服务器/浏览器/标签页；留给用户验收的再保留并说明。
 
 ## 9. 记忆维护

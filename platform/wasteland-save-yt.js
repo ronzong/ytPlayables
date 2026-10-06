@@ -36,8 +36,12 @@
   window.RemotePlayerSave = {
     init: function () {
       if (initPromise) return initPromise;
-      initPromise = P.save.init(SAVE_KEYS, { intervalMs: 5000 }).then(function (restored) {
-        console.log(TAG + (restored ? ' 云存档已恢复，键列表共 ' + SAVE_KEYS.length + ' 个' : ' 无云存档，使用空存档'));
+      // 注意：这里传 null = 持久化**全部** storage 键。
+      // 只同步固定白名单会导致“外壳/引导/首见”等状态每次重置，玩家每次进来都像新用户
+      // （WastelandSurvivor 表现为 battle 页一直挂着新手引导遮罩，左上角按钮全被吞掉）。
+      // SAVE_KEYS 仅作为参考清单保留。
+      initPromise = P.save.init(null, { intervalMs: 5000 }).then(function (restored) {
+        console.log(TAG + (restored ? ' 云存档已恢复（持久化全部键，参考清单 ' + SAVE_KEYS.length + ' 项）' : ' 无云存档，使用空存档'));
         // 首次进入没有云存档时，先写一份，保证平台上确实存在玩家存档
         return P.save.flush(true).then(function () {
           return true;

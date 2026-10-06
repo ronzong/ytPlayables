@@ -173,6 +173,14 @@ i=Math.max(i,u*e.width/t.width),n=Math.max(n,p*e.height/t.height),i=Math.min(i,4
 
 参考游戏 nonogram 同样跑通：MUST 5/5 PASS。
 
+**2026-10-06 回归**：共享运行时 `platform/lib/yt-runtime.js` 后来为 WastelandSurvivor 加了「离屏覆盖层中和 /
+引擎输入坐标缓存刷新 / UI 诊断」（AntFlow 的横屏布局用不到，但同源）。对**现有产物** `build/AntFlow-yt/`
+（内含改动前的 runtime 快照）复测
+`node tools/yt-suite.cjs pause-local --url https://localhost:8001/ --headless` → **9/9 PASS**
+（帧数 837→837 冻结、画面一致、输入探针 1→1、音频 [0]、恢复后 837→1059、屏蔽注册 12 次、暂停中 XHR 0→1）。
+AntFlow 已跑过审核验收，本次**没有重打包**，所以两者的 runtime 快照暂时不同；
+若要同步，跑一次 `node tools/build-antflow-yt.cjs` 即可（脚本幂等、从源目录重来）。
+
 ### 已知项 / 待办
 
 1. **加载时间**：本机无头软件渲染 + 经代理拉取 SDK 的环境下 8~11 秒，超过 SHOULD 的 5 秒。

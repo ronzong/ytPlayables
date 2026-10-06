@@ -87,6 +87,53 @@
   })();
 
   /* ------------------------------------------------------------------ *
+   * 1.5 中和「离屏 DOM 覆盖层」：外壳/引擎会在 <body> 下塞一些定位在负坐标的隐藏节点
+   *     （例如字体预加载用的 <div style="font-family:fonts_X; left:-100px; top:-100px">）。
+   *     在竖屏/窄视口里（Playables 就是）这些节点会压在 canvas 左上角，把点击全部吃掉，
+   *     表现为“某个按钮点了没反应、也没有日志”。它们不是交互元素，这里统一设为
+   *     pointer-events:none（只处理负坐标定位的绝对/固定定位元素）。
+   * ------------------------------------------------------------------ */
+  var overlayNeutralized = 0;
+  function neutralizeOffscreenOverlays() {
+    if (!doc || !doc.body || !doc.body.children) return overlayNeutralized;
+    for (var i = 0; i < doc.body.children.length; i++) {
+      var el = doc.body.children[i];
+      if (!el || el.tagName === 'CANVAS') continue;
+      var st = el.style || {};
+      if (String(st.pointerEvents || '') === 'none') continue;
+      var cs = g.getComputedStyle ? g.getComputedStyle(el) : null;
+      var pos = st.position || (cs && cs.position) || '';
+      if (pos !== 'absolute' && pos !== 'fixed') continue;
+      var left = parseFloat(st.left || (cs && cs.left) || '0');
+      var top = parseFloat(st.top || (cs && cs.top) || '0');
+      if (!(left < 0 || top < 0)) continue;
+      try {
+        st.pointerEvents = 'none';
+        overlayNeutralized += 1;
+        log('已中和离屏覆盖层（pointer-events:none）:', el.tagName + (el.id ? '#' + el.id : ''), 'left=' + left, 'top=' + top);
+      } catch (_e) { /* ignore */ }
+    }
+    return overlayNeutralized;
+  }
+  function watchOffscreenOverlays() {
+    neutralizeOffscreenOverlays();
+    // 页面/场景切换时还会再建，前 60 秒定期扫，另外用 MutationObserver 兜底
+    var ticks = 0;
+    var timer = setInterval(function () {
+      ticks += 1;
+      neutralizeOffscreenOverlays();
+      if (ticks > 120) clearInterval(timer);
+    }, 500);
+    try {
+      if (g.MutationObserver && doc.body) {
+        new g.MutationObserver(function () { neutralizeOffscreenOverlays(); })
+          .observe(doc.body, { childList: true, subtree: false });
+      }
+    } catch (_e) { /* ignore */ }
+  }
+  watchOffscreenOverlays();
+
+  /* ------------------------------------------------------------------ *
    * 2. 内存存储（替代被置为 null 的 localStorage）
    * ------------------------------------------------------------------ */
   var storage = (function () {
@@ -176,6 +223,53 @@
       if (ticks > 3000) clearInterval(timer); // 最多轮询 30s
     }, 10);
   }
+
+  /**
+   * Cocos 2.x 的输入管理器只在 window.resize 时更新 canvas 位置缓存
+   * （`cc.inputManager._canvasBoundingRect`），而门户外壳/播放器会在加载完成后才把画布
+   * 挪到最终位置（Playables 的 iframe 里画布常常带一个顶部偏移），之后不会再触发 resize，
+   * 于是**鼠标/触摸坐标整体偏移**，表现为“顶部/边缘的按钮点不动、也没有日志”。
+   * 这里定期（以及 resize/orientationchange/canvas 尺寸变化时）让引擎重算一次。
+   */
+  var lastCanvasRectSig = '';
+  function refreshEngineInputRect() {
+    var canvas = doc && doc.getElementById ? doc.getElementById('GameCanvas') : null;
+    if (!canvas) return false;
+    var r = canvas.getBoundingClientRect();
+    var sig = [Math.round(r.left), Math.round(r.top), Math.round(r.width), Math.round(r.height)].join(',');
+    if (sig === lastCanvasRectSig) return false; // 画布没动就不打扰
+    lastCanvasRectSig = sig;
+    var cc = g.cc;
+    try {
+      if (cc && cc.inputManager && typeof cc.inputManager._updateCanvasBoundingRect === 'function') {
+        cc.inputManager._updateCanvasBoundingRect();
+      }
+    } catch (_e) { /* ignore */ }
+    // 引擎只监听 window.resize 来重算画布位置；画布位置变化时补一次合成 resize
+    try {
+      g.dispatchEvent(new Event('resize'));
+    } catch (_e) { /* ignore */ }
+    log('画布位置变化，已让引擎重算输入映射:', sig);
+    return true;
+  }
+
+  function installInputRectRefresh() {
+    var ticks = 0;
+    var timer = setInterval(function () {
+      ticks += 1;
+      refreshEngineInputRect();
+      if (ticks > 600) clearInterval(timer); // 最多盯 5 分钟
+    }, 500);
+    g.addEventListener('resize', refreshEngineInputRect, { passive: true });
+    g.addEventListener('orientationchange', refreshEngineInputRect, { passive: true });
+    try {
+      if (g.ResizeObserver && doc && doc.getElementById('GameCanvas')) {
+        new g.ResizeObserver(function () { refreshEngineInputRect(); })
+          .observe(doc.getElementById('GameCanvas'));
+      }
+    } catch (_e) { /* ignore */ }
+  }
+  installInputRectRefresh();
 
   /* ------------------------------------------------------------------ *
    * 3. 暂停闸门：rAF / 输入 / 网络
@@ -513,7 +607,8 @@
     var intervalMs = 4000;
 
     function snapshot() {
-      return storage.__snapshot(keys);
+      // keys 为空表示“持久化全部键”（外壳/引擎自己的状态键也要存，否则每次进来都像新玩家）
+      return storage.__snapshot(keys.length ? keys : null);
     }
 
     function write(force) {
@@ -585,7 +680,7 @@
         if (opts && opts.intervalMs) intervalMs = opts.intervalMs;
         for (var i = 0; i < keys.length; i++) keyMap[keys[i]] = true;
         storage.__onWrite(function (key) {
-          if (keyMap[key]) schedule();
+          if (!keys.length || keyMap[key]) schedule();
         });
         return load();
       },
@@ -687,6 +782,128 @@
       lastFrames = frames;
     }, 3000);
     log('心跳诊断已开启');
+    installUiDiagnostics();
+  }
+
+  /**
+   * UI 诊断（只在 #ytdebug 下启用）：把“点击到底有没有到达游戏、按钮有没有触发、
+   * 弹窗开没开、开的什么路径”逐条打出来，专门用来排查“点了没反应”。
+   */
+  function installUiDiagnostics() {
+    function ui() {
+      try {
+        var a = Array.prototype.slice.call(arguments);
+        a.unshift('[ui]');
+        console.log.apply(console, a);
+      } catch (_e) { /* ignore */ }
+    }
+
+    // 原始输入事件（捕获阶段，最早能看到；同时报告暂停闸门状态）
+    var RAW = ['pointerdown', 'mousedown', 'touchstart', 'click'];
+    function describe(el) {
+      if (!el) return 'null';
+      try {
+        var r = el.getBoundingClientRect();
+        var cs = g.getComputedStyle ? g.getComputedStyle(el) : null;
+        var cls = typeof el.className === 'string' ? el.className.slice(0, 40) : '';
+        return el.tagName + (el.id ? '#' + el.id : '') + (cls ? '.' + cls : '') +
+          ' rect=[' + Math.round(r.left) + ',' + Math.round(r.top) + ',' + Math.round(r.width) + ',' + Math.round(r.height) + ']' +
+          ' pe=' + (cs ? cs.pointerEvents : '?') + ' z=' + (cs ? cs.zIndex : '?') +
+          ' html=' + String(el.outerHTML || '').slice(0, 140).replace(/\s+/g, ' ');
+      } catch (_e) {
+        return 'err';
+      }
+    }
+    RAW.forEach(function (type) {
+      var handler = function (e) {
+        var cx = Math.round(e.clientX || 0);
+        var cy = Math.round(e.clientY || 0);
+        var top = null;
+        try {
+          top = doc.elementFromPoint(cx, cy);
+        } catch (_e) { /* ignore */ }
+        ui('input', type, 'x=' + cx, 'y=' + cy, 'paused=' + pauseGate.isPaused(),
+          'target=' + describe(e.target), 'top=' + describe(top));
+      };
+      if (doc) doc.addEventListener(type, handler, { capture: true, passive: true });
+    });
+    ui('原始输入监听已装');
+
+    var done = false;
+    var timer = setInterval(function () {
+      if (done) return;
+      try {
+        var cc = g.cc;
+        if (!(cc && cc.director && cc.director.getScene && cc.director.getScene() && typeof g.__require === 'function')) return;
+        done = true;
+        clearInterval(timer);
+
+        var canvas = doc.getElementById('GameCanvas');
+        var r = canvas.getBoundingClientRect();
+        var vs = cc.view.getVisibleSize();
+        ui('viewport canvasRect=', [Math.round(r.left), Math.round(r.top), Math.round(r.width), Math.round(r.height)],
+          'backing=', [canvas.width, canvas.height], 'visible=', [Math.round(vs.width), Math.round(vs.height)]);
+
+        // 诊断期把所有 btn* 节点都挂上（只在 #ytdebug 下启用）
+        var watchNames = /^btn/i;
+        var seen = [];
+        function attach() {
+          var scene = cc.director.getScene();
+          if (!scene) return;
+          (function walk(n) {
+            var name = String(n.name || '');
+            if (watchNames.test(name) && seen.indexOf(n) < 0) {
+              seen.push(n);
+              try {
+                n.on('click', function () { ui('node click ->', name, 'active=', n.activeInHierarchy); });
+                n.on(cc.Node.EventType.TOUCH_END, function () { ui('node TOUCH_END ->', name); });
+              } catch (_e) { /* ignore */ }
+              ui('已挂监听:', name, 'active=', n.activeInHierarchy, 'pos=', [Math.round(n.position.x), Math.round(n.position.y)]);
+            }
+            var kids = n.children || [];
+            for (var i = 0; i < kids.length; i++) walk(kids[i]);
+          })(scene);
+        }
+        attach();
+        setInterval(attach, 2000);
+
+        try {
+          var pm = g.__require('PopupManager');
+          var PM = pm && (pm.PopupManager || pm.default);
+          if (PM && PM.prototype && typeof PM.prototype.open === 'function' && !PM.prototype.__ytDbg) {
+            PM.prototype.__ytDbg = true;
+            var origOpen = PM.prototype.open;
+            PM.prototype.open = function (path) {
+              ui('PopupManager.open(', String(path), ')');
+              try {
+                var res = origOpen.apply(this, arguments);
+                if (res && typeof res.then === 'function') {
+                  res.then(function () { ui('open 完成', String(path)); }, function (e) {
+                    ui('open 失败', String(path), String((e && e.message) || e));
+                  });
+                }
+                return res;
+              } catch (e) {
+                ui('open 抛错', String(path), String(e && e.message));
+                throw e;
+              }
+            };
+            ui('已包装 PopupManager.open');
+          }
+        } catch (e) {
+          ui('包装 PopupManager 失败:', String(e && e.message));
+        }
+
+        g.addEventListener('error', function (e) {
+          ui('页面异常:', String((e && e.message) || e));
+        });
+        g.addEventListener('unhandledrejection', function (e) {
+          ui('未处理的 Promise 拒绝:', String((e && e.reason && e.reason.message) || (e && e.reason) || e));
+        });
+      } catch (e) {
+        ui('UI 诊断安装异常:', String(e && e.message));
+      }
+    }, 500);
   }
 
   g.__ytPlayables = {

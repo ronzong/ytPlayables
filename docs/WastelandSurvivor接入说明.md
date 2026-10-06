@@ -67,6 +67,40 @@ IP 探测：本地直接返回 window.__IP_PROBE_VALUE（沿用原 mock 值 aa8f
 > 它属于**代码混淆**（认证建议“不得混淆代码”），且残留外部接口字符串；本版只做了“运行时绝不外呼”的兜底
 > （`[yt] 已拦截外部请求数 = 0`，外部请求闸门记录为 0 表示连尝试都没有）。是否进一步清理混淆壳，见第 4 节。
 
+### 2.6 首页 gift / weekly card 点不动（Playables 专属，三个叠加的根因）
+
+现象：本地版一切正常；套件/Playables 里只有**战斗页左上角 gift、weekly card 点不动，也没有任何日志**，
+玩到战斗界面后连“暂停 → 展厅/返回首页”都调不出来。三个原因叠在一起，缺一个都还是点不动：
+
+1. **离屏 DOM 遮罩吃掉点击**：门户外壳在 `<body>` 下塞了一个字体预加载节点
+   `<div style="font-family:fonts_LABEL;position:absolute;left:-100px;top:-100px">.</div>`，
+   它的**盒子实际是 178×876**（`left:-100` 的内容宽度把盒子撑到覆盖 `x∈[0,78]`）。
+   桌面版画布从 `x=421` 才开始，压不到；Playables 是竖屏窄视口，gift 按钮中心 `x≈69` 正好被它吃掉。
+   → runtime `neutralizeOffscreenOverlays()`：把负坐标定位的 `absolute/fixed` 子节点设为 `pointer-events:none`
+   （日志：`已中和离屏覆盖层… DIV left=-100 top=-100`）。
+2. **引擎缓存画布位置过期**：Cocos 2.x 只在 `window.resize` 时重算 `cc.inputManager._canvasBoundingRect`；
+   套件里画布先按 300×150 注册，加载完才被撑成 577×1026 且不再触发 resize，于是**鼠标/触摸坐标整体偏移**
+   （画布顶部还有 88px 偏移），顶部一排按钮就此点不到。
+   → runtime `refreshEngineInputRect()`：画布矩形变化时调 `_updateCanvasBoundingRect()` 并补发 `resize`
+   （日志：`画布位置变化，已让引擎重算输入映射: 0,88,300,150` → `0,88,577,1026`）。
+3. **每次进游戏都是“新玩家” → 新手引导全屏遮罩常驻**：`GameView/guide`（720×1280，`swallowTouches=true`）
+   和 `Canvas/general_bg` 的 TouchBlocker 压在按钮上。本地版早过了引导所以看不到；
+   Playables 里每次都是全新存档（云存档当时只同步 41 个固定键，外壳存的引导状态没被同步）。
+   → `platform/wasteland-save-yt.js` 改成 `P.save.init(null)`（`null` = **持久化全部键**）。
+
+排查用命令（`#ytdebug` 打开 UI 诊断：每次 pointerdown 的目标元素、`node click -> 按钮名`、`PopupManager.open`）：
+
+```
+node tools/yt-suite.cjs watch --url "https://localhost:8002/#ytdebug"      # 套件里实时看日志，人工点按钮
+node tools/yt-ui-probe.cjs --url https://localhost:8002/ --name "btn_week|btn_newpack" --wait 25 --click
+node tools/yt-ui-probe.cjs --via-suite --url https://localhost:8002/ --eval-file tools/probes/dom-overlays.js --click
+```
+
+> 坐标换算：`cssX = rect.left + screen.x/visible.width*rect.width`，
+> `cssY = rect.top + (visible.height-screen.y)/visible.height*rect.height`
+> （`cc.Camera.main.getWorldToScreenPoint` + `cc.view.getVisibleSize()`；套件页会滚动，点击前必须重新量 iframe）。
+> 现成探针见 `tools/probes/`（`dom-overlays.js` 查盖层、`input-rect.js` 查坐标偏移、`hit-list.js` 查谁吞了点击）。
+
 ## 3. 验证结果（2026-10-06，官方测试套件）
 
 ```
@@ -98,6 +132,29 @@ PASS  不使用 Page Visibility 类 API 暂停/恢复（屏蔽注册 9 次）
 PASS  暂停后只能由 onResume 恢复（focus/visibility 无效）
 PASS  暂停期间不发起网络请求（XHR done 0 -> 1）
 ```
+
+### 3.1 第二轮回归（2.6 首页按钮修复后，2026-10-06）
+
+`node tools/yt-suite.cjs run --url https://localhost:8002/ --name wasteland-r2`：**MUST 6/6 PASS**
+（`sendScore` 仍未接，见第 4 节；初始包 / 云存档 438 B / JS 堆 26.18 MiB / SDK 顺序 / firstFrameReady 顺序全过），
+报告 `tools/state/reports/yt-suite-wasteland-r2-2026-10-06T09-45-02.json`。
+运行日志里能看到本轮两条修复都生效：
+
+```
+[yt] 已中和离屏覆盖层（pointer-events:none）: DIV left=-100 top=-100
+[yt] 画布位置变化，已让引擎重算输入映射: 0,88,300,150 -> 0,88,577,1026
+[wasteland-save] 云存档已恢复（持久化全部键，参考清单 41 项）
+```
+
+`pause-local` 复测 **9/9 PASS**（帧数 1404→1404 冻结、画面两张截图一致、输入探针 1→1、
+音频 masterGains [0]、恢复后 1404→1887、恢复后输入 1→2、屏蔽 visibility/blur/focus 注册 9 次、
+暂停中 XHR `{started:1,done:0}` 恢复后 `{done:1}`）。
+
+人工验收（官方套件里真实操作，用户确认）：**按提示走完新手引导 → 暂停 → 展厅/返回首页 → 首页 gift / weekly card，全部顺利完成**；
+期间 `ytgame.onPause/onResume` 也正常触发（`[yt] 已暂停…原因: ytgame.onPause` / `已恢复…ytgame.onResume`）。
+
+> 共享运行时 `platform/lib/yt-runtime.js` 本轮改动过，同源的 AntFlow 也做了回归：
+> `pause-local` **9/9 PASS**（屏蔽注册 12 次），未受影响。
 
 ## 4. 已知项 / 待办
 

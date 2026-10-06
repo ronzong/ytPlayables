@@ -112,6 +112,8 @@ function parseArgs(argv) {
     else if (a === '--keep') opts.keep = true;
     else if (a === '--null-storage') opts.nullStorage = true;
     else if (a === '--full') opts.full = true;
+    else if (a === '--eval') opts.evalExpr = argv[++i];
+    else if (a === '--eval-file') opts.evalFile = argv[++i];
   }
   return opts;
 }
@@ -553,6 +555,20 @@ async function direct(opts) {
   const logPath = path.join(logDir, 'direct-' + (opts.name || 'game') + '-' + Date.now() + '.log');
   fs.writeFileSync(logPath, session.logsText() + '\n');
   console.log('完整日志: ' + logPath);
+  if (opts.evalFile) {
+    opts.evalExpr = fs.readFileSync(path.resolve(opts.evalFile), 'utf8');
+  }
+  if (opts.evalExpr) {
+    // --eval-file：从文件读表达式，避免命令行引号地狱
+    try {
+      const value = await session.eval(opts.evalExpr);
+      console.log('--- eval 结果 ---');
+      console.log(typeof value === 'string' ? value : JSON.stringify(value, null, 2));
+      fs.appendFileSync(logPath, '\n=== eval ===\n' + opts.evalExpr + '\n---\n' + JSON.stringify(value, null, 2) + '\n');
+    } catch (e) {
+      console.log('eval 失败: ' + e.message);
+    }
+  }
   if (opts.full) {
     console.log('--- 日志开头 4000 字符 ---');
     console.log(session.logsText().slice(0, 4000));
@@ -801,6 +817,62 @@ async function verifyPauseLocal(opts) {
 
 async function main() {
   const opts = parseArgs(process.argv.slice(2));
+  if (opts.cmd === 'watch') await watchSuite(opts);
+  else await main2(opts);
+}
+
+/**
+ * watch：打开官方测试套件、载入游戏，然后**持续**把游戏 iframe 与套件的日志实时打在终端里，
+ * 期间可以人工点按钮。用法：
+ *   node tools/yt-suite.cjs watch --url "https://localhost:8002/#ytdebug"
+ */
+async function watchSuite(opts) {
+  if (!opts.url) throw new Error('缺少 --url');
+  const hostPart = new URL(opts.url).host;
+  const { info, session, children } = await openSession(opts);
+  await openSuite(session);
+  await session.eval(`(() => {
+    const input = window.__ytDeep.one('#url-input');
+    input.value = ${JSON.stringify(opts.url)};
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    const btn = window.__ytDeep.one('#refresh-button');
+    if (btn) btn.click();
+    return 'ok';
+  })()`);
+  console.log('已让套件加载: ' + opts.url);
+  console.log('Chrome 窗口已打开，请在套件里点【首页 battle 页左上角 gift / weekly card】按钮，我这边实时看日志。');
+  console.log('（Ctrl+C 结束；日志只打印新增行）');
+
+  let printed = 0;
+  let printedPage = 0;
+  const gameSessions = [];
+  for (;;) {
+    await sleep(800);
+    // 找出游戏 iframe 会话（按日志内容识别）
+    const found = await findGameSessions(children, hostPart);
+    for (const g of found) if (gameSessions.indexOf(g) < 0) gameSessions.push(g);
+    const lines = [];
+    for (const g of gameSessions) {
+      const all = g.logsText().split('\n');
+      if (g.__printed === undefined) g.__printed = 0;
+      if (all.length > g.__printed) {
+        lines.push(...all.slice(g.__printed).map((l) => '[game] ' + l));
+        g.__printed = all.length;
+      }
+    }
+    const pageLogs = session.logsText().split('\n');
+    if (pageLogs.length > printedPage) {
+      lines.push(...pageLogs.slice(printedPage).map((l) => '[suite] ' + l));
+      printedPage = pageLogs.length;
+    }
+    if (lines.length) {
+      for (const l of lines) console.log(l);
+      printed += lines.length;
+    }
+  }
+}
+
+async function main2(opts) {
   if (opts.cmd === 'inspect') await inspect(opts);
   else if (opts.cmd === 'run') await run(opts);
   else if (opts.cmd === 'targets') await debugTargets(opts);
@@ -809,6 +881,7 @@ async function main() {
   else if (opts.cmd === 'harness') await harness(opts);
   else if (opts.cmd === 'pause') await verifyPause(opts);
   else if (opts.cmd === 'pause-local') await verifyPauseLocal(opts);
+  else if (opts.cmd === 'watch') await watchSuite(opts);
   else {
     console.error('未知命令: ' + opts.cmd);
     process.exit(2);
