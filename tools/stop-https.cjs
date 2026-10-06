@@ -15,6 +15,7 @@ const { execFileSync } = require('child_process');
 const GAMES = [
   { label: 'nonogram（参考游戏）', port: 8000 },
   { label: 'AntFlow 油管小游戏版', port: 8001 },
+  { label: 'Wasteland Survivor 油管小游戏版', port: 8002 },
 ];
 
 function listeners(port) {

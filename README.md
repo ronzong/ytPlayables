@@ -28,6 +28,7 @@ YouTube Playables（油管小游戏）SDK 接入与本地测试仓库。
 | 游戏 | 源目录（只读） | 构建产物 | 接入说明 |
 | --- | --- | --- | --- |
 | AntFlow | `gamePopStar/AntFlow/local-game` | `build/AntFlow-yt/` | [docs/AntFlow接入说明.md](docs/AntFlow接入说明.md) |
+| Wasteland Survivor | `gamePopStar/WastelandSurvivor/local-game` | `build/WastelandSurvivor-yt/` | [docs/WastelandSurvivor接入说明.md](docs/WastelandSurvivor接入说明.md) |
 | nonogram | 本目录自带（参考游戏） | — | 仅作测试套件基线 |
 
 ## 本地启动与端口登记
@@ -38,6 +39,7 @@ YouTube Playables（油管小游戏）SDK 接入与本地测试仓库。
 | --- | --- | --- | --- | --- |
 | nonogram（参考游戏） | `nonogram` | 8000 | https://localhost:8000/ | 双击 `start-nonogram.bat` |
 | AntFlow 油管小游戏版 | `build/AntFlow-yt` | 8001 | https://localhost:8001/ | 双击 `start-AntFlow-yt.bat` |
+| Wasteland Survivor 油管小游戏版 | `build/WastelandSurvivor-yt` | 8002 | https://localhost:8002/ | 双击 `start-WastelandSurvivor-yt.bat` |
 
 ```powershell
 node tools/gen-start-bats.cjs --list     # 只打印端口登记表

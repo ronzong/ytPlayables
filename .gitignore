@@ -1,8 +1,10 @@
 # 构建产物：只跟踪各游戏的「油管版」（build/<游戏>-yt/），其余一律不入库
 /build/*
 !/build/AntFlow-yt
+!/build/WastelandSurvivor-yt
 # 游戏目录里不跟踪打包 zip（可随时用 tools/build-<游戏>-yt.cjs --zip 重新生成）
 /build/AntFlow-yt/*.zip
+/build/WastelandSurvivor-yt/*.zip
 # 诊断/普通 h5 构建的临时目录（也可以放到 %TEMP%\yt-diag，见 AGENTS.md）
 /build/_scratch/
 

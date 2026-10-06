@@ -907,5 +907,8 @@
     /* ignore */
   }
 
+  // 通用调试入口别名：tools/yt-suite.cjs pause-local 对两个游戏用同一个名字
+  global_.__ytDebug = global_.__antflowYtBridge;
+
   log('AntFlow YouTube Playables 适配层已注入（inPlayables =', inPlayables, '）');
 })();

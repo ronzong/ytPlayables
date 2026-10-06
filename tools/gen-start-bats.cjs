@@ -20,6 +20,7 @@ const ROOT = path.join(__dirname, '..');
 const GAMES = [
   { id: 'nonogram', label: 'nonogram（参考游戏）', dir: 'nonogram', port: 8000 },
   { id: 'AntFlow-yt', label: 'AntFlow 油管小游戏版', dir: 'build/AntFlow-yt', port: 8001 },
+  { id: 'WastelandSurvivor-yt', label: 'Wasteland Survivor 油管小游戏版', dir: 'build/WastelandSurvivor-yt', port: 8002 },
 ];
 
 function batFor(game) {

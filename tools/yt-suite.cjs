@@ -111,6 +111,7 @@ function parseArgs(argv) {
     else if (a === '--profile') opts.profile = argv[++i];
     else if (a === '--keep') opts.keep = true;
     else if (a === '--null-storage') opts.nullStorage = true;
+    else if (a === '--full') opts.full = true;
   }
   return opts;
 }
@@ -546,6 +547,16 @@ async function direct(opts) {
   const shot = path.join(STATE, 'screenshots', 'direct-' + (opts.name || 'game') + '.png');
   await session.screenshot(shot).catch(() => {});
   console.log('截图: ' + shot);
+  // 完整日志落盘（排查启动阶段最有用）
+  const logDir = path.join(STATE, 'reports');
+  fs.mkdirSync(logDir, { recursive: true });
+  const logPath = path.join(logDir, 'direct-' + (opts.name || 'game') + '-' + Date.now() + '.log');
+  fs.writeFileSync(logPath, session.logsText() + '\n');
+  console.log('完整日志: ' + logPath);
+  if (opts.full) {
+    console.log('--- 日志开头 4000 字符 ---');
+    console.log(session.logsText().slice(0, 4000));
+  }
   session.close();
   chrome.kill(info.proc);
 }
@@ -645,11 +656,11 @@ async function verifyPauseLocal(opts) {
   });
   const s = await CdpSession.attachPage(opts.port);
   await s.enableCollect();
-  await s.waitFor('!!(window.__antflowYtBridge && window.__antflowYtBridge.getFrameCount)', { timeoutMs: 90000 });
+  await s.waitFor('!!(window.__ytDebug && window.__ytDebug.getFrameCount)', { timeoutMs: 90000 });
   console.log('适配层已就绪，等待游戏起来...');
   await sleep(10000);
 
-  const frames = () => s.eval('window.__antflowYtBridge.getFrameCount()');
+  const frames = () => s.eval('window.__ytDebug.getFrameCount()');
   const shot = async () => (await s.send('Page.captureScreenshot', { format: 'png' })).data;
   const before = await frames();
   console.log('暂停前帧数 = ' + before);
@@ -679,10 +690,10 @@ async function verifyPauseLocal(opts) {
 
   const beforePause = await frames();
   console.log('发起暂停前帧数 = ' + beforePause);
-  await s.eval('window.__antflowYtBridge.simulateSdkPause()');
+  await s.eval('window.__ytDebug.simulateSdkPause()');
   await sleep(1500);
   const justAfter = await frames();
-  const audioWhilePaused = await s.eval('JSON.stringify(window.__antflowYtBridge.getAudioState())');
+  const audioWhilePaused = await s.eval('JSON.stringify(window.__ytDebug.getAudioState())');
   const shotB1 = await shot();
   await clickCenter();
   await sleep(500);
@@ -697,7 +708,7 @@ async function verifyPauseLocal(opts) {
   console.log('暂停期间音频状态 = ' + audioWhilePaused);
   console.log('暂停期间两张截图是否不同 = ' + pictureMovingDuringPause);
 
-  await s.eval('window.__antflowYtBridge.simulateSdkResume()');
+  await s.eval('window.__ytDebug.simulateSdkResume()');
   await sleep(4000);
   const after = await frames();
   await clickCenter();
@@ -707,7 +718,7 @@ async function verifyPauseLocal(opts) {
   console.log('恢复后点击一次，探针计数 = ' + hitsAfterResume + '（应继续增加）');
 
   // ---- Page Visibility / blur / focus 通路检查（认证要求：只用 SDK 的 onPause/onResume）----
-  const blockedCount = await s.eval('window.__antflowYtBridge.getVisibilityBlockedCount()');
+  const blockedCount = await s.eval('window.__ytDebug.getVisibilityBlockedCount()');
   console.log('\n被屏蔽的 visibility/blur/focus 事件注册数 = ' + blockedCount);
   const f1 = await frames();
   await s.eval(`(() => {
@@ -724,14 +735,14 @@ async function verifyPauseLocal(opts) {
   console.log('触发 visibility/blur/focus 后帧数 = ' + f1 + ' -> ' + f2 + '（应继续增长）');
 
   // 暂停状态下触发 focus/visibility，不应被“恢复”
-  await s.eval('window.__antflowYtBridge.simulateSdkPause()');
+  await s.eval('window.__ytDebug.simulateSdkPause()');
   await sleep(1200);
   const g1 = await frames();
   // 暂停期间发起一个 XHR：应当被“扣住”，恢复后才真正发出
   await s.eval(`(() => {
     window.__netProbe = { started: 0, done: 0 };
     var x = new XMLHttpRequest();
-    x.open('GET', '/style.css?netprobe=' + Math.random());
+    x.open('GET', '/index.html?netprobe=' + Math.random());
     x.onloadend = function () { window.__netProbe.done += 1; };
     x.send();
     window.__netProbe.started += 1;
@@ -750,8 +761,8 @@ async function verifyPauseLocal(opts) {
   const resumeOnlyBySdk = g2 - g1 <= 2;
   console.log('暂停中触发 focus/visibility 后帧数 = ' + g1 + ' -> ' + g2 + '（应保持不变）');
   console.log('暂停期间发起的 XHR 状态 = ' + netWhilePaused + '（done 应为 0）');
-  const stillPaused = await s.eval('window.__antflowYtBridge.isPaused()');
-  await s.eval('window.__antflowYtBridge.simulateSdkResume()');
+  const stillPaused = await s.eval('window.__ytDebug.isPaused()');
+  await s.eval('window.__ytDebug.simulateSdkResume()');
   await sleep(1500);
   const netAfterResume = await s.eval('JSON.stringify(window.__netProbe)');
   console.log('恢复后同一 XHR 状态 = ' + netAfterResume + '（done 应为 1）');

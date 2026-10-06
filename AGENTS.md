@@ -127,6 +127,8 @@
 | `tools/yt-suite.cjs pause` / `pause-local` | 暂停合规验证（官方套件按钮 / 离线直连同一条 SDK 路径） |
 | `tools/yt-suite.cjs diag` / `direct` / `harness` / `targets` / `inspect` | 加载诊断：采样资源与日志、直接开页、本地 iframe/sandbox 对照、target 列表、DOM 结构 |
 | `tools/yt-exceptions.cjs <url>` | 捕获被吞掉的异常（排查静默卡死/某段逻辑没生效） |
+| `tools/yt-stack-probe.cjs --url <url>` | 抓「套件里游戏 iframe」的 JS 调用栈与暂停点源码（`Debugger.pause`，卡死定位神器） |
+| `tools/lib/yt-runtime.js` | 各游戏共用的合规运行时（可见性屏蔽 / 暂停闸门 / 音频 / 输入 / 网络 / 外部请求拦截 / 内存存储 / 云存档 / 广告），新游戏优先复用它 |
 | `tools/build-<游戏>-yt.cjs` | 各游戏的 staging 构建（含全部补丁，匹配校验、可重复执行） |
 | `tools/fetch-docs.cjs`、`tools/html2txt.cjs` | 抓取/转换官方文档（需要代理） |
 | `tools/lib/cdp.cjs`、`tools/lib/chrome.cjs` | CDP 与 Chrome 封装（含 flatten 子会话、代理、自签证书参数） |
@@ -163,6 +165,11 @@
      给尺寸加上限（用 `Debugger.pause` 读调用栈定位）；
   4. Playables 里 `localStorage` 为 `null`，引擎与游戏都要有兜底；
   5. 无头 + 软件渲染 + 代理拉 SDK 会让"启动 5 秒"偏慢，记录实测值而不是直接判失败。
+  6. **原平台的“本地后端替身”不能丢**：本地化版本常靠 mock 的 fetch/XHR 拦截伪造平台后端响应
+     （WastelandSurvivor 的 IP 探测就是启动必需项）。只替换 SDK 而不复刻这层，游戏会在加载页静默卡住，
+     且主线程只是“在等”——用 `tools/yt-stack-probe.cjs` 抓栈能确认；处理办法是在适配层里本地应答这些接口。
+  7. **混淆的入口脚本里常藏外部接口**（门户壳 / 统计 / 后端）；接新游戏先扫一遍
+     `https?://` 与 `\x` 转义字符串，运行时用外部请求闸门兜底，并在文档里记录残留风险。
 - 测试完及时关掉本次创建的服务器/浏览器/标签页；留给用户验收的再保留并说明。
 
 ## 9. 记忆维护

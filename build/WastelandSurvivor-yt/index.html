@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head><meta charset="utf-8"/>
+<title>Wasteland Survivor</title>
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>
+<!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="format-detection" content="telephone=no"/>
+<!-- force webkit on 360 -->
+<meta name="renderer" content="webkit"/>
+<meta name="force-rendering" content="webkit"/>
+<!-- force edge on IE -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="msapplication-tap-highlight" content="no"/>
+<!-- force screen orientation on some browser -->
+<meta name="screen-orientation" content=""/>
+<meta name="x5-orientation" content=""/>
+<!--fix fireball/issues/3568 -->
+<!--<meta name="browsermode" content="application">-->
+<meta name="x5-page-mode" content="app"/>
+<!--<link rel="apple-touch-icon" href=".png" />-->
+<!--<link rel="apple-touch-icon-precomposed" href=".png" />-->
+<link rel="stylesheet" href="css/css.css"/>
+<link rel="stylesheet" type="text/css" href="style-mobile.css"/>
+<link rel="icon" href="data:"/>
+<script src="https://www.youtube.com/game_api/v1"></script>
+<script src="sdk.js"></script>
+<script src="fb-mock.js"></script>
+<script>
+      //xz 加载js函数
+      function loadScript(src, options = {}) {
+        return new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          const { async = false } = options;
+          script.src = src;
+          script.async = async;
+
+          script.onload = () => resolve(script);
+          script.onerror = () =>
+            reject(new Error(`Failed to load script: ${src}`));
+
+          document.body.appendChild(script);
+        });
+      }
+
+      function loadScriptsSequentially(sources, options = {}) {
+        return sources.reduce(function (promise, src) {
+          return promise.then(function () {
+            return loadScript(src, options);
+          });
+        }, Promise.resolve());
+      }
+    </script>
+</head>
+<body class="bodywidth" leftmargin="0" topmargin="0" oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false" onbeforecopy="return false">
+<script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
+<script type="text/javascript" src="js/clipboard.min.js"></script>
+<script type="text/javascript" src="js/seedrandom.min.js"></script>
+<div id="game-stage">
+<canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
+</div>
+<script src="src/settings.js" charset="utf-8"></script>
+<script>
+    //xz 加载volansdk
+      Promise.resolve().then(() => {
+        //xz sdk初始化
+        //test
+        // VolanSdk.IS_FORCE_RELEASE = true;
+        // VolanSdk.IS_CHECK_REWARD_FAIL = true;
+
+        VolanSdk.GAME_YD_APPID = "587674";
+        VolanSdk.GAME_NAME = "mj-dreambattle";
+
+        return VolanSdk.initVolan().then(() => {
+          //test
+          // VolanSdk.GAME_LANGUAGE = "ru";
+
+          switch (VolanSdk.GAME_LANGUAGE) {
+            case "en":
+              VolanSdk.GAME_LANGUAGE = "en";
+              break;
+            // case "ru": VolanSdk.GAME_LANGUAGE = "ru"; break;
+            // case "es": VolanSdk.GAME_LANGUAGE = "es"; break;
+            // case "tr": VolanSdk.GAME_LANGUAGE = "tr"; break;
+            // case "pt": VolanSdk.GAME_LANGUAGE = "pt"; break;
+            // case "ar": VolanSdk.GAME_LANGUAGE = "ar"; break;
+            // case "id": VolanSdk.GAME_LANGUAGE = "id"; break;
+            // case "fr": VolanSdk.GAME_LANGUAGE = "fr"; break;
+            // case "ja": VolanSdk.GAME_LANGUAGE = "ja"; break;
+            // case "it": VolanSdk.GAME_LANGUAGE = "it"; break;
+            // case "de": VolanSdk.GAME_LANGUAGE = "de"; break;
+            // case "hi": VolanSdk.GAME_LANGUAGE = "hi"; break;
+            // case "cs": VolanSdk.GAME_LANGUAGE = "cs"; break;
+            // case "nl": VolanSdk.GAME_LANGUAGE = "nl"; break;
+            // case "ko": VolanSdk.GAME_LANGUAGE = "ko"; break;
+            // case "pl": VolanSdk.GAME_LANGUAGE = "pl"; break;
+            // case "ro": VolanSdk.GAME_LANGUAGE = "ro"; break;
+            // case "zh": VolanSdk.GAME_LANGUAGE = "zh"; break;
+            // case "th": VolanSdk.GAME_LANGUAGE = "th"; break;
+            // case "vi": VolanSdk.GAME_LANGUAGE = "vi"; break;
+            default:
+              VolanSdk.GAME_LANGUAGE = "en";
+              break;
+          }
+
+          //游戏启动代码
+          VolanSdk.gameLoadingFinished = function () {
+            console.log("===加载完毕===");
+            //xz yandexReady
+            if (!window.idReadyGame) {
+              window.idReadyGame = true;
+              VolanSdk.yandexReady();
+            }
+          };
+          
+          // 先恢复 Yandex 云存档，再启动游戏，确保模型读取到远程进度。
+          // 记录本地引擎启动异常，便于定位浏览器只显示黑色画布的问题。
+          window.addEventListener('error', function (event) {
+            window.__LOCAL_BOOT_ERROR__ = String(event.message || event.error || event.filename || 'unknown');
+          });
+          loadScript("remote-player-save.js")
+          .then(function () {
+            return window.RemotePlayerSave.init();
+          })
+          .then(function () {
+            return loadScriptsSequentially([
+              "ad.js",
+              "game-over-ad.js",
+              "reward-icon-fix.js",
+              "platform-loading-finished.js",
+              // js/index.js 会按游戏自身的顺序载入匹配的 Cocos 引擎；不可提前重复载入。
+              "js/index.js"
+            ]);
+          }).catch(function (err) {
+            console.error("Load game script failed:", err);
+          });
+        });
+      });
+    </script>
+</body>
+</html>

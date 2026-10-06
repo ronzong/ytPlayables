@@ -71,6 +71,7 @@ class CdpSession {
     this.handlers = new Map();
     this.logs = [];
     this.contexts = new Map();
+    this.requestUrls = new Map(); // requestId -> url（用于把 loadingFailed 还原成具体地址）
     this.collecting = false;
     ws.addEventListener('message', (ev) => this._onMessage(ev));
   }
@@ -151,7 +152,17 @@ class CdpSession {
         break;
       }
       case 'Network.loadingFailed': {
-        this.logs.push({ t, kind: 'net-error', text: (params.errorText || '') + ' ' + (params.blockedReason || '') });
+        const url = this.requestUrls.get(params.requestId) || '';
+        this.logs.push({
+          t,
+          kind: 'net-error',
+          text: (params.errorText || '') + ' ' + (params.blockedReason || '') + (url ? ' ' + url : ''),
+        });
+        break;
+      }
+      case 'Network.requestWillBeSent': {
+        const r = params.request || {};
+        if (params.requestId && r.url) this.requestUrls.set(params.requestId, r.url);
         break;
       }
       case 'Network.responseReceived': {
