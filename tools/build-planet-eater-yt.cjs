@@ -19,7 +19,12 @@ if (crypto.createHash('sha256').update(wasm).digest('hex') !== '7784176ff51bf8c3
 let html = fs.readFileSync(path.join(src, 'index.html'), 'utf8');
 html = replaceExactly(html, '<head>', '<head>\n    <script src="https://www.youtube.com/game_api/v1"></script>\n    <script src="yt-bridge.js"></script>', 'SDK-first', 1);
 for (const tag of ['    <script src="local-offline-guard.js"></script>', '    <script src="local-sdk.js"></script>']) html = replaceExactly(html, tag, '', '移除本地替身', 1);
-html = replaceExactly(html, 'WebBuild.wasm.unityweb', 'WebBuild.wasm.br', 'wasm-br', 1);
+html = replaceExactly(html, 'WebBuild.wasm.unityweb', 'WebBuild.wasm.brotli', 'wasm-brotli', 1);
+html = replaceExactly(html, '<script src="yt-bridge.js"></script>', '<script src="yt-bridge.js"></script>\n    <script src="Build/brotli-decode.js"></script>', '包内解码器', 1);
+html = replaceExactly(html, 'alert(message);', 'console.error("[yt] Unity 启动失败", message);\n            unityShowBanner("游戏加载失败，请刷新重试。", "error");', '沙箱可见加载错误', 1);
+html = replaceExactly(html, '<link rel="stylesheet" href="TemplateData/style.css">', '<link rel="stylesheet" href="TemplateData/style.css">\n    <link rel="stylesheet" href="TemplateData/yt-layout.css">', '固定竖屏布局', 1);
+html = replaceExactly(html, 'width=540 height=1200', 'width=540 height=960', '9比16逻辑画布', 1);
+html = replaceExactly(html, '\n      config.devicePixelRatio = 1;', '\n      config.devicePixelRatio = 1;\n      // 固定逻辑分辨率，CSS 只做等比缩放，避免横屏改变游戏 UI 布局。\n      config.matchWebGLToCanvasSize = false;', '固定Unity渲染尺寸', 1);
 let framework = zlib.gunzipSync(fs.readFileSync(path.join(src, 'Build/WebBuild.framework.js.unityweb'))).toString();
 const sync = 'syncfs:function(mount,populate,callback){IDBFS.getLocalSet(mount,function(err,local){if(err)return callback(err);IDBFS.getRemoteSet(mount,function(err,remote){if(err)return callback(err);var src=populate?remote:local;var dst=populate?local:remote;IDBFS.reconcile(src,dst,callback)})})}';
 framework = replaceExactly(framework, sync, 'syncfs:function(mount,populate,callback){window.__ytUnitySync(FS,mount,populate,callback)}', 'Unity云存档', 1);
@@ -32,9 +37,16 @@ for (const [name,count] of Object.entries({setTimeout:15,setInterval:2,clearTime
 }
 framework=replaceExactly(framework,'Module.setInterval(', 'window.__ytUnityTimers.setInterval(', 'Unity模块定时器',2);
 framework=replaceExactly(framework,'Module.clearInterval(', 'window.__ytUnityTimers.clearInterval(', 'Unity模块取消定时器',1);
+let loader=fs.readFileSync(path.join(src,'Build/WebBuild.loader.js'),'utf8');
+// 仅对 codeUrl 解压，不干扰 Unity 自带 data/framework gzip 解压与下载统计。
+loader=replaceExactly(loader,'then(function(e){return a=e.parsedBody,s=u[n],new Promise', 'then(function(e){if(n==="codeUrl")e.parsedBody=window.__ytDecodeWasm(e.parsedBody);return a=e.parsedBody,s=u[n],new Promise', 'WASM包内解压',1);
 fs.rmSync(out, {recursive:true, force:true}); fs.mkdirSync(out, {recursive:true});
 fs.cpSync(src, out, {recursive:true, filter:p => !p.endsWith('.local-orig') && !p.endsWith('local-sdk.js') && !p.endsWith('local-offline-guard.js')});
 fs.writeFileSync(path.join(out,'index.html'),html);
+fs.copyFileSync(path.join(ROOT,'platform/planet-eater-layout.css'),path.join(out,'TemplateData/yt-layout.css'));
+fs.writeFileSync(path.join(out,'Build/WebBuild.loader.js'),loader);
+fs.copyFileSync(path.join(ROOT,'platform/lib/brotli-decode.js'),path.join(out,'Build/brotli-decode.js'));
+fs.copyFileSync(path.join(ROOT,'platform/lib/brotli-LICENSE.txt'),path.join(out,'Build/brotli-LICENSE.txt'));
 fs.writeFileSync(path.join(out,'yt-bridge.js'), ['platform/lib/yt-runtime.js','platform/planet-eater-instgame-yt.js'].map(p=>fs.readFileSync(path.join(ROOT,p),'utf8')).join('\n'));
 // 保留 Unity gzip 标记头，让自带解压器识别补丁后的 framework。
 const original = fs.readFileSync(path.join(src,'Build/WebBuild.framework.js.unityweb'));
@@ -42,11 +54,11 @@ let offset=10; if(original[3]&4) offset+=2+original.readUInt16LE(offset);
 if(original[3]&8) {while(original[offset++]);} if(original[3]&16) {while(original[offset++]);}
 const gz = zlib.gzipSync(Buffer.from(framework),{level:9});
 fs.writeFileSync(path.join(out,'Build/WebBuild.framework.js.unityweb'),Buffer.concat([original.subarray(0,offset),gz.subarray(10)]));
-// Brotli 用浏览器原生解码，避免删资源/改玩法；服务器必须返回 Content-Encoding: br。
+// Brotli 由包内解码器处理，不依赖正式托管是否设置 Content-Encoding。
 const cacheDir=path.join(ROOT,'tools/state/compression'); fs.mkdirSync(cacheDir,{recursive:true});
 const cache=path.join(cacheDir,crypto.createHash('sha256').update(wasm).digest('hex')+'.br');
 if (!fs.existsSync(cache)) fs.writeFileSync(cache,zlib.brotliCompressSync(zlib.gunzipSync(wasm),{params:{[zlib.constants.BROTLI_PARAM_QUALITY]:11}}));
-fs.copyFileSync(cache,path.join(out,'Build/WebBuild.wasm.br'));
+fs.copyFileSync(cache,path.join(out,'Build/WebBuild.wasm.brotli'));
 fs.unlinkSync(path.join(out,'Build/WebBuild.wasm.unityweb'));
 for(const file of walkFiles(out)) if(!/^[a-zA-Z0-9_.-]+$/.test(path.basename(file)) || fs.statSync(file).size>=30*1048576) throw new Error('文件名或单文件体积不合规：'+file);
 const stats=dirStats(out); if(stats.files>8000 || stats.bytes>=250*1048576) throw new Error('总包不合规');

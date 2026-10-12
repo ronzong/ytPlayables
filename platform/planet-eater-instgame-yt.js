@@ -2,7 +2,36 @@
 (function () {
   'use strict';
   var P = window.__ytPlayables;
+  // 不依赖托管 Content-Encoding：原生已解压则直接用，否则包内解码 Brotli。
+  window.__ytDecodeWasm = function (bytes) {
+    function isWasm(data) { return data.length >= 4 && data[0] === 0 && data[1] === 97 && data[2] === 115 && data[3] === 109; }
+    if (isWasm(bytes)) return bytes;
+    var decoded = window.__ytBrotliDecode(new Int8Array(bytes.buffer, bytes.byteOffset, bytes.byteLength));
+    var result = new Uint8Array(decoded.buffer, decoded.byteOffset, decoded.byteLength);
+    if (!isWasm(result)) throw new Error('WASM 解压后格式无效');
+    return result;
+  };
   var unityFS, busy = false;
+  // Unity 默认目录包含页面 URL 的 MD5；发布版本换 URL 后必须仍指向同一份云档。
+  function stablePath(path) {
+    return typeof path === 'string' ? path.replace(/^\/idbfs\/[a-f0-9]{32}(?=\/|$)/i, '/idbfs/planet-eater') : path;
+  }
+  function bindStablePaths(FS) {
+    if (FS.__ytStablePaths) return;
+    FS.__ytStablePaths = true;
+    // 在首次 PlayerPrefs 读取前安装；保留完整子路径及原 FS 调用语义。
+    ['lookupPath', 'open', 'stat', 'lstat', 'mkdir', 'mkdirTree', 'mknod', 'readdir',
+      'readFile', 'writeFile', 'unlink', 'rmdir', 'chmod', 'chown', 'utime', 'truncate'].forEach(function (name) {
+      if (typeof FS[name] !== 'function') return;
+      var original = FS[name];
+      FS[name] = function () {
+        var args = Array.prototype.slice.call(arguments); args[0] = stablePath(args[0]);
+        return original.apply(this, args);
+      };
+    });
+    var rename = FS.rename;
+    FS.rename = function (from, to) { return rename.call(this, stablePath(from), stablePath(to)); };
+  }
   var lastScore = -1;
   // Unity 既用 RAF 也用定时器推进主循环/托管回调；定时器同样必须冻结。
   var pendingTimers = new Map(), nextTimer = 1;
@@ -74,6 +103,7 @@
   // 构建时替换 IDBFS.syncfs；只挂内存 FS，不访问被平台禁用的 IndexedDB。
   window.__ytUnitySync = function (FS, mount, populate, callback) {
     unityFS = FS;
+    bindStablePaths(FS);
     try {
       if (populate) {
         var files;
@@ -81,12 +111,17 @@
         catch (e) { console.warn('[yt] 旧版 Unity 存档无效，按空存档启动'); files = {}; }
         Object.keys(files).forEach(function (path) {
           if (!/^\/idbfs\/[a-zA-Z0-9_./-]+$/.test(path) || path.indexOf('..') >= 0) return;
-          FS.mkdirTree(path.slice(0, path.lastIndexOf('/')));
+          var target = stablePath(path);
+          FS.mkdirTree(target.slice(0, target.lastIndexOf('/')));
           var text = atob(files[path]), bytes = new Uint8Array(text.length);
           for (var i = 0; i < text.length; i++) bytes[i] = text.charCodeAt(i);
-          FS.writeFile(path, bytes);
+          FS.writeFile(target, bytes);
         });
-      } else if (!P.isPaused()) capture(FS);
+      } else if (!P.isPaused()) {
+        capture(FS);
+        // Unity 已提交 PlayerPrefs 时立即走 SDK 上传，不等通用 4 秒节流。
+        nativeFlush(false);
+      }
       callback(null);
     } catch (e) { callback(e); }
   };

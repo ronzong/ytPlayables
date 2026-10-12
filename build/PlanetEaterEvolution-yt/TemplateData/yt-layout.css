@@ -1,0 +1,35 @@
+/* 游戏始终使用完整 9:16 竖屏区域；横屏/宽屏居中留边，不裁切按钮。 */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: #101820;
+}
+body {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+#unity-container.unity-mobile {
+  position: relative;
+  width: min(100vw, 56.25vh);
+  height: min(100vh, 177.77777778vw);
+  overflow: hidden;
+}
+/* 动态视口跟随移动浏览器工具栏，避免底部超出可见区域。 */
+@supports (height: 100dvh) {
+  #unity-container.unity-mobile {
+    width: min(100vw, 56.25dvh);
+    height: min(100dvh, 177.77777778vw);
+  }
+}
+.unity-mobile #unity-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}

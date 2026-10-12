@@ -188,7 +188,8 @@
       套件页会滚动，点之前必须重新量 iframe。
 - 测试完及时关掉本次创建的服务器/浏览器/标签页；留给用户验收的再保留并说明。
 - **Unity 接入**：PlayerPrefs 通常在 `/idbfs`，仅替换 localStorage 不够；在 framework 的 `IDBFS.syncfs` 接内存文件快照与 SDK 云存档，并在 Unity 启动前恢复。除 RAF 外，Unity 的 `Browser.mainLoop` 和托管回调也会使用定时器，暂停时必须一起冻结。自动化按下/抬起至少间隔一帧，否则 Unity 轮询可能漏掉点击。
-- **Unity 压缩**：`.wasm.br` 需 `Content-Encoding: br` + `application/wasm`；gzip `.unityweb` 的客户端解压依赖 Unity 标记头，修补后重新压缩须保留该头。不能靠删除玩法资源压低初始包。
+- **Unity 云档目录**：`/idbfs/<MD5>/` 的 MD5 取决于页面 URL，不能把地址相关路径当成跨版本云档固定路径。须固定/映射目录并迁移旧云档，测试不同目录恢复，而不只测同地址刷新。SDK 保存的已提交 PlayerPrefs 与仍在游戏内存的实时进度要区别验证；套件接口往返不等同于正式账号跨设备验证。
+- **Unity 压缩**：不得假设正式托管会为 `.wasm.br` 设置 `Content-Encoding: br`；PlanetEaterEvolution 已踩坑（压缩字节直接传给 WASM 导致 magic 错误）。优先随包解码，并用没有压缩响应头的服务器验证；已原生解压的数据须识别 magic 避免重复解码。gzip `.unityweb` 的客户端解压依赖 Unity 标记头，修补后重新压缩须保留该头。不能靠删除玩法资源压低初始包。
 
 ## 9. 记忆维护
 

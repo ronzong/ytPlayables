@@ -606,6 +606,7 @@
     var timer = null;
     var chain = Promise.resolve();
     var intervalMs = 4000;
+    var saveStatus = { loadSucceeded: false, loadedBytes: 0, successfulWrites: 0, failedWrites: 0, lastSavedBytes: 0 };
 
     function snapshot() {
       // keys 为空表示“持久化全部键”（外壳/引擎自己的状态键也要存，否则每次进来都像新玩家）
@@ -626,7 +627,12 @@
       chain = chain.then(function () {
         if (DEBUG.noSave) return undefined;
         if (ytgame && ytgame.game && typeof ytgame.game.saveData === 'function') {
-          return ytgame.game.saveData(text).catch(function (err) {
+          return ytgame.game.saveData(text).then(function () {
+            saveStatus.successfulWrites += 1;
+            saveStatus.lastSavedBytes = new TextEncoder().encode(text).length;
+            log('SDK 云存档写入成功，字节数 =', saveStatus.lastSavedBytes);
+          }).catch(function (err) {
+            saveStatus.failedWrites += 1;
             dirty = true;
             warn('云存档写入失败', err);
           });
@@ -654,6 +660,9 @@
       loadPromise = ytgame.game
         .loadData()
         .then(function (raw) {
+          saveStatus.loadSucceeded = true;
+          saveStatus.loadedBytes = typeof raw === 'string' ? new TextEncoder().encode(raw).length : 0;
+          log('SDK 云存档读取成功，字节数 =', saveStatus.loadedBytes);
           var payload = null;
           if (typeof raw === 'string' && raw) {
             try {
@@ -700,6 +709,7 @@
       isLoaded: function () {
         return loaded;
       },
+      status: function () { return Object.assign({}, saveStatus); },
     };
   })();
 

@@ -3,6 +3,7 @@
   <head>
     <script src="https://www.youtube.com/game_api/v1"></script>
     <script src="yt-bridge.js"></script>
+    <script src="Build/brotli-decode.js"></script>
     <meta charset="utf-8">
     <!-- 使用实际设备宽度，保持原游戏的全屏布局与触摸坐标一致。 -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -10,6 +11,7 @@
     <title>Unity WebGL Player | Drifter.Star.Evolution</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="stylesheet" href="TemplateData/yt-layout.css">
     <script>
       // Facebook 等平台可能通过 Permissions Policy 禁止 iframe 使用 Gamepad API。
       // Unity 旧输入系统会主动轮询该接口，因此在加载 Unity 前将权限异常降级为“无手柄”。
@@ -60,7 +62,7 @@
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=540 height=1200></canvas>
+      <canvas id="unity-canvas" width=540 height=960></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -111,7 +113,7 @@
       var config = {
         dataUrl: buildUrl + "/WebBuild.data.unityweb",
         frameworkUrl: buildUrl + "/WebBuild.framework.js.unityweb",
-        codeUrl: buildUrl + "/WebBuild.wasm.br",
+        codeUrl: buildUrl + "/WebBuild.wasm.brotli",
         symbolsUrl: buildUrl + "/WebBuild.symbols.json.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
@@ -141,6 +143,8 @@
       // 改成unity-mobile，使之全屏显示，否则默认是横屏
       container.className = "unity-mobile";
       config.devicePixelRatio = 1;
+      // 固定逻辑分辨率，CSS 只做等比缩放，避免横屏改变游戏 UI 布局。
+      config.matchWebGLToCanvasSize = false;
       loadingBar.style.display = "block";
 
       function startUnity(){
@@ -158,7 +162,8 @@
             };
             window.unityInstance = unityInstance;
           }).catch((message) => {
-            alert(message);
+            console.error("[yt] Unity 启动失败", message);
+            unityShowBanner("游戏加载失败，请刷新重试。", "error");
           });
         };
         document.body.appendChild(script);
