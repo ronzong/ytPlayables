@@ -162,6 +162,9 @@ function main() {
         };
         if (opts.csp && name.endsWith('.html')) headers['Content-Security-Policy'] = PROD_CSP;
         let body = data;
+        // Unity 原生 Brotli 构建由浏览器解码，不能当成普通二进制发送。
+        if (name.endsWith('.br')) headers['Content-Encoding'] = 'br';
+        if (name.endsWith('.wasm.br')) headers['Content-Type'] = 'application/wasm';
         const gz = maybeGzip(req, file, type, data);
         if (gz) {
           headers['Content-Encoding'] = 'gzip';

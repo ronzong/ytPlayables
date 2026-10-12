@@ -106,7 +106,6 @@ async function main() {
     userDataDir: path.join(STATE, 'profiles', 'yt-ui-probe'),
     port: opts.port,
     headless: opts.headless,
-    proxy: 'http://127.0.0.1:7890',
     url: opts.url,
   });
   const s = await CdpSession.attachPage(opts.port);
@@ -170,7 +169,6 @@ async function viaSuite(opts) {
     userDataDir: path.join(STATE, 'profiles', 'yt-ui-probe-suite'),
     port: opts.port,
     headless: opts.headless,
-    proxy: 'http://127.0.0.1:7890',
   });
   const page = await CdpSession.attachPage(opts.port);
   await page.enableCollect();

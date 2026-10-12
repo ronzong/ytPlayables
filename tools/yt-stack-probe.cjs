@@ -43,7 +43,6 @@ async function main() {
     userDataDir: path.join(STATE, 'profiles', 'yt-stack-probe'),
     port: opts.port,
     headless: opts.headless,
-    proxy: 'http://127.0.0.1:7890',
   });
   const session = await CdpSession.attachPage(opts.port);
   await session.enableCollect();

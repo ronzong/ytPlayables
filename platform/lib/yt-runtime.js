@@ -322,6 +322,7 @@
 
     function blockInput(e) {
       if (!paused) return;
+      if (e.cancelable) e.preventDefault();
       e.stopImmediatePropagation();
       e.stopPropagation();
     }
@@ -330,7 +331,7 @@
       if (!doc || g.__ytInputGateInstalled) return;
       g.__ytInputGateInstalled = true;
       for (var i = 0; i < INPUT_EVENTS.length; i++) {
-        var opt = { capture: true, passive: true };
+        var opt = { capture: true, passive: false };
         g.addEventListener(INPUT_EVENTS[i], blockInput, opt);
         doc.addEventListener(INPUT_EVENTS[i], blockInput, opt);
       }
@@ -612,10 +613,16 @@
     }
 
     function write(force) {
-      if (!loaded && !loadPromise) return Promise.resolve();
+      // 只有 loadData 成功后才能写；读取失败不能用空存档覆盖已有进度。
+      if (!loaded) return Promise.resolve();
       if (!dirty && !force) return chain;
       dirty = false;
       var text = JSON.stringify({ v: 1, t: Date.now(), data: snapshot() });
+      if (new TextEncoder().encode(text).length >= 3 * 1048576) {
+        dirty = true;
+        warn('云存档超过 3 MiB，取消写入');
+        return chain;
+      }
       chain = chain.then(function () {
         if (DEBUG.noSave) return undefined;
         if (ytgame && ytgame.game && typeof ytgame.game.saveData === 'function') {
@@ -666,8 +673,8 @@
         })
         .catch(function (err) {
           warn('云存档读取失败，按空存档继续', err);
-          loaded = true;
-          dirty = true;
+          loaded = false;
+          dirty = false;
           return false;
         });
       return loadPromise;

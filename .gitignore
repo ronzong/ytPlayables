@@ -1,5 +1,7 @@
 # 构建产物：只跟踪各游戏的「油管版」（build/<游戏>-yt/），其余一律不入库
 /build/*
+!/build/PlanetEaterEvolution-yt
+/build/PlanetEaterEvolution-yt/*.zip
 !/build/AntFlow-yt
 !/build/WastelandSurvivor-yt
 # 游戏目录里不跟踪打包 zip（可随时用 tools/build-<游戏>-yt.cjs --zip 重新生成）

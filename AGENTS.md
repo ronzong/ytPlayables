@@ -133,6 +133,7 @@
 | `tools/probes/*.js` | 配合 `yt-ui-probe --eval-file` 的现成探针：`dom-overlays` 查 DOM 盖层、`input-rect` 查引擎输入坐标缓存、`hit-list` 查谁吞了点击 |
 | `tools/lib/yt-runtime.js` | 各游戏共用的合规运行时（可见性屏蔽 / 暂停闸门 / 音频 / 输入 / 网络 / 外部请求拦截 / 内存存储 / 云存档 / 广告），新游戏优先复用它 |
 | `tools/build-<游戏>-yt.cjs` | 各游戏的 staging 构建（含全部补丁，匹配校验、可重复执行） |
+| `tools/verify-planet-eater-yt.cjs` | Unity 游戏官方套件内真实开局、平台静音/暂停、激励广告分支、云存档刷新验收 |
 | `tools/fetch-docs.cjs`、`tools/html2txt.cjs` | 抓取/转换官方文档（需要代理） |
 | `tools/lib/cdp.cjs`、`tools/lib/chrome.cjs` | CDP 与 Chrome 封装（含 flatten 子会话、代理、自签证书参数） |
 
@@ -156,8 +157,7 @@
 
 ## 8. 环境与已知坑
 
-- **代理**：访问 Google/YouTube 必须走本机 Clash（默认 `127.0.0.1:7890`）；`tools/lib/chrome.cjs`
-  启动 Chrome 时自动带该代理并让 localhost 直连。节点不可用时官方套件页打不开，
+- **代理**：不同电脑的代理地址/端口不同，脚本与文档不得内置固定端口。Chrome 工具统一读取 `YT_PROXY`（`yt-suite --proxy` 可覆盖），未设置时使用浏览器系统配置；`direct` 强制直连。显式代理让 localhost 直连。文档抓取优先 `YT_FETCH_PROXY`，其次 `YT_PROXY`，未设置时直连。节点不可用时官方套件页打不开，
   用 `pause-local` / `direct` / `harness` 先做离线验证，并如实说明未做在线验证。
 - **证书**：`tools/gen-certs.cjs` 生成；手动测试首次要在浏览器里点"高级 → 继续前往"。
 - **端口**：一个游戏一个端口，新增游戏先挑空闲端口并登记到 README。
@@ -187,6 +187,8 @@
       命中列表、派发点击）。坐标换算：`rect.left + screen.x/visible.width*rect.width`（y 轴要翻转），
       套件页会滚动，点之前必须重新量 iframe。
 - 测试完及时关掉本次创建的服务器/浏览器/标签页；留给用户验收的再保留并说明。
+- **Unity 接入**：PlayerPrefs 通常在 `/idbfs`，仅替换 localStorage 不够；在 framework 的 `IDBFS.syncfs` 接内存文件快照与 SDK 云存档，并在 Unity 启动前恢复。除 RAF 外，Unity 的 `Browser.mainLoop` 和托管回调也会使用定时器，暂停时必须一起冻结。自动化按下/抬起至少间隔一帧，否则 Unity 轮询可能漏掉点击。
+- **Unity 压缩**：`.wasm.br` 需 `Content-Encoding: br` + `application/wasm`；gzip `.unityweb` 的客户端解压依赖 Unity 标记头，修补后重新压缩须保留该头。不能靠删除玩法资源压低初始包。
 
 ## 9. 记忆维护
 

@@ -11,7 +11,7 @@
  *   node tools/yt-suite.cjs run --url ... --headless --wait 60 --name nonogram
  *
  * 说明:
- * - 本机访问 developers.google.com 必须走 Clash 代理，默认 http://127.0.0.1:7890。
+ * - 代理由 YT_PROXY 或 --proxy 指定；未指定时使用浏览器系统配置。
  * - 默认使用有头 Chrome（WebGL 游戏在无头下可能起不来），窗口关闭请用 Ctrl+C 或 --keep 控制。
  */
 
@@ -25,7 +25,7 @@ const STATE = path.join(ROOT, 'tools', 'state');
 const SUITE_URL = 'https://developers.google.com/youtube/gaming/playables/test_suite?hl=zh-cn';
 const DEFAULT_PORT = 9230;
 const DEFAULT_PROFILE = path.join(STATE, 'profiles', 'yt-suite');
-const DEFAULT_PROXY = 'http://127.0.0.1:7890';
+const DEFAULT_PROXY = process.env.YT_PROXY;
 
 /**
  * 套件页面把 UI 渲染在 Shadow DOM 里，所以查询必须穿透 shadowRoot。

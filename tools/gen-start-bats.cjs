@@ -18,6 +18,7 @@ const ROOT = path.join(__dirname, '..');
 
 // ==== 端口登记表（新增游戏往这里加一行）====
 const GAMES = [
+  { id: 'PlanetEaterEvolution-yt', label: 'Planet Eater Evolution 油管小游戏版', dir: 'build/PlanetEaterEvolution-yt', port: 8003 },
   { id: 'nonogram', label: 'nonogram（参考游戏）', dir: 'nonogram', port: 8000 },
   { id: 'AntFlow-yt', label: 'AntFlow 油管小游戏版', dir: 'build/AntFlow-yt', port: 8001 },
   { id: 'WastelandSurvivor-yt', label: 'Wasteland Survivor 油管小游戏版', dir: 'build/WastelandSurvivor-yt', port: 8002 },

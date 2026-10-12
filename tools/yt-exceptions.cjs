@@ -10,7 +10,7 @@
  *   node tools/yt-exceptions.cjs https://localhost:8001/            # 直接开游戏页
  *   node tools/yt-exceptions.cjs https://localhost:8001/#ytdebug    # 顺便开适配层心跳
  *
- * 注意：需要 Chrome（默认走 127.0.0.1:7890 代理，端口 9232，独立 profile）。
+ * 注意：需要 Chrome（代理由 YT_PROXY 配置，端口 9232，独立 profile）。
  */
 
 const path = require('path');
@@ -24,7 +24,6 @@ async function main() {
     userDataDir: path.join(__dirname, 'state', 'profiles', 'yt-exceptions'),
     port: 9232,
     headless: false,
-    proxy: 'http://127.0.0.1:7890',
     url: GAME,
   });
   const s = await CdpSession.attachPage(9232);

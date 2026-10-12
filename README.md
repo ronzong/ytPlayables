@@ -29,6 +29,7 @@ YouTube Playables（油管小游戏）SDK 接入与本地测试仓库。
 | --- | --- | --- | --- |
 | AntFlow | `gamePopStar/AntFlow/local-game` | `build/AntFlow-yt/` | [docs/AntFlow接入说明.md](docs/AntFlow接入说明.md) |
 | Wasteland Survivor | `gamePopStar/WastelandSurvivor/local-game` | `build/WastelandSurvivor-yt/` | [docs/WastelandSurvivor接入说明.md](docs/WastelandSurvivor接入说明.md) |
+| Planet Eater Evolution | `C:/Works/git/yxl/FBIGCrack/FBIGCrack/PlanetEaterEvolution/local-game` | `build/PlanetEaterEvolution-yt/` | [docs/PlanetEaterEvolution接入说明.md](docs/PlanetEaterEvolution接入说明.md) |
 | nonogram | 本目录自带（参考游戏） | — | 仅作测试套件基线 |
 
 ## 本地启动与端口登记
@@ -40,6 +41,7 @@ YouTube Playables（油管小游戏）SDK 接入与本地测试仓库。
 | nonogram（参考游戏） | `nonogram` | 8000 | https://localhost:8000/ | 双击 `start-nonogram.bat` |
 | AntFlow 油管小游戏版 | `build/AntFlow-yt` | 8001 | https://localhost:8001/ | 双击 `start-AntFlow-yt.bat` |
 | Wasteland Survivor 油管小游戏版 | `build/WastelandSurvivor-yt` | 8002 | https://localhost:8002/ | 双击 `start-WastelandSurvivor-yt.bat` |
+| Planet Eater Evolution 油管小游戏版 | `build/PlanetEaterEvolution-yt` | 8003 | https://localhost:8003/ | 双击 `start-PlanetEaterEvolution-yt.bat` |
 
 ```powershell
 node tools/gen-start-bats.cjs --list     # 只打印端口登记表
@@ -55,6 +57,10 @@ node tools/stop-https.cjs 8001           # 关闭 8001 上的本地服务
 - [SDK 必接与推荐清单（通俗版）](docs/SDK必接与推荐清单.md)
 - [本地 HTTPS 测试流程](docs/本地HTTPS测试流程.md)
 - [AntFlow 接入说明](docs/AntFlow接入说明.md)
+- [Planet Eater Evolution 接入说明](docs/PlanetEaterEvolution接入说明.md)
+
+Planet Eater Evolution：`node tools/build-planet-eater-yt.cjs --zip` 生成可重复构建的油管版和 `build/PlanetEaterEvolution-yt.zip`。
+启动后可用 `node tools/verify-planet-eater-yt.cjs` 做官方套件内的开局、激励广告与云存档刷新验收（该验收工具使用 `127.0.0.1:8003`，服务需用 `--host 127.0.0.1`）。
 
 ## 快速开始
 
@@ -77,4 +83,4 @@ node tools/yt-suite.cjs pause --url https://localhost:8001/ --headless
 node tools/yt-suite.cjs pause-local --url https://localhost:8001/ --headless
 ```
 
-测试套件页需要能访问 Google（本机走 Clash 代理 `127.0.0.1:7890`）。
+测试套件页需要能访问 Google。代理地址与端口按本机配置，通过 `YT_PROXY` 环境变量设置；未设置时 Chrome 使用系统代理。详见 [代理配置](docs/本地HTTPS测试流程.md#5-环境与排错)。

@@ -4,8 +4,7 @@
 // 输出: .docs/<name>.txt
 // 说明：
 // 1. 本机 DNS 优先返回不可达 IPv6，直连必须强制 IPv4。
-// 2. developers.google.com / youtube.com 直连不可达，必须走本机 Clash 代理
-//    （默认 http://127.0.0.1:7890，可用环境变量 YT_FETCH_PROXY 覆盖）。
+// 2. 代理从 YT_FETCH_PROXY 或 YT_PROXY 读取，不设置时直连；地址/端口按本机配置。
 
 const fs = require('fs');
 const path = require('path');
@@ -16,7 +15,7 @@ const zlib = require('zlib');
 const { Agent } = require('https');
 
 const OUT = path.join(__dirname, '..', '.docs');
-const PROXY = process.env.YT_FETCH_PROXY || 'http://127.0.0.1:7890';
+const PROXY = process.env.YT_FETCH_PROXY ?? process.env.YT_PROXY;
 
 const URLS = {
   devsite_suite_module:
@@ -82,7 +81,7 @@ class ConnectProxyAgent extends Agent {
   }
 }
 
-const proxyAgent = new ConnectProxyAgent(PROXY);
+const proxyAgent = PROXY && PROXY !== 'direct' ? new ConnectProxyAgent(PROXY) : undefined;
 
 const UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +

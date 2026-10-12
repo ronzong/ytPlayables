@@ -94,9 +94,11 @@ PASS  恢复后输入恢复（探针 1 -> 2）
 
 ## 5. 环境与排错
 
-- **访问 Google / YouTube 需要代理**：本机 Clash 混合端口 `127.0.0.1:7890`。
-  `tools/lib/chrome.cjs` 启动 Chrome 时默认带 `--proxy-server=http://127.0.0.1:7890`，
-  并让 `localhost/127.0.0.1` 直连（不绕代理）。
+- **代理配置按电脑分别设置，不内置地址或端口**：所有 Chrome 测试工具统一读取 `YT_PROXY`；未设置时使用浏览器系统代理配置。显式代理时 `localhost/127.0.0.1/::1` 直连。
+  PowerShell 中可用 `$env:YT_PROXY = Read-Host '请输入本机代理 URL（含协议、地址和端口）'`，然后照常执行测试命令。
+  `yt-suite.cjs --proxy <代理URL>` 可覆盖本次运行；`--proxy direct` 或 `$env:YT_PROXY = 'direct'` 强制直连。
+  用 `Remove-Item Env:YT_PROXY -ErrorAction SilentlyContinue` 清除配置，恢复系统代理。环境变量只影响之后启动的进程；修改后需关闭旧测试 Chrome 再启动。
+- **文档抓取代理**：`fetch-docs.cjs` 优先读取 `YT_FETCH_PROXY`，其次 `YT_PROXY`；均未设置时直连。该工具的显式代理支持 HTTP CONNECT（`http://` URL），不自动读取 Windows 系统代理。
 - 游戏页里的 SDK 脚本要从 `https://www.youtube.com/game_api/v1` 拉取，
   所以即使游戏在本地，浏览器也必须能访问 youtube.com。
 - 控制台里 `playableIframe` / `postMessage` 相关输出是 SDK 与套件之间的正常通讯。

@@ -2,13 +2,14 @@
 /**
  * Chrome 查找 / 启动 / 关闭（YouTube Playables 测试用）。
  * 与 gamePopStar/fb-tools/lib/chrome.js 的差异：
- *  - 默认带 --proxy-server，因为本机访问 developers.google.com / youtube.com 必须走 Clash 代理；
+ *  - 通过 YT_PROXY 或调用参数配置代理，不内置机器相关的地址/端口；
  *    localhost / 127.0.0.1 默认绕过代理（Chromium 隐式 bypass loopback）。
  *  - 默认带 --ignore-certificate-errors / --allow-insecure-localhost，便于加载自签证书的本地 https。
  */
 
 const { spawn, execFile } = require('child_process');
 const fs = require('fs');
+const path = require('path');
 const { waitDebugPort } = require('./cdp.cjs');
 
 const DEFAULT_PATHS = [
@@ -33,7 +34,7 @@ async function launch(opts = {}) {
     port,
     headless = false,
     url = null,
-    proxy = 'http://127.0.0.1:7890',
+    proxy = process.env.YT_PROXY,
     extraArgs = [],
   } = opts;
   const exe = findChrome(chromePath);
@@ -48,7 +49,7 @@ async function launch(opts = {}) {
 
   const args = [
     '--remote-debugging-port=' + port,
-    '--user-data-dir=' + userDataDir,
+    '--user-data-dir=' + path.resolve(userDataDir),
     '--no-first-run',
     '--no-default-browser-check',
     '--disable-background-networking',
@@ -63,7 +64,8 @@ async function launch(opts = {}) {
     '--disable-features=CalculateNativeWinOcclusion',
     '--window-size=1280,900',
   ];
-  if (proxy) args.push('--proxy-server=' + proxy, '--proxy-bypass-list=<-loopback>;localhost;127.0.0.1');
+  if (proxy === 'direct') args.push('--no-proxy-server');
+  else if (proxy) args.push('--proxy-server=' + proxy, '--proxy-bypass-list=localhost;127.0.0.1;[::1]');
   if (headless) args.push('--headless=new', '--disable-gpu', '--no-sandbox');
   args.push(...extraArgs);
   if (url) args.push(url);
