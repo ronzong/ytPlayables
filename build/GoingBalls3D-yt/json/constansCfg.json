@@ -1,0 +1,15 @@
+{
+    "defCameraR": -0,
+    "defCameraY": 2.7,
+    "defCameraZ": -5,
+    "defCameraRX": -30,
+    "defCameraRY": 180,
+    "level": 8,
+    "xMax": 0.04,
+    "zMax": 0.04,
+    "xAsub": 0.00025,
+    "zAsub": 0.00025,
+    "xAadd": 0.0015,
+    "zAadd": 0.0015,
+    "hyMax": 0.05
+}

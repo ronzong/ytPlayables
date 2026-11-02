@@ -1,0 +1,11 @@
+{
+  "mode": "built-in imagegen",
+  "common": "5:7 full-bleed mobile game advertising illustration based on real game artwork only; recompose, no text/letters/numbers/logo/watermark/HUD/buttons; final 540x756",
+  "games": {
+    "HarvestIO": "Low-poly blue combine with yellow cab harvesting golden wheat, curved tracks, farm fence and silo",
+    "JigsawCards": "Arctic aurora and snowy mountains in glossy rounded rectangular puzzle cards on purple felt",
+    "LumberjackForestEmpire": "Low-poly lumberjack carrying timber to red-roof sawmill on circular wood platform, faceted forest",
+    "Mecha": "Blue and yellow insect-like mech with cyan antenna and serrated energy weapon, sandy futuristic city",
+    "MJBeautySalon": "Young adult cartoon woman with tangled honey-blonde hair being tidied by pink brush, pastel salon"
+  }
+}

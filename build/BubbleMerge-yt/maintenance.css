@@ -1,0 +1,69 @@
+/* Server Maintenance Overlay — shown by MaintenanceService.
+   Kept in its own file so it can be loaded on platforms (e.g. fb_instant)
+   that intentionally do NOT pull in the full additional.css. */
+.maintenance-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000000;
+    justify-content: center;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.maintenance-overlay.is-visible {
+    display: flex;
+}
+
+.maintenance-card {
+    max-width: 480px;
+    width: calc(100% - 48px);
+    padding: 28px 32px;
+    background: #1f2330;
+    color: #f0f2f7;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.maintenance-title {
+    margin: 0 0 12px 0;
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffd66b;
+}
+
+.maintenance-message {
+    margin: 0 0 20px 0;
+    font-size: 15px;
+    line-height: 1.5;
+    white-space: pre-line;
+    color: #d0d4de;
+}
+
+.maintenance-restart {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    background: #4caf50;
+    color: #fff;
+    padding: 10px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: background 120ms ease;
+}
+
+.maintenance-restart:hover,
+.maintenance-restart:focus {
+    background: #43a047;
+    outline: none;
+}
+
+.maintenance-restart:active {
+    background: #388e3c;
+}

@@ -1,0 +1,59 @@
+Bubbles_+5.png
+size:269,523
+filter:Linear,Linear
+Bubble 05
+bounds:2,267,254,254
+Drop2
+bounds:197,30,4,4
+offsets:1,1,6,6
+Drop_1
+bounds:234,241,8,24
+offsets:1,1,10,26
+Drop_12
+bounds:181,18,14,16
+offsets:2,1,17,19
+Drop_18
+bounds:2,4,18,11
+offsets:1,1,21,13
+Drop_24
+bounds:181,36,14,20
+offsets:1,1,16,22
+rotate:90
+Drop_26
+bounds:258,491,6,12
+offsets:1,2,8,15
+Drop_27
+bounds:181,2,7,31
+offsets:1,1,9,34
+rotate:90
+Drop_3
+bounds:214,2,7,8
+offsets:1,1,9,10
+rotate:90
+Drop_8
+bounds:258,505,16,9
+offsets:1,1,19,11
+rotate:90
+Spark
+bounds:203,11,61,60
+Spark Blur
+bounds:203,73,68,64
+offsets:3,3,74,70
+rotate:90
+Swirls 01
+bounds:2,140,117,125
+offsets:8,1,128,128
+Swirls 02
+bounds:2,17,121,112
+offsets:6,6,128,128
+rotate:90
+Swirls 03
+bounds:121,143,111,122
+offsets:9,2,128,128
+Texture_2
+bounds:116,2,48,63
+offsets:2,3,52,69
+rotate:90
+fx/sparkleflare3
+bounds:116,52,85,86
+offsets:25,20,128,128

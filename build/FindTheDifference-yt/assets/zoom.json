@@ -1,0 +1,9 @@
+{"frames":[
+{"filename":"arraw_y","frame":{"x":384,"y":54,"w":62,"h":53}},
+{"filename":"arrow_w","frame":{"x":384,"y":0,"w":65,"h":53}},
+{"filename":"hand_zoom_in","frame":{"x":109,"y":0,"w":126,"h":195}},
+{"filename":"hand_zoom_out","frame":{"x":236,"y":0,"w":138,"h":157}},
+{"filename":"magnifier_zoom_in","frame":{"x":236,"y":158,"w":147,"h":147}},
+{"filename":"magnifier_zoom_out","frame":{"x":0,"y":209,"w":147,"h":147}},
+{"filename":"mouse","frame":{"x":0,"y":0,"w":108,"h":208}},
+{"filename":"mouse_wheel","frame":{"x":450,"y":0,"w":8,"h":39}}]}

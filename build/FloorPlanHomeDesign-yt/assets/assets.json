@@ -1,0 +1,266 @@
+{
+  "files": [
+    {
+      "id": "PreloaderLogo",
+      "src": "assets/images/preloader/preloader_logo.png",
+      "fileType": "image",
+      "loadGroups": [
+        "preload",
+        "prepareGame"
+      ]
+    },
+    {
+      "id": "OpenSansSemiBold",
+      "src": "assets/fonts/OpenSans/OpenSans-SemiBold.ttf",
+      "fileType": "font",
+      "loadGroups": [
+        "prepareGame"
+      ],
+      "fontFace": {
+        "font-family": "OpenSans",
+        "font-weight": 600
+      }
+    },
+    {
+      "id": "OpenSansExtraBold",
+      "src": "assets/fonts/OpenSans/OpenSans-ExtraBold.ttf",
+      "fileType": "font",
+      "loadGroups": [
+        "prepareGame"
+      ],
+      "fontFace": {
+        "font-family": "OpenSans",
+        "font-weight": 800
+      }
+    },
+    {
+      "id": "BgVignetteRed",
+      "src": "assets/images/bg-vignette_red.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "HeartRed",
+      "src": "assets/images/icons/icon-heart_red.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "HeartPale",
+      "src": "assets/images/icons/icon-heart_pale.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "IconPlayWhite",
+      "src": "assets/images/icons/icon-play_white.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "IconPlayDark",
+      "src": "assets/images/icons/icon-play_dark.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "IconPlayBlue",
+      "src": "assets/images/icons/icon-play_blue.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "IconHintWhite",
+      "src": "assets/images/icons/icon-hint_white.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "IconHintBlue",
+      "src": "assets/images/icons/icon-hint_blue.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "IconHintDarl",
+      "src": "assets/images/icons/icon-hint_dark.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "BtnGridNormal",
+      "src": "assets/images/ui/btn-grid_normal.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "BtnGridOver",
+      "src": "assets/images/ui/btn-grid_over.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "BtnGridPress",
+      "src": "assets/images/ui/btn-grid_press.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "TutorialHand",
+      "src": "assets/images/ui/tutorial-hand.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "BtnBackNormal",
+      "src": "assets/images/ui/btn-back_normal.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "BtnBackOver",
+      "src": "assets/images/ui/btn-back_over.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "BtnBackPress",
+      "src": "assets/images/ui/btn-back_press.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "BtnRestartNormal",
+      "src": "assets/images/ui/btn-restart_normal.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "BtnRestartOver",
+      "src": "assets/images/ui/btn-restart_over.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "BtnRestartPress",
+      "src": "assets/images/ui/btn-restart_press.png",
+      "fileType": "image",
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "SfxPickup",
+      "src": "assets/sounds/sfx-pickup.m4a",
+      "fileType": "sound",
+      "tags": [
+        "sounds"
+      ],
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "SfxPlace",
+      "src": "assets/sounds/sfx-place.m4a",
+      "fileType": "sound",
+      "tags": [
+        "sounds"
+      ],
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "SfxInvalid",
+      "src": "assets/sounds/sfx-invalid.m4a",
+      "fileType": "sound",
+      "tags": [
+        "sounds"
+      ],
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "SfxCoin",
+      "src": "assets/sounds/sfx-coin.m4a",
+      "fileType": "sound",
+      "tags": [
+        "sounds"
+      ],
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "SfxTap",
+      "src": "assets/sounds/sfx-tap.m4a",
+      "fileType": "sound",
+      "tags": [
+        "sounds"
+      ],
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "SfxWin",
+      "src": "assets/sounds/sfx-win.m4a",
+      "fileType": "sound",
+      "tags": [
+        "sounds"
+      ],
+      "loadGroups": [
+        "init"
+      ]
+    },
+    {
+      "id": "BgMusic",
+      "src": "assets/sounds/bg-music.m4a",
+      "fileType": "sound",
+      "tags": [
+        "bgMusic"
+      ],
+      "loadGroups": [
+        "init"
+      ]
+    }
+  ]
+}

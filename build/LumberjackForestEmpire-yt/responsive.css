@@ -1,0 +1,180 @@
+/* Release 20 revision 2: full scene with a reference-resolution UI overlay. */
+html,body{width:100%;height:100%;background:#17251a}
+body{display:grid;place-items:center}
+#game-root{position:relative;contain:layout paint;width:min(100vw,200vh);height:min(100vh,200vw);width:min(100vw,200dvh);height:min(100dvh,200vw)}
+#c,#world-layer{position:absolute;inset:0;width:100%;height:100%}
+#ui-root{position:absolute;left:0;top:0;transform-origin:0 0;pointer-events:none;contain:layout style}
+#hud{position:absolute;inset:0;padding:10px}
+#top{padding-right:100px;flex-wrap:nowrap;gap:6px}
+.pill{font-size:16px;min-width:0;white-space:nowrap}
+.top-right{flex-direction:row}
+.icobtn{width:42px;height:42px;flex:none}
+#tut,body.rush-open #tut{top:60px;width:calc(100% - 36px);max-width:560px;padding:7px 12px;border-width:2px;border-radius:14px;box-shadow:0 4px 12px #0004}
+.tut-text{font-size:14px;line-height:1.3;white-space:normal}
+.tut-step{font-size:10px;margin-bottom:2px}
+.tut-next{min-height:38px;margin-top:6px}
+.tut.has-next{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px}
+.tut.has-next .tut-step,.tut.has-next .tut-text{grid-column:1}
+.tut.has-next .tut-next{grid-column:2;grid-row:1/3;align-self:center;margin:0}
+body.shop-open #tut{top:10px;max-width:660px}
+body.shop-open #top{visibility:hidden}
+#boost,#rainbow{top:auto;bottom:16px;max-width:calc(100% - 250px);font-size:12px;padding:5px 9px}
+#rainbow{max-width:calc(100% - 210px)}
+#hint{bottom:112px;font-size:13px;max-width:calc(100% - 200px);padding:6px 10px}
+body.gate-open #hint,body.gate-open #btn-ad,body.tutorial-info #hint{display:none}
+#gatebar{left:12px;right:112px;bottom:16px;transform:none;max-width:640px;flex-wrap:wrap;padding:7px 38px 7px 10px;gap:6px}
+#gatebar .gb-ic{display:none}
+#gatebar .gb-txt{flex:1 1 180px;min-width:0;font-size:12px;order:0}
+#gatebar .gb-txt b{font-size:13px}
+.gb-btn{min-height:40px;font-size:12px;padding:7px 10px;white-space:normal}
+.volpop{top:calc(100% + 8px);right:0;z-index:28}
+.sheet,body.prep-open .sheet{left:50%;right:auto;bottom:0;top:auto;transform:translateX(-50%);width:100%;max-width:1000px;max-height:calc(100% - var(--shop-top,100px));height:auto;z-index:24;border-radius:20px 20px 0 0;pointer-events:auto;transition:none}
+.sheet.hidden{display:none}
+.sheet-head{flex:none;flex-wrap:wrap;padding:10px 12px;gap:7px}
+.sheet-head h2{font-size:19px}
+.sheet-head .close{flex:none}
+.sheet-body{flex:0 1 auto;min-height:0;overflow-y:auto;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:max-content;align-content:start;gap:8px;padding:10px;touch-action:pan-y}
+.sheet-head,.sheet-foot,.prep-banner,.meta-head,.shop-tip{flex-shrink:0}
+.card{flex-wrap:nowrap;min-width:0;gap:8px;padding:9px;align-self:start}
+.card .cmid{flex:1 1 auto;min-width:0;overflow-wrap:anywhere}
+.card .cname{flex-wrap:wrap;gap:4px;font-size:14px}
+.card .cic{width:36px;height:36px;flex-basis:36px;font-size:22px}
+.card .cdesc{font-size:11px}
+.buy{min-height:42px;min-width:76px;padding:8px;font-size:13px}
+.adlvl{width:38px;height:42px;margin-left:0;flex-basis:38px}
+.sheet-foot{padding:5px 10px 9px}
+.prestigebtn{padding:8px 14px;font-size:13px;max-width:100%}
+.prep-banner{padding:7px 10px}
+.prep-banner div{flex-wrap:wrap}
+.prep-start{max-width:100%}
+.modal{position:absolute;z-index:40;pointer-events:auto;padding:12px}
+.modal-card{max-height:100%;max-width:460px;padding:18px;touch-action:pan-y;overscroll-behavior:contain;overflow-wrap:anywhere}
+#loader,#fatal,#adwarn{position:absolute;pointer-events:auto}
+body.modal-open #hud,body.modal-open #world-layer{visibility:hidden}
+body.prep-open #tut{display:none}
+.hl{animation:none;outline:3px solid var(--gold);outline-offset:-3px}
+.wlabel{max-width:calc(100% - 20px);white-space:normal;transform-origin:center;font-size:13px}
+.wlabel .big{font-size:17px}
+.narrow-ui .sheet-body{grid-template-columns:minmax(0,1fr)}
+.narrow-ui .sheet-head h2{display:none}
+.narrow-ui .sheet-head .tabs,.narrow-ui .sheet-head .mults{margin-left:0}
+.narrow-ui .sheet-head .mult{padding:5px 7px}
+.narrow-ui .sheet-head .sheet-money{font-size:15px}
+.narrow-ui #top{gap:4px;padding-right:94px}
+.narrow-ui .pill{font-size:14px;padding:6px 8px;gap:4px}
+.narrow-ui .pill .ic{font-size:17px}
+.narrow-ui #gatebar .gb-txt{flex-basis:100%}
+.narrow-ui #gatebar .gb-btn{flex:1;min-width:0}
+.narrow-ui #hint{max-width:calc(100% - 125px);left:12px;transform:none}
+
+/* ---------------------------------------------------------------------
+   Прокрутка списков магазина: пальцем, колесом и перетаскиванием мышью.
+   Поведение задаёт src/scroller.js, здесь — вид и разрешения жестов.
+   --------------------------------------------------------------------- */
+.sheet-body,.modal-card{
+  touch-action:pan-y;                 /* палец должен листать, а не крутить камеру */
+  overscroll-behavior:contain;        /* дойдя до края, не тянем страницу под магазином */
+  -webkit-overflow-scrolling:touch;   /* инерция в старом мобильном WebKit */
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,.28) transparent;
+}
+/* Полоса прокрутки видимая, но неброская: без неё игрок не понимает,
+   что список продолжается. */
+.sheet-body::-webkit-scrollbar,.modal-card::-webkit-scrollbar{width:7px}
+.sheet-body::-webkit-scrollbar-track,.modal-card::-webkit-scrollbar-track{background:transparent}
+.sheet-body::-webkit-scrollbar-thumb,.modal-card::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.26);border-radius:6px;border:2px solid transparent;background-clip:content-box}
+.sheet-body::-webkit-scrollbar-thumb:hover,.modal-card::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.45);background-clip:content-box}
+
+/* Тень у края — второй намёк, что дальше есть товары. Внутренняя тень у
+   прокручиваемого блока не едет вместе с содержимым, поэтому годится. */
+.sheet-body.more-down{box-shadow:inset 0 -24px 17px -20px rgba(0,0,0,.62)}
+.sheet-body.more-up{box-shadow:inset 0 24px 17px -20px rgba(0,0,0,.62)}
+.sheet-body.more-up.more-down{box-shadow:inset 0 24px 17px -20px rgba(0,0,0,.62),inset 0 -24px 17px -20px rgba(0,0,0,.62)}
+
+/* Мышью список можно тащить — курсор должен об этом говорить */
+@media (hover:hover) and (pointer:fine){
+  .sheet-body.more-up,.sheet-body.more-down{cursor:grab}
+  .sheet-body.dragging{cursor:grabbing}
+}
+/* Пока тащим, ничего не выделяем и не подсвечиваем нажатием */
+.sheet-body.dragging,.modal-card.dragging{user-select:none;-webkit-user-select:none;scroll-behavior:auto}
+.sheet-body.dragging *{pointer-events:none}
+
+/* ---------------------------------------------------------------------
+   Низкий кадр (телефон в горизонтали, зум браузера, окно с рекламой).
+   Высоты магазину достаётся мало, и шапка с подвалом отъедали её
+   наравне со списком — карточки резались по нижнему краю, а окно
+   взаимодействия становилось слишком узким (п. 1.10.1).
+   Ужимаем всё вокруг списка, сам список не трогаем.
+   Кнопки покупки не уменьшаем: они и так на пределе удобного нажатия.
+   --------------------------------------------------------------------- */
+.short-ui .sheet-head{padding:6px 10px;gap:6px;row-gap:5px}
+.short-ui .sheet-head h2{display:none}
+.short-ui .sheet-head .tabs,.short-ui .sheet-head .mults{margin-left:0}
+.short-ui .shop-tip{display:none}
+.short-ui .meta-head{padding:2px 10px 0;font-size:11px}
+.short-ui .sheet-body{padding:8px;gap:7px}
+.short-ui .card{padding:6px 8px;gap:7px}
+.short-ui .card .cname{font-size:13px}
+.short-ui .card .cdesc{font-size:10.5px}
+/* «Новый забег» и «Сбросить прогресс» встают в строку: два ряда кнопок
+   под списком на низком кадре — это минус ряд товаров. */
+.short-ui .sheet-foot{padding:4px 10px 6px;gap:8px;flex-direction:row;flex-wrap:wrap;
+  align-items:center;justify-content:center}
+.short-ui .prestigebtn{padding:6px 13px;font-size:12.5px;margin-bottom:0;flex:0 1 auto}
+.short-ui .linkbtn{font-size:11px;padding:2px 8px;flex:0 0 auto}
+.short-ui .prep-start{flex:1 1 100%}
+.short-ui .prep-banner{padding:5px 9px;margin-top:5px}
+.short-ui .prep-banner p{font-size:11px;line-height:1.25}
+.short-ui .prep-start{padding:8px 14px;font-size:14px;margin:2px 0 4px}
+
+/* Плашка обучения на низком кадре тоже компактнее: она задаёт верхнюю
+   границу магазина, и каждая её строка — минус строка товаров. */
+.short-ui #tut,.short-ui body.shop-open #tut{padding:5px 11px;border-width:2px}
+.short-ui .tut-text{font-size:13px;line-height:1.25}
+.short-ui .tut-step{font-size:9px;margin-bottom:1px}
+.short-ui .tut-next{min-height:34px;margin-top:4px;padding:5px 12px}
+
+/* ---------------------------------------------------------------------
+   Зоны нажатия в реальных пикселях.
+   Оверлей ужат трансформом, поэтому кнопка «42px» на телефоне в
+   горизонтали превращается в 27 настоящих пикселей. Считаем размер от
+   масштаба, чтобы палец всегда попадал (п. 1.8 требований: элементы
+   адаптированы под размер экрана и удобны для взаимодействия).
+   clamp снизу оставляет прежний вид там, где масштаб близок к единице,
+   сверху не даёт кнопкам раздуться при сильном зуме браузера.
+   --------------------------------------------------------------------- */
+@media (pointer: coarse){
+.icobtn{
+  width:clamp(42px, calc(34px / var(--ui-scale, 1)), 62px);
+  height:clamp(42px, calc(34px / var(--ui-scale, 1)), 62px);
+}
+.buy{min-height:clamp(42px, calc(34px / var(--ui-scale, 1)), 62px)}
+.adlvl{
+  width:clamp(38px, calc(32px / var(--ui-scale, 1)), 56px);
+  height:clamp(42px, calc(34px / var(--ui-scale, 1)), 62px);
+  flex-basis:clamp(38px, calc(32px / var(--ui-scale, 1)), 56px);
+}
+.sheet-head .close{
+  width:clamp(36px, calc(32px / var(--ui-scale, 1)), 56px);
+  height:clamp(36px, calc(32px / var(--ui-scale, 1)), 56px);
+}
+.tab,.mult{
+  min-height:clamp(32px, calc(32px / var(--ui-scale, 1)), 54px);
+  min-width:clamp(34px, calc(34px / var(--ui-scale, 1)), 56px);
+  display:flex;align-items:center;justify-content:center
+}
+.prestigebtn,.prep-start{min-height:clamp(36px, calc(34px / var(--ui-scale, 1)), 60px)}
+.gb-close{
+  width:clamp(30px, calc(32px / var(--ui-scale, 1)), 52px);
+  height:clamp(30px, calc(32px / var(--ui-scale, 1)), 52px);
+}
+.gb-btn{min-width:clamp(80px, calc(76px / var(--ui-scale, 1)), 140px)}
+.linkbtn{min-height:clamp(30px, calc(32px / var(--ui-scale, 1)), 52px);padding:4px 12px}
+.gb-btn,.mbtn{min-height:clamp(40px, calc(34px / var(--ui-scale, 1)), 60px)}
+.v-tog{
+  width:clamp(30px, calc(32px / var(--ui-scale, 1)), 52px);
+  height:clamp(30px, calc(32px / var(--ui-scale, 1)), 52px);
+}
+}   /* pointer: coarse */

@@ -1,0 +1,12 @@
+FX_Lava Run.png
+size:216,124
+filter:Linear,Linear
+fx/fx-Blick_star_07-gold
+bounds:114,2,20,19
+offsets:1,1,22,22
+fx/fx-circle-blur-02
+bounds:114,23,100,99
+offsets:9,9,116,115
+fx/fx-glow-rays-01
+bounds:2,7,110,115
+offsets:5,4,118,122

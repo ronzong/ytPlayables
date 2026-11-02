@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<script src="https://www.youtube.com/game_api/v1"></script>
+<script src="yt-bridge.js"></script>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"/>
+<title>Дорасти до Солнца</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='12' fill='%2371c7dd'/></svg>"/>
+<style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #0b1220;
+        /* Требование Яндекс Игр: ни прокрутки браузера, ни swipe-to-refresh,
+           ни выделения поля игры, ни контекстного меню по лонгтапу. */
+        touch-action: none;
+        overscroll-behavior: none;
+        overscroll-behavior-y: contain;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        position: fixed;
+        inset: 0;
+      }
+      #app {
+        width: 100%;
+        height: 100%;
+      }
+      canvas {
+        display: block;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+    </style>
+<!--
+      На Yandex Games этот скрипт обязателен (Yandex его не инжектит сам).
+      Локально при отсутствии сети / вне iframe Yandex Games YandexSDKAdapter
+      сам уходит в mock-режим по таймауту, так что тег безопасен для dev.
+
+      defer обязателен: без него внешний скрипт в <head> блокирует разбор
+      документа, и пока yandex.ru отвечает (а на плохой сети он может не
+      отвечать вовсе), страница остаётся пустым фоном — до /src/main.ts дело
+      просто не доходит. С defer порядок сохраняется: отложенные скрипты
+      выполняются в порядке документа, поэтому window.YaGames всё так же готов
+      к моменту запуска main.ts.
+    -->
+
+
+<script>
+      /*
+       * Заплатка под браузеры, где свойства navigator только для чтения.
+       *
+       * Phaser при инициализации делает `navigator.vibrate = navigator.vibrate ||
+       * navigator.webkitVibrate || ...` — обычный приём «возьми вендорный
+       * префикс, если своего нет». Но код модулей всегда строгий, а в Яндекс
+       * Браузере на iOS эти свойства заданы только геттером: присваивание
+       * бросает TypeError, движок не доинициализируется, и игра не стартует
+       * вовсе. Снаружи это выглядит как пустой экран без всяких объяснений —
+       * ровно то, с чем пришли.
+       *
+       * Подменяем их собственными записываемыми свойствами ДО загрузки движка:
+       * значение то же самое, но присвоить в него теперь можно. Скрипт обычный,
+       * а не модуль, и стоит выше — значит выполнится раньше любого импорта,
+       * как бы потом ни переставили строки в main.ts.
+       */
+      (function () {
+        var report = [];
+
+        // Проверка ровно того, что делает Phaser: присваивание в СТРОГОМ режиме.
+        // Косвенные признаки тут не годятся — свойство может быть переопределено
+        // и всё равно остаться незаписываемым через прототип.
+        function canAssign(target, key) {
+          'use strict';
+          try {
+            target[key] = target[key];
+            return true;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        // Своё записываемое свойство поверх чужого геттера — сначала на самом
+        // объекте, потом по цепочке прототипов, где геттер обычно и живёт.
+        function harden(target, key) {
+          if (canAssign(target, key)) return true;
+          try {
+            Object.defineProperty(target, key, { value: target[key], writable: true, configurable: true });
+          } catch (e) {
+            /* своё свойство могло оказаться незаменяемым — пробуем прототип */
+          }
+          if (canAssign(target, key)) return true;
+
+          var proto = Object.getPrototypeOf(target);
+          while (proto) {
+            if (Object.getOwnPropertyDescriptor(proto, key)) {
+              try {
+                Object.defineProperty(proto, key, { value: target[key], writable: true, configurable: true });
+              } catch (e) {
+                /* и прототип не поддался */
+              }
+              break;
+            }
+            proto = Object.getPrototypeOf(proto);
+          }
+          return canAssign(target, key);
+        }
+
+        /*
+         * Последний рубеж: подменить сам navigator обёрткой, которая пишется.
+         * Оборачиваем НЕ настоящий navigator, а пустой объект с проброской
+         * чтения на него: у Proxy есть инварианты, и обёртка вокруг объекта с
+         * незаписываемым свойством сама бросит TypeError при первой же записи.
+         * Методы отдаются привязанными к настоящему navigator — иначе платформа
+         * откажется их выполнять на чужом получателе.
+         */
+        function wrapNavigator() {
+          if (typeof Proxy === 'undefined') return false;
+          try {
+            var real = window.navigator;
+            var proxy = new Proxy(
+              {},
+              {
+                get: function (own, key) {
+                  if (key in own) return own[key];
+                  var value = real[key];
+                  return typeof value === 'function' ? value.bind(real) : value;
+                },
+                set: function (own, key, value) {
+                  own[key] = value;
+                  return true;
+                },
+                has: function (own, key) {
+                  return key in own || key in real;
+                }
+              }
+            );
+            Object.defineProperty(window, 'navigator', { value: proxy, configurable: true });
+            return window.navigator === proxy;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        var keys = [
+          [window, 'URL', 'window.URL'],
+          [navigator, 'vibrate', 'navigator.vibrate'],
+          [navigator, 'getUserMedia', 'navigator.getUserMedia']
+        ];
+        var stuck = [];
+        for (var i = 0; i < keys.length; i++) {
+          if (!harden(keys[i][0], keys[i][1])) stuck.push(keys[i][2]);
+        }
+
+        if (stuck.length) {
+          report.push('не поддались: ' + stuck.join(', '));
+          report.push('обёртка navigator: ' + (wrapNavigator() ? 'поставлена' : 'не вышла'));
+          // после подмены свойства проверяем заново — уже на новом navigator
+          var left = [];
+          if (!canAssign(window.navigator, 'vibrate')) left.push('vibrate');
+          if (!canAssign(window.navigator, 'getUserMedia')) left.push('getUserMedia');
+          if (left.length) report.push('всё ещё только для чтения: ' + left.join(', '));
+        } else {
+          report.push('все свойства записываемы');
+        }
+        window.__shimReport = report;
+      })();
+    </script>
+<script>
+      /*
+       * Что видно, когда игра не запустилась. Пустой экран не сообщает ничего:
+       * ни ошибки, ни причины, — а случиться это может на чужом телефоне, где
+       * консоли нет и не будет. Поэтому всё, что сломалось до старта, выводится
+       * прямо на страницу.
+       */
+      (function () {
+        var lines = [];
+
+        /*
+         * Показывается ТОЛЬКО если игра так и не стартовала, и только один раз,
+         * по таймауту. Показывать сразу по первой ошибке нельзя: SDK Яндекса вне
+         * его площадки штатно отдаёт несколько отказов postToParent (стучится в
+         * родительское окно, которого нет), и панель — непрозрачная, во весь
+         * экран — закрывала бы собой прекрасно работающую игру.
+         */
+        function say(text) {
+          lines.push(text);
+        }
+
+        // capture: так ловятся и ошибки загрузки самих файлов, а не только
+        // исключения в коде — у них message пустой, зато есть src
+        window.addEventListener(
+          'error',
+          function (e) {
+            var src = e.target && (e.target.src || e.target.href);
+            if (src) say('НЕ ЗАГРУЗИЛОСЬ: ' + src);
+            else say('ОШИБКА: ' + (e.message || e.type) + (e.filename ? '\n  ' + e.filename + ':' + e.lineno : ''));
+          },
+          true
+        );
+        window.addEventListener('unhandledrejection', function (e) {
+          var r = e.reason;
+          say('ОТКАЗ: ' + ((r && (r.stack || r.message)) || r));
+        });
+
+        window.__ytGameTimers.setTimeout(function () {
+          if (window.__gameBooted || !document.body) return;
+
+          say('Игра не запустилась за 8 секунд.');
+          say('версия страницы: 3');
+          say('заплатка: ' + ((window.__shimReport || ['не выполнялась — страница из кэша?']).join(' | ')));
+          say('размер окна: ' + window.innerWidth + 'x' + window.innerHeight);
+          say('YaGames: ' + typeof window.YaGames);
+          // каждому контексту свой холст: первый вызов привязывает тип к
+          // элементу, и второй на том же холсте вернул бы null всегда
+          say('webgl: ' + !!document.createElement('canvas').getContext('webgl'));
+          say('canvas2d: ' + !!document.createElement('canvas').getContext('2d'));
+          say('модули: ' + ('noModule' in document.createElement('script')));
+          say(navigator.userAgent);
+
+          var box = document.createElement('pre');
+          box.style.cssText =
+            'position:fixed;inset:0;margin:0;padding:16px;overflow:auto;z-index:99;' +
+            'font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;' +
+            'color:#e6eefc;background:#0b1220';
+          box.textContent = lines.join('\n');
+          document.body.appendChild(box);
+        }, 8000);
+      })();
+    </script>
+<script src="desktop-controls-tip.js"></script>
+<script>__ytCloudReady.then(function(){var s=document.createElement("script");s.type="module";s.src="./assets/index-Dr464EIZ.js";document.head.appendChild(s)});</script>
+</head>
+<body>
+<div id="app"></div>
+<script>
+      // Контекстное меню и перетаскивание поля игры запрещены требованиями площадки.
+      document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+      document.addEventListener('dragstart', function (e) { e.preventDefault(); });
+      document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
+    </script>
+</body>
+</html>

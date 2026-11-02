@@ -1,0 +1,83 @@
+
+UI_TX_AnNiu.png
+size: 492,160
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+A 
+  rotate: false
+  xy: 117, 76
+  size: 73, 82
+  orig: 73, 82
+  offset: 0, 0
+  index: -1
+A_2
+  rotate: false
+  xy: 117, 2
+  size: 73, 72
+  orig: 73, 82
+  offset: 0, 9
+  index: -1
+D
+  rotate: false
+  xy: 192, 76
+  size: 73, 82
+  orig: 73, 82
+  offset: 0, 0
+  index: -1
+D_2
+  rotate: false
+  xy: 192, 2
+  size: 73, 72
+  orig: 73, 82
+  offset: 0, 9
+  index: -1
+E
+  rotate: false
+  xy: 267, 76
+  size: 73, 82
+  orig: 73, 82
+  offset: 0, 0
+  index: -1
+E_2
+  rotate: false
+  xy: 267, 2
+  size: 73, 72
+  orig: 73, 82
+  offset: 0, 9
+  index: -1
+J
+  rotate: false
+  xy: 342, 76
+  size: 73, 82
+  orig: 73, 82
+  offset: 0, 0
+  index: -1
+J_2
+  rotate: false
+  xy: 342, 2
+  size: 73, 72
+  orig: 73, 82
+  offset: 0, 9
+  index: -1
+Q
+  rotate: false
+  xy: 417, 76
+  size: 73, 82
+  orig: 73, 82
+  offset: 0, 0
+  index: -1
+Q_2
+  rotate: false
+  xy: 417, 2
+  size: 73, 72
+  orig: 73, 82
+  offset: 0, 9
+  index: -1
+机械手
+  rotate: false
+  xy: 2, 17
+  size: 113, 141
+  orig: 113, 141
+  offset: 0, 0
+  index: -1

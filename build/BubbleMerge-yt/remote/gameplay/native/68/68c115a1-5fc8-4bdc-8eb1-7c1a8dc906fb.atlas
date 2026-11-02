@@ -1,0 +1,24 @@
+Move_Сounter_up.png
+size:787,179
+filter:Linear,Linear
+Round ProgressBar Moves BG
+bounds:2,2,175,175
+offsets:2,3,180,180
+Round ProgressBar_blue
+bounds:179,2,175,175
+offsets:1,3,179,179
+Round ProgressBar_gold
+bounds:356,2,175,175
+offsets:1,3,179,179
+Round ProgressBar_red
+bounds:533,2,175,175
+offsets:1,3,179,179
+fx-Blick_star_07-gold
+bounds:710,54,20,19
+offsets:1,1,22,22
+fx-dot-blur
+bounds:710,75,25,25
+offsets:5,5,35,35
+fx/fx-circle-line
+bounds:710,102,75,75
+offsets:2,2,79,79

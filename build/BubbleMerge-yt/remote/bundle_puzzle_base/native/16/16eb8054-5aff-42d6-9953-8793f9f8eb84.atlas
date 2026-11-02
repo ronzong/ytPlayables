@@ -1,0 +1,9 @@
+fx-Puzzle.png
+size:106,79
+filter:Linear,Linear
+fx/fx-circle
+bounds:2,2,75,75
+offsets:2,2,79,79
+fx/fx-dot-small
+bounds:79,52,25,25
+offsets:5,5,35,35

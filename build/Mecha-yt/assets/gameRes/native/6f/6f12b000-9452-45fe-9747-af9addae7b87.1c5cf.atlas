@@ -1,0 +1,97 @@
+
+level_4.png
+size: 295,948
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+4_1
+  rotate: true
+  xy: 257, 584
+  size: 101, 36
+  orig: 101, 36
+  offset: 0, 0
+  index: -1
+4_2
+  rotate: false
+  xy: 182, 189
+  size: 111, 68
+  orig: 111, 68
+  offset: 0, 0
+  index: -1
+4_3
+  rotate: true
+  xy: 2, 706
+  size: 240, 255
+  orig: 240, 255
+  offset: 0, 0
+  index: -1
+4_di
+  rotate: true
+  xy: 182, 259
+  size: 83, 106
+  orig: 83, 107
+  offset: 0, 1
+  index: -1
+4_l_1
+  rotate: true
+  xy: 2, 2
+  size: 155, 124
+  orig: 155, 124
+  offset: 0, 0
+  index: -1
+4_l_2
+  rotate: false
+  xy: 2, 275
+  size: 178, 115
+  orig: 178, 116
+  offset: 0, 1
+  index: -1
+4_l_3
+  rotate: true
+  xy: 182, 520
+  size: 184, 73
+  orig: 184, 74
+  offset: 0, 1
+  index: -1
+4_l_4
+  rotate: false
+  xy: 2, 549
+  size: 178, 155
+  orig: 178, 156
+  offset: 0, 1
+  index: -1
+4_r_1
+  rotate: false
+  xy: 128, 33
+  size: 155, 124
+  orig: 155, 125
+  offset: 0, 1
+  index: -1
+4_r_2
+  rotate: false
+  xy: 2, 159
+  size: 178, 114
+  orig: 178, 115
+  offset: 0, 1
+  index: -1
+4_r_3
+  rotate: true
+  xy: 182, 344
+  size: 174, 74
+  orig: 174, 74
+  offset: 0, 0
+  index: -1
+4_r_4
+  rotate: false
+  xy: 2, 392
+  size: 178, 155
+  orig: 178, 156
+  offset: 0, 1
+  index: -1
+light_1
+  rotate: true
+  xy: 259, 687
+  size: 259, 28
+  orig: 259, 28
+  offset: 0, 0
+  index: -1

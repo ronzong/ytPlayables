@@ -1,0 +1,13 @@
+
+ui_cunqianguan.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pig
+  rotate: false
+  xy: 1, 1
+  size: 105, 106
+  orig: 105, 106
+  offset: 0, 0
+  index: -1

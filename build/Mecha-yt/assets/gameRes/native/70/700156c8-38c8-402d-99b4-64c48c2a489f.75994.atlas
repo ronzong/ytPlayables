@@ -1,0 +1,27 @@
+
+新手指引.png
+size: 397,161
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+finger_1
+  rotate: false
+  xy: 161, 18
+  size: 113, 141
+  orig: 113, 141
+  offset: 0, 0
+  index: -1
+quan_1
+  rotate: false
+  xy: 2, 2
+  size: 157, 157
+  orig: 166, 166
+  offset: 5, 4
+  index: -1
+quan_di
+  rotate: true
+  xy: 276, 39
+  size: 120, 119
+  orig: 122, 121
+  offset: 1, 1
+  index: -1

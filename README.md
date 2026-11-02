@@ -30,6 +30,26 @@ YouTube Playables（油管小游戏）SDK 接入与本地测试仓库。
 | AntFlow | `gamePopStar/AntFlow/local-game` | `build/AntFlow-yt/` | [docs/AntFlow接入说明.md](docs/AntFlow接入说明.md) |
 | Wasteland Survivor | `gamePopStar/WastelandSurvivor/local-game` | `build/WastelandSurvivor-yt/` | [docs/WastelandSurvivor接入说明.md](docs/WastelandSurvivor接入说明.md) |
 | Planet Eater Evolution | `C:/Works/git/yxl/FBIGCrack/FBIGCrack/PlanetEaterEvolution/local-game` | `build/PlanetEaterEvolution-yt/` | [docs/PlanetEaterEvolution接入说明.md](docs/PlanetEaterEvolution接入说明.md) |
+| AirportSimulator3D | `FBIGCrack/AirportSimulator3D/local-game` | `build/AirportSimulator3D-yt/` | [接入说明](docs/AirportSimulator3D接入说明.md) |
+| BeepMelody | `FBIGCrack/BeepMelody/local-game` | `build/BeepMelody-yt/` | [接入说明](docs/BeepMelody接入说明.md) |
+| BobaBubbleTeaDIY | `FBIGCrack/BobaBubbleTeaDIY/local-game` | `build/BobaBubbleTeaDIY-yt/` | [接入说明](docs/BobaBubbleTeaDIY接入说明.md) |
+| BubbleMerge | `FBIGCrack/BubbleMerge/local-game` | `build/BubbleMerge-yt/` | [接入说明](docs/BubbleMerge接入说明.md) |
+| DogsVsAliens | `FBIGCrack/DogsVsAliens/local-game` | `build/DogsVsAliens-yt/` | [接入说明](docs/DogsVsAliens接入说明.md) |
+| Dominators | `FBIGCrack/Dominators/local-game` | `build/Dominators-yt/` | [接入说明](docs/Dominators接入说明.md) |
+| EggyCar | `FBIGCrack/EggyCar/local-game` | `build/EggyCar-yt/` | [接入说明](docs/EggyCar接入说明.md) |
+| FallToRescue | `FBIGCrack/FallToRescue/local-game` | `build/FallToRescue-yt/` | [接入说明](docs/FallToRescue接入说明.md) |
+| FindTheDifference | `FBIGCrack/FindTheDifference/local-game` | `build/FindTheDifference-yt/` | [接入说明](docs/FindTheDifference接入说明.md) |
+| FloorPlanHomeDesign | `FBIGCrack/FloorPlanHomeDesign/local-game` | `build/FloorPlanHomeDesign-yt/` | [接入说明](docs/FloorPlanHomeDesign接入说明.md) |
+| FlowerGardenBouquetSorting | `FBIGCrack/FlowerGardenBouquetSorting/local-game` | `build/FlowerGardenBouquetSorting-yt/` | [接入说明](docs/FlowerGardenBouquetSorting接入说明.md) |
+| FruitCafeMatch3 | `FBIGCrack/FruitCafeMatch3/local-game` | `build/FruitCafeMatch3-yt/` | [接入说明](docs/FruitCafeMatch3接入说明.md) |
+| GardenSlide | `FBIGCrack/GardenSlide/local-game` | `build/GardenSlide-yt/` | [接入说明](docs/GardenSlide接入说明.md) |
+| GoingBalls3D | `FBIGCrack/GoingBalls3D/local-game` | `build/GoingBalls3D-yt/` | [接入说明](docs/GoingBalls3D接入说明.md) |
+| GrowIntoTheSun | `FBIGCrack/GrowIntoTheSun/local-game` | `build/GrowIntoTheSun-yt/` | [接入说明](docs/GrowIntoTheSun接入说明.md) |
+| HarvestIO | `FBIGCrack/HarvestIO/local-game` | `build/HarvestIO-yt/` | [接入说明](docs/HarvestIO接入说明.md) |
+| JigsawCards | `FBIGCrack/JigsawCards/local-game` | `build/JigsawCards-yt/` | [接入说明](docs/JigsawCards接入说明.md) |
+| LumberjackForestEmpire | `FBIGCrack/LumberjackForestEmpire/local-game` | `build/LumberjackForestEmpire-yt/` | [接入说明](docs/LumberjackForestEmpire接入说明.md) |
+| Mecha | `FBIGCrack/Mecha/local-game` | `build/Mecha-yt/` | [接入说明](docs/Mecha接入说明.md) |
+| MJBeautySalon | `FBIGCrack/MJBeautySalon/local-game` | `build/MJBeautySalon-yt/` | [接入说明](docs/MJBeautySalon接入说明.md) |
 | nonogram | 本目录自带（参考游戏） | — | 仅作测试套件基线 |
 
 ## 本地启动与端口登记
@@ -84,3 +104,59 @@ node tools/yt-suite.cjs pause-local --url https://localhost:8001/ --headless
 ```
 
 测试套件页需要能访问 Google。代理地址与端口按本机配置，通过 `YT_PROXY` 环境变量设置；未设置时 Chrome 使用系统代理。详见 [代理配置](docs/本地HTTPS测试流程.md#5-环境与排错)。
+
+## FB 已接入游戏首批五款（2026-11-01）
+
+按字母顺序选择，排除已接入 YouTube 的 AntFlow 与尚未接入 FB 的游戏。构建：
+
+```powershell
+node tools/build-airport-yt.cjs --zip
+node tools/build-beepmelody-yt.cjs --zip
+node tools/build-boba-yt.cjs --zip
+node tools/build-bubblemerge-yt.cjs --zip
+node tools/build-dogsvaliens-yt.cjs --zip
+```
+
+[五款广告图（540×756，无文字与 logo）](marketing/README.md)。正式包在 `build/<游戏>-yt.zip`，广告图不计入游戏包。
+
+`node tools/verify-fb-five-yt.cjs <游戏名>` 在官方套件验证真实输入、云档刷新与激励广告拒奖/授奖；先启动对应 HTTPS 服务（`--host 127.0.0.1`）。源文件指纹由 `tools/manifests/fb-five-sources.json` 校验。Airport 首次构建另需 UnityPy 1.25.4 与 ffmpeg，详见其接入说明。
+
+## 第二批 FB 游戏（2026-11-01）
+
+Dominators、EggyCar、FallToRescue、FindTheDifference、FloorPlanHomeDesign；各游戏的验证状态与限制见接入说明。
+
+```powershell
+node tools/build-dominators-yt.cjs --zip
+node tools/build-eggycar-yt.cjs --zip
+node tools/build-falltorescue-yt.cjs --zip
+node tools/build-ftd-yt.cjs --zip
+node tools/build-floorplan-yt.cjs --zip
+```
+
+`node tools/verify-fb-second-yt.cjs <游戏名>` 检查官方套件真实输入、暂停存档、刷新恢复与广告分支；先启动对应 HTTPS 服务并使用 `--host 127.0.0.1`。
+
+Dominators 已按用户授权采用 RGBA4444 贴图压缩，保留尺寸、全部关卡与玩法；完整资源 28.97 MiB。[画面对比](marketing/Dominators/texture-comparison.png)（左原版/右压缩版），正式包 `build/Dominators-yt.zip`。
+
+## 第三批 FB 游戏（2026-11-02）
+
+FlowerGardenBouquetSorting、FruitCafeMatch3、GardenSlide、GoingBalls3D、GrowIntoTheSun。
+
+```powershell
+node tools/build-flowergarden-yt.cjs --zip
+node tools/build-fruitcafe-yt.cjs --zip
+node tools/build-gardenslide-yt.cjs --zip
+node tools/build-goingballs-yt.cjs --zip
+node tools/build-growintothesun-yt.cjs --zip
+```
+
+`node tools/verify-fb-third-yt.cjs <游戏名>` 在官方套件执行真实玩法、云档刷新与广告分支检查；先启动对应 HTTPS 服务，指定 `--host 127.0.0.1`。各游戏覆盖范围见接入说明；[540×756 无文字广告图](marketing/README.md)。
+
+## 第四批 FB 游戏转换
+
+- HarvestIO：HTTPS 8019，双击 `start-HarvestIO-yt.bat`。
+- JigsawCards：HTTPS 8020，双击 `start-JigsawCards-yt.bat`。
+- LumberjackForestEmpire：HTTPS 8021，双击 `start-LumberjackForestEmpire-yt.bat`。
+- Mecha：HTTPS 8022，双击 `start-Mecha-yt.bat`。
+- MJBeautySalon：HTTPS 8023，双击 `start-MJBeautySalon-yt.bat`。
+
+广告图见 [marketing/README.md](marketing/README.md)。验收工具：`node tools/verify-fb-fourth-yt.cjs <游戏名>`。

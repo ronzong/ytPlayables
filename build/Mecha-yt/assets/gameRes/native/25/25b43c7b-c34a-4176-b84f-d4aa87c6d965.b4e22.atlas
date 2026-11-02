@@ -1,0 +1,90 @@
+
+BaWangLong_3.png
+size: 1969,298
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Light1
+  rotate: false
+  xy: 1421, 188
+  size: 452, 108
+  orig: 512, 118
+  offset: 6, 5
+  index: -1
+qiangkou00
+  rotate: false
+  xy: 1875, 194
+  size: 92, 102
+  orig: 200, 170
+  offset: 39, 25
+  index: -1
+qiangkou01
+  rotate: true
+  xy: 1422, 14
+  size: 172, 139
+  orig: 200, 170
+  offset: 13, 16
+  index: -1
+qiangkou02
+  rotate: true
+  xy: 1563, 38
+  size: 148, 144
+  orig: 200, 170
+  offset: 22, 13
+  index: -1
+qiangkou03
+  rotate: false
+  xy: 1709, 39
+  size: 131, 147
+  orig: 200, 170
+  offset: 34, 7
+  index: -1
+qiangkou04
+  rotate: false
+  xy: 1842, 36
+  size: 122, 150
+  orig: 200, 170
+  offset: 41, 5
+  index: -1
+shandian_000
+  rotate: false
+  xy: 2, 150
+  size: 512, 146
+  orig: 512, 146
+  offset: 0, 0
+  index: -1
+shandian_001
+  rotate: false
+  xy: 2, 2
+  size: 512, 146
+  orig: 512, 146
+  offset: 0, 0
+  index: -1
+shandian_002
+  rotate: false
+  xy: 516, 150
+  size: 491, 146
+  orig: 512, 146
+  offset: 0, 0
+  index: -1
+shandian_003
+  rotate: false
+  xy: 516, 15
+  size: 487, 133
+  orig: 512, 146
+  offset: 0, 1
+  index: -1
+shandian_004
+  rotate: false
+  xy: 1005, 20
+  size: 415, 128
+  orig: 512, 146
+  offset: 0, 4
+  index: -1
+shandian_005
+  rotate: false
+  xy: 1009, 171
+  size: 410, 125
+  orig: 512, 146
+  offset: 0, 5
+  index: -1

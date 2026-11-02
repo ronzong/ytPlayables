@@ -1,0 +1,80 @@
+2 step.png
+size:1324,172
+filter:Linear,Linear
+Description Screen/Check decor_
+bounds:173,26,144,144
+offsets:2,1,147,147
+Description Screen/Coin
+bounds:319,31,139,146
+offsets:2,2,143,149
+rotate:90
+Description Screen/Filler
+bounds:1038,2,279,64
+Description Screen/Full
+bounds:584,2,452,64
+Description Screen/Piggy
+bounds:2,17,169,153
+offsets:1,2,171,155
+Description Screen/Piggy Progress Bar BG
+bounds:584,68,489,102
+offsets:1,1,491,103
+Numbers/0
+bounds:1265,143,22,27
+offsets:2,4,26,36
+Numbers/1
+bounds:512,13,16,25
+offsets:5,5,26,36
+Numbers/2
+bounds:512,40,18,26
+offsets:4,5,26,36
+rotate:90
+Numbers/3
+bounds:1294,93,19,27
+offsets:3,4,26,36
+Numbers/4
+bounds:1265,115,21,26
+offsets:2,5,26,36
+Numbers/5
+bounds:540,32,18,26
+offsets:4,4,26,36
+Numbers/6
+bounds:1265,93,20,27
+offsets:3,4,26,36
+rotate:90
+Numbers/7
+bounds:1294,72,19,26
+offsets:4,4,26,36
+rotate:90
+Numbers/8
+bounds:1289,150,20,27
+offsets:3,4,26,36
+rotate:90
+Numbers/9
+bounds:1265,72,19,27
+offsets:4,4,26,36
+rotate:90
+Numbers/slash
+bounds:1288,122,19,31
+offsets:4,2,26,36
+rotate:90
+fx-Blick_star_05
+bounds:1177,85,85,86
+offsets:25,20,128,128
+rotate:90
+fx-special_star
+bounds:468,39,20,19
+offsets:1,1,22,22
+fx-stripes_light
+bounds:319,6,23,147
+offsets:2,1,28,155
+rotate:90
+fx/fx-Blick_star_07-gold
+bounds:490,39,20,19
+offsets:1,1,22,22
+fx/fx-circle-blur-02
+bounds:1075,71,100,99
+offsets:9,9,116,115
+fx/fx-glow-rays-01
+bounds:467,60,110,115
+offsets:5,4,118,122
+rotate:90

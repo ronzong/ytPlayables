@@ -1,0 +1,83 @@
+
+游戏倒计时.png
+size: 214,511
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 76, 5
+  size: 38, 80
+  orig: 38, 80
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 82, 147
+  size: 63, 80
+  orig: 63, 80
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 147, 147
+  size: 62, 80
+  orig: 62, 80
+  offset: 0, 0
+  index: -1
+4
+  rotate: true
+  xy: 82, 87
+  size: 58, 80
+  orig: 58, 80
+  offset: 0, 0
+  index: -1
+5
+  rotate: false
+  xy: 2, 2
+  size: 72, 93
+  orig: 72, 93
+  offset: 0, 0
+  index: -1
+a
+  rotate: true
+  xy: 116, 33
+  size: 52, 33
+  orig: 52, 33
+  offset: 0, 0
+  index: -1
+b
+  rotate: true
+  xy: 151, 42
+  size: 43, 20
+  orig: 43, 20
+  offset: 0, 0
+  index: -1
+baozha1
+  rotate: false
+  xy: 82, 229
+  size: 125, 81
+  orig: 125, 81
+  offset: 0, 0
+  index: -1
+baozha2
+  rotate: true
+  xy: 82, 312
+  size: 197, 130
+  orig: 197, 130
+  offset: 0, 0
+  index: -1
+c
+  rotate: true
+  xy: 164, 91
+  size: 54, 40
+  orig: 54, 42
+  offset: 0, 2
+  index: -1
+youxidaojishi
+  rotate: true
+  xy: 2, 97
+  size: 412, 78
+  orig: 412, 78
+  offset: 0, 0
+  index: -1

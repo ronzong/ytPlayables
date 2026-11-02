@@ -1,0 +1,125 @@
+
+TX_BaoLei.png
+size: 1634,592
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+0_00
+  rotate: true
+  xy: 1085, 182
+  size: 106, 121
+  orig: 175, 175
+  offset: 18, 23
+  index: -1
+0_01
+  rotate: true
+  xy: 1085, 5
+  size: 170, 138
+  orig: 175, 175
+  offset: 0, 22
+  index: -1
+0_02
+  rotate: false
+  xy: 1375, 21
+  size: 145, 154
+  orig: 175, 175
+  offset: 17, 6
+  index: -1
+0_03
+  rotate: true
+  xy: 1225, 8
+  size: 130, 148
+  orig: 175, 175
+  offset: 37, 9
+  index: -1
+0_04
+  rotate: false
+  xy: 1225, 140
+  size: 121, 148
+  orig: 175, 175
+  offset: 48, 8
+  index: -1
+ZiDan_00
+  rotate: false
+  xy: 1538, 227
+  size: 94, 109
+  orig: 100, 114
+  offset: 3, 3
+  index: -1
+baozha_00
+  rotate: true
+  xy: 1350, 177
+  size: 159, 186
+  orig: 300, 300
+  offset: 67, 62
+  index: -1
+baozha_01
+  rotate: false
+  xy: 294, 14
+  size: 238, 253
+  orig: 300, 300
+  offset: 30, 23
+  index: -1
+baozha_02
+  rotate: false
+  xy: 444, 290
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+baozha_03
+  rotate: false
+  xy: 746, 290
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+baozha_04
+  rotate: false
+  xy: 1048, 290
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+baozha_05
+  rotate: true
+  xy: 534, 2
+  size: 286, 300
+  orig: 300, 300
+  offset: 6, 0
+  index: -1
+baozha_06
+  rotate: false
+  xy: 836, 5
+  size: 247, 283
+  orig: 300, 300
+  offset: 22, 1
+  index: -1
+baozha_07
+  rotate: true
+  xy: 1350, 338
+  size: 252, 282
+  orig: 300, 300
+  offset: 15, 8
+  index: -1
+baozha_08
+  rotate: true
+  xy: 2, 13
+  size: 254, 290
+  orig: 300, 300
+  offset: 13, 5
+  index: -1
+dun_00
+  rotate: false
+  xy: 2, 269
+  size: 219, 321
+  orig: 254, 322
+  offset: 0, 1
+  index: -1
+dun_01
+  rotate: false
+  xy: 223, 269
+  size: 219, 321
+  orig: 254, 322
+  offset: 0, 1
+  index: -1

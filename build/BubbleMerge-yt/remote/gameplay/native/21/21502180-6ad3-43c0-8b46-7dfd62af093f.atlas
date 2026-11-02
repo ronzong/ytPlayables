@@ -1,0 +1,6 @@
+Move_Сounter_down.png
+size:212,213
+filter:Linear,Linear
+Round ProgressBar Filler BG
+bounds:2,2,208,209
+offsets:1,1,210,210

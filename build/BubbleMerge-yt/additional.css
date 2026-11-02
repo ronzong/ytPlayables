@@ -1,0 +1,73 @@
+:root{
+    --banner-h: 50px;                 /* banner thickness */
+    --app-height: 100vh;
+    --keyboard-offset-top: 0px;
+}
+
+@supports (height: 100dvh) {
+    :root{
+        --app-height: 100dvh;
+    }
+}
+
+html,
+body{
+    height: var(--app-height);
+    min-height: var(--app-height);
+}
+
+/* page = vertical flex-column */
+body{
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;               /* centre game horizontally       */
+    background-color: #30364e;
+    overflow:hidden;
+}
+
+/* flexible slot the game lives in */
+#GameArea{
+    flex:1 1 auto;                    /* fills leftover height          */
+    min-height:0;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;               /* centres vertically             */
+    overflow:hidden;
+    transform: translateY(var(--keyboard-offset-top));
+}
+
+/* make Cocos’ default black fully transparent */
+#GameArea,
+#GameDiv,
+#Cocos3dGameContainer,
+canvas#GameCanvas{
+    background:transparent!important;
+}
+
+#Cocos3dGameContainer {
+    position: relative;
+}
+
+/* bottom banner */
+#test-banner{
+    flex:0 0 var(--banner-h);         /* exactly 50 px tall             */
+    width:100%;
+    line-height:var(--banner-h);
+    text-align:center;
+    font:600 0.9rem/1 system-ui, sans-serif;
+    text-transform:uppercase;
+    background:repeating-linear-gradient(
+            135deg,#ff5555 0 15px,#ff8080 15px 30px);
+    color:#fff;
+    opacity:.8;
+    box-sizing:border-box;            /* padding/borders inside 50 px   */
+}
+
+/* hide the banner & free the space when class is absent */
+body:not(.with-banner) #test-banner{ display:none; }
+
+#fb-banner {
+    display: none;
+}

@@ -1,0 +1,181 @@
+
+巨拳.png
+size: 1920,1048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+L_arm_dowe
+  rotate: false
+  xy: 809, 413
+  size: 88, 71
+  orig: 89, 71
+  offset: 1, 0
+  index: -1
+L_arm_up
+  rotate: false
+  xy: 966, 28
+  size: 63, 71
+  orig: 63, 73
+  offset: 0, 1
+  index: -1
+L_bijia
+  rotate: true
+  xy: 1822, 86
+  size: 86, 55
+  orig: 86, 55
+  offset: 0, 0
+  index: -1
+L_foot
+  rotate: false
+  xy: 812, 20
+  size: 152, 79
+  orig: 152, 79
+  offset: 0, 0
+  index: -1
+L_hand
+  rotate: true
+  xy: 1453, 9
+  size: 62, 67
+  orig: 62, 67
+  offset: 0, 0
+  index: -1
+L_huan
+  rotate: true
+  xy: 1601, 191
+  size: 181, 129
+  orig: 181, 129
+  offset: 0, 0
+  index: -1
+L_shank_1
+  rotate: false
+  xy: 1191, 37
+  size: 120, 108
+  orig: 120, 108
+  offset: 0, 0
+  index: -1
+L_shank_2
+  rotate: true
+  xy: 1709, 69
+  size: 103, 111
+  orig: 103, 111
+  offset: 0, 0
+  index: -1
+L_thigh
+  rotate: false
+  xy: 1313, 34
+  size: 138, 113
+  orig: 138, 113
+  offset: 0, 0
+  index: -1
+Ljianjia
+  rotate: true
+  xy: 1584, 96
+  size: 93, 123
+  orig: 93, 124
+  offset: 0, 0
+  index: -1
+R_arm_dowe
+  rotate: false
+  xy: 812, 101
+  size: 230, 271
+  orig: 230, 271
+  offset: 0, 0
+  index: -1
+R_arm_up
+  rotate: false
+  xy: 1458, 191
+  size: 141, 181
+  orig: 141, 181
+  offset: 0, 0
+  index: -1
+R_foot
+  rotate: false
+  xy: 1732, 174
+  size: 153, 82
+  orig: 153, 82
+  offset: 0, 0
+  index: -1
+R_hand
+  rotate: true
+  xy: 1706, 403
+  size: 248, 211
+  orig: 248, 214
+  offset: 0, 3
+  index: -1
+R_huan
+  rotate: false
+  xy: 572, 48
+  size: 238, 268
+  orig: 238, 272
+  offset: 0, 1
+  index: -1
+R_shank
+  rotate: false
+  xy: 1732, 258
+  size: 164, 143
+  orig: 164, 143
+  offset: 0, 0
+  index: -1
+R_thigh
+  rotate: false
+  xy: 1458, 73
+  size: 124, 116
+  orig: 124, 116
+  offset: 0, 0
+  index: -1
+crotch
+  rotate: false
+  xy: 1044, 39
+  size: 145, 106
+  orig: 145, 106
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 1282, 149
+  size: 174, 223
+  orig: 174, 223
+  offset: 0, 0
+  index: -1
+liehen
+  rotate: false
+  xy: 2, 318
+  size: 805, 166
+  orig: 805, 166
+  offset: 0, 0
+  index: -1
+light1
+  rotate: false
+  xy: 914, 374
+  size: 790, 672
+  orig: 803, 687
+  offset: 6, 7
+  index: -1
+light2s
+  rotate: true
+  xy: 1706, 653
+  size: 393, 212
+  orig: 1334, 750
+  offset: 296, 56
+  index: -1
+light4s
+  rotate: false
+  xy: 2, 2
+  size: 568, 314
+  orig: 1334, 750
+  offset: 155, 56
+  index: -1
+light6s
+  rotate: false
+  xy: 2, 486
+  size: 910, 560
+  orig: 1334, 750
+  offset: 72, 19
+  index: -1
+xiong
+  rotate: false
+  xy: 1044, 147
+  size: 236, 225
+  orig: 236, 225
+  offset: 0, 0
+  index: -1

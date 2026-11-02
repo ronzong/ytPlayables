@@ -66,7 +66,7 @@ async function launch(opts = {}) {
   ];
   if (proxy === 'direct') args.push('--no-proxy-server');
   else if (proxy) args.push('--proxy-server=' + proxy, '--proxy-bypass-list=localhost;127.0.0.1;[::1]');
-  if (headless) args.push('--headless=new', '--disable-gpu', '--no-sandbox');
+  if (headless) args.push('--headless=new', '--disable-gpu', '--enable-unsafe-swiftshader', '--no-sandbox');
   args.push(...extraArgs);
   if (url) args.push(url);
 

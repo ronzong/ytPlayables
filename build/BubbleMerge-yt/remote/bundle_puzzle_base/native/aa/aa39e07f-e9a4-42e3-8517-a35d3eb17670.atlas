@@ -1,0 +1,10 @@
+FX_reward.png
+size:65,44
+filter:Linear,Linear
+fx/fx-light-circle
+bounds:2,2,40,40
+offsets:5,5,50,50
+fx/fx-special_star
+bounds:44,22,20,19
+offsets:1,1,22,22
+rotate:90

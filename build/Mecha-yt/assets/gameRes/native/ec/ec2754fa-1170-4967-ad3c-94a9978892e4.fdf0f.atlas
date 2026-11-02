@@ -1,0 +1,27 @@
+
+TX_JiGuangJian.png
+size: 590,428
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Light
+  rotate: true
+  xy: 442, 309
+  size: 117, 109
+  orig: 125, 125
+  offset: 4, 8
+  index: -1
+jian
+  rotate: false
+  xy: 553, 63
+  size: 35, 363
+  orig: 65, 390
+  offset: 15, 18
+  index: -1
+jianguang1
+  rotate: false
+  xy: 2, 2
+  size: 438, 424
+  orig: 512, 512
+  offset: 59, 74
+  index: -1

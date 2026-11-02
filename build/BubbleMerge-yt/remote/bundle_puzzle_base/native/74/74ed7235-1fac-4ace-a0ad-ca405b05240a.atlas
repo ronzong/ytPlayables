@@ -1,0 +1,20 @@
+3 step.png
+size:422,494
+filter:Linear,Linear
+Check decor
+bounds:276,190,144,144
+offsets:3,2,149,149
+Puzzle_01
+bounds:2,2,225,221
+offsets:1,2,228,223
+Puzzle_02
+bounds:276,336,142,156
+offsets:1,2,144,160
+Puzzle_02 _Shadow
+bounds:229,40,148,162
+offsets:3,3,155,169
+rotate:90
+desk
+bounds:2,225,267,272
+offsets:4,4,275,280
+rotate:90

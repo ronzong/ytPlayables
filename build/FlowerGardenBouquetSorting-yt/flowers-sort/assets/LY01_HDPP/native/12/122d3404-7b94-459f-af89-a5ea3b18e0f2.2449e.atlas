@@ -1,0 +1,90 @@
+
+pingyuDH.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cool1
+  rotate: false
+  xy: 433, 1
+  size: 194, 79
+  orig: 194, 79
+  offset: 0, 0
+  index: -1
+cool2
+  rotate: true
+  xy: 447, 268
+  size: 112, 87
+  orig: 112, 87
+  offset: 0, 0
+  index: -1
+game_Amazing_
+  rotate: true
+  xy: 82, 145
+  size: 350, 94
+  orig: 350, 94
+  offset: 0, 0
+  index: -1
+game_Amazing_1
+  rotate: false
+  xy: 433, 82
+  size: 193, 90
+  orig: 193, 90
+  offset: 0, 0
+  index: -1
+game_Pretty_
+  rotate: true
+  xy: 272, 257
+  size: 238, 92
+  orig: 238, 92
+  offset: 0, 0
+  index: -1
+game_Pretty_1
+  rotate: false
+  xy: 414, 174
+  size: 194, 91
+  orig: 194, 91
+  offset: 0, 0
+  index: -1
+good1
+  rotate: true
+  xy: 366, 267
+  size: 228, 79
+  orig: 228, 79
+  offset: 0, 0
+  index: -1
+good2
+  rotate: true
+  xy: 447, 382
+  size: 113, 90
+  orig: 113, 90
+  offset: 0, 0
+  index: -1
+great1
+  rotate: false
+  xy: 178, 145
+  size: 234, 76
+  orig: 234, 76
+  offset: 0, 0
+  index: -1
+great2
+  rotate: true
+  xy: 178, 223
+  size: 272, 92
+  orig: 272, 92
+  offset: 0, 0
+  index: -1
+unbelieveable1
+  rotate: true
+  xy: 1, 1
+  size: 494, 79
+  orig: 494, 79
+  offset: 0, 0
+  index: -1
+unbelieveable2
+  rotate: false
+  xy: 82, 52
+  size: 349, 91
+  orig: 349, 91
+  offset: 0, 0
+  index: -1

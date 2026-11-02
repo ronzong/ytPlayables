@@ -1,0 +1,30 @@
+{
+  "importBase": "import",
+  "nativeBase": "native",
+  "name": "bundle_config",
+  "deps": [],
+  "uuids": [
+    "2aNV3a/ihNc5d4RobJZUk/"
+  ],
+  "paths": {
+    "0": [
+      "config",
+      0,
+      1
+    ]
+  },
+  "scenes": {},
+  "packs": {},
+  "versions": {
+    "import": [],
+    "native": []
+  },
+  "redirect": [],
+  "debug": false,
+  "extensionMap": {},
+  "hasPreloadScript": true,
+  "dependencyRelationships": {},
+  "types": [
+    "cc.BufferAsset"
+  ]
+}

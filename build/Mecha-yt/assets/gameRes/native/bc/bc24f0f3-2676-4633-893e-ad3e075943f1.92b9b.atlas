@@ -1,0 +1,41 @@
+
+TX_TanChuang.png
+size: 1419,1080
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+TX_Light_00
+  rotate: false
+  xy: 397, 657
+  size: 431, 421
+  orig: 600, 600
+  offset: 80, 84
+  index: -1
+TX_Light_01
+  rotate: true
+  xy: 2, 82
+  size: 573, 580
+  orig: 600, 600
+  offset: 18, 17
+  index: -1
+TX_Light_02
+  rotate: true
+  xy: 830, 582
+  size: 496, 587
+  orig: 600, 600
+  offset: 11, 10
+  index: -1
+TX_Light_03
+  rotate: true
+  xy: 584, 2
+  size: 578, 579
+  orig: 600, 600
+  offset: 13, 10
+  index: -1
+TX_Light_04
+  rotate: false
+  xy: 2, 694
+  size: 393, 384
+  orig: 600, 600
+  offset: 100, 109
+  index: -1

@@ -1,0 +1,139 @@
+
+TX_HMDX.png
+size: 1839,670
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: true
+  xy: 1020, 27
+  size: 317, 251
+  orig: 360, 259
+  offset: 20, 4
+  index: -1
+2
+  rotate: false
+  xy: 2, 14
+  size: 306, 248
+  orig: 360, 259
+  offset: 22, 4
+  index: -1
+baodian_0
+  rotate: false
+  xy: 724, 2
+  size: 137, 87
+  orig: 200, 120
+  offset: 32, 0
+  index: -1
+baodian_1
+  rotate: false
+  xy: 863, 6
+  size: 147, 83
+  orig: 200, 120
+  offset: 26, 8
+  index: -1
+baodian_2
+  rotate: false
+  xy: 1273, 54
+  size: 163, 78
+  orig: 200, 120
+  offset: 18, 18
+  index: -1
+baodian_3
+  rotate: false
+  xy: 1438, 55
+  size: 173, 77
+  orig: 200, 120
+  offset: 14, 26
+  index: -1
+baodian_4
+  rotate: false
+  xy: 1613, 58
+  size: 181, 74
+  orig: 200, 120
+  offset: 9, 39
+  index: -1
+xiaobaodian_0
+  rotate: false
+  xy: 530, 66
+  size: 192, 196
+  orig: 270, 270
+  offset: 51, 48
+  index: -1
+xiaobaodian_1
+  rotate: false
+  xy: 310, 56
+  size: 218, 206
+  orig: 270, 270
+  offset: 22, 28
+  index: -1
+xiaobaodian_2
+  rotate: false
+  xy: 1577, 402
+  size: 260, 266
+  orig: 270, 270
+  offset: 4, 0
+  index: -1
+xiaobaodian_3
+  rotate: false
+  xy: 1307, 398
+  size: 268, 270
+  orig: 270, 270
+  offset: 0, 0
+  index: -1
+xiaobaodian_4
+  rotate: false
+  xy: 1307, 134
+  size: 265, 262
+  orig: 270, 270
+  offset: 3, 0
+  index: -1
+xiaobaodian_5
+  rotate: true
+  xy: 1574, 134
+  size: 262, 261
+  orig: 270, 270
+  offset: 4, 1
+  index: -1
+xiaobaodian_6
+  rotate: false
+  xy: 765, 91
+  size: 253, 253
+  orig: 270, 270
+  offset: 8, 5
+  index: -1
+xiaobaodian_7
+  rotate: false
+  xy: 530, 18
+  size: 51, 46
+  orig: 270, 270
+  offset: 110, 109
+  index: -1
+xiaobaodian_8
+  rotate: false
+  xy: 1577, 399
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+xiaobaodian_9
+  rotate: false
+  xy: 1577, 399
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+xingxing
+  rotate: false
+  xy: 2, 264
+  size: 761, 404
+  orig: 803, 442
+  offset: 22, 18
+  index: -1
+yunshi
+  rotate: true
+  xy: 765, 346
+  size: 322, 540
+  orig: 366, 599
+  offset: 22, 32
+  index: -1

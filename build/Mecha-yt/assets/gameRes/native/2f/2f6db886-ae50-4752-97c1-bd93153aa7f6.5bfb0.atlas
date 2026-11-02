@@ -1,0 +1,13 @@
+
+TX_huDun.png
+size: 401,384
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fengwo_2
+  rotate: false
+  xy: 2, 2
+  size: 397, 380
+  orig: 512, 512
+  offset: 39, 98
+  index: -1

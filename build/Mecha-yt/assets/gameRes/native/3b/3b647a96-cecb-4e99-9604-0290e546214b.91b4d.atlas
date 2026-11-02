@@ -1,0 +1,293 @@
+
+末日审判立绘.png
+size: 1581,1040
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+0_00
+  rotate: true
+  xy: 477, 595
+  size: 106, 121
+  orig: 175, 175
+  offset: 18, 23
+  index: -1
+0_01
+  rotate: false
+  xy: 739, 598
+  size: 170, 138
+  orig: 175, 175
+  offset: 0, 22
+  index: -1
+L_arm_big
+  rotate: false
+  xy: 1331, 322
+  size: 77, 65
+  orig: 77, 65
+  offset: 0, 0
+  index: -1
+L_arm_small
+  rotate: true
+  xy: 1494, 110
+  size: 148, 84
+  orig: 148, 84
+  offset: 0, 0
+  index: -1
+L_dun
+  rotate: false
+  xy: 188, 699
+  size: 233, 339
+  orig: 233, 339
+  offset: 0, 0
+  index: -1
+L_finger
+  rotate: false
+  xy: 423, 703
+  size: 55, 33
+  orig: 55, 33
+  offset: 0, 0
+  index: -1
+L_foot
+  rotate: true
+  xy: 1494, 7
+  size: 101, 80
+  orig: 101, 80
+  offset: 0, 0
+  index: -1
+L_g
+  rotate: true
+  xy: 1244, 8
+  size: 250, 248
+  orig: 272, 271
+  offset: 10, 10
+  index: -1
+L_hand
+  rotate: true
+  xy: 1260, 307
+  size: 80, 69
+  orig: 80, 70
+  offset: 0, 0
+  index: -1
+L_jian
+  rotate: false
+  xy: 1260, 389
+  size: 163, 157
+  orig: 163, 157
+  offset: 0, 0
+  index: -1
+L_leg_big
+  rotate: true
+  xy: 299, 589
+  size: 108, 96
+  orig: 108, 96
+  offset: 0, 0
+  index: -1
+L_leg_small
+  rotate: false
+  xy: 188, 586
+  size: 109, 111
+  orig: 109, 111
+  offset: 0, 0
+  index: -1
+L_paoguan
+  rotate: true
+  xy: 1027, 739
+  size: 299, 210
+  orig: 299, 210
+  offset: 0, 0
+  index: -1
+L_paotai
+  rotate: false
+  xy: 1425, 422
+  size: 154, 72
+  orig: 154, 72
+  offset: 0, 0
+  index: -1
+R_arm_big
+  rotate: true
+  xy: 600, 597
+  size: 139, 137
+  orig: 139, 158
+  offset: 0, 1
+  index: -1
+R_arm_small
+  rotate: false
+  xy: 1455, 650
+  size: 115, 125
+  orig: 115, 125
+  offset: 0, 0
+  index: -1
+R_dun
+  rotate: false
+  xy: 2, 586
+  size: 184, 452
+  orig: 184, 452
+  offset: 0, 0
+  index: -1
+R_foot
+  rotate: true
+  xy: 397, 589
+  size: 108, 78
+  orig: 108, 79
+  offset: 0, 1
+  index: -1
+R_g
+  rotate: true
+  xy: 955, 3
+  size: 290, 287
+  orig: 315, 313
+  offset: 12, 12
+  index: -1
+R_hand
+  rotate: true
+  xy: 1479, 947
+  size: 91, 100
+  orig: 91, 101
+  offset: 0, 0
+  index: -1
+R_jian
+  rotate: true
+  xy: 1272, 548
+  size: 151, 177
+  orig: 151, 177
+  offset: 0, 0
+  index: -1
+R_leg_big
+  rotate: false
+  xy: 1062, 606
+  size: 105, 131
+  orig: 105, 131
+  offset: 0, 0
+  index: -1
+R_leg_small
+  rotate: true
+  xy: 911, 601
+  size: 135, 149
+  orig: 138, 149
+  offset: 3, 0
+  index: -1
+R_paoguan
+  rotate: true
+  xy: 2, 244
+  size: 340, 249
+  orig: 340, 249
+  offset: 0, 0
+  index: -1
+R_paotai
+  rotate: false
+  xy: 1272, 701
+  size: 181, 82
+  orig: 181, 82
+  offset: 0, 0
+  index: -1
+YY
+  rotate: true
+  xy: 253, 277
+  size: 307, 159
+  orig: 307, 159
+  offset: 0, 0
+  index: -1
+ZiDan_01
+  rotate: false
+  xy: 1451, 573
+  size: 128, 75
+  orig: 130, 75
+  offset: 0, 0
+  index: -1
+ZiDan_02
+  rotate: false
+  xy: 1451, 496
+  size: 128, 75
+  orig: 130, 75
+  offset: 0, 0
+  index: -1
+baozha_01
+  rotate: false
+  xy: 1239, 785
+  size: 238, 253
+  orig: 300, 300
+  offset: 30, 23
+  index: -1
+baozha_02
+  rotate: false
+  xy: 423, 738
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+baozha_03
+  rotate: false
+  xy: 414, 287
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+baozha_04
+  rotate: false
+  xy: 725, 738
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+baozha_05
+  rotate: false
+  xy: 716, 295
+  size: 286, 300
+  orig: 300, 300
+  offset: 6, 0
+  index: -1
+baozha_06
+  rotate: false
+  xy: 452, 2
+  size: 247, 283
+  orig: 300, 300
+  offset: 22, 1
+  index: -1
+baozha_07
+  rotate: false
+  xy: 701, 3
+  size: 252, 282
+  orig: 300, 300
+  offset: 15, 8
+  index: -1
+baozha_08
+  rotate: false
+  xy: 1004, 309
+  size: 254, 290
+  orig: 300, 300
+  offset: 13, 5
+  index: -1
+body_s
+  rotate: true
+  xy: 237, 3
+  size: 239, 213
+  orig: 239, 213
+  offset: 0, 0
+  index: -1
+body_x
+  rotate: true
+  xy: 1169, 608
+  size: 129, 101
+  orig: 129, 101
+  offset: 0, 0
+  index: -1
+body_z
+  rotate: true
+  xy: 1479, 777
+  size: 168, 88
+  orig: 168, 88
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 1425, 260
+  size: 151, 160
+  orig: 151, 160
+  offset: 0, 0
+  index: -1
+star
+  rotate: true
+  xy: 2, 2
+  size: 240, 233
+  orig: 272, 272
+  offset: 13, 13
+  index: -1

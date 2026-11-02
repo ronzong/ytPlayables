@@ -1,0 +1,195 @@
+
+圣光立绘.png
+size: 1985,700
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+L_1
+  rotate: false
+  xy: 165, 265
+  size: 312, 433
+  orig: 333, 470
+  offset: 12, 16
+  index: -1
+L_2
+  rotate: false
+  xy: 479, 277
+  size: 389, 421
+  orig: 414, 456
+  offset: 10, 15
+  index: -1
+L_3
+  rotate: true
+  xy: 1188, 307
+  size: 391, 292
+  orig: 424, 319
+  offset: 16, 12
+  index: -1
+L_4
+  rotate: false
+  xy: 2, 9
+  size: 295, 208
+  orig: 336, 227
+  offset: 17, 11
+  index: -1
+L_arm_big
+  rotate: false
+  xy: 465, 36
+  size: 226, 227
+  orig: 226, 246
+  offset: 0, 19
+  index: -1
+L_arm_small
+  rotate: true
+  xy: 1624, 512
+  size: 186, 220
+  orig: 186, 220
+  offset: 0, 0
+  index: -1
+L_finger_1
+  rotate: false
+  xy: 165, 219
+  size: 64, 44
+  orig: 64, 44
+  offset: 0, 0
+  index: -1
+L_finger_4
+  rotate: false
+  xy: 1785, 4
+  size: 115, 91
+  orig: 116, 92
+  offset: 1, 0
+  index: -1
+L_foot
+  rotate: true
+  xy: 1624, 45
+  size: 146, 93
+  orig: 148, 95
+  offset: 0, 0
+  index: -1
+L_hand
+  rotate: false
+  xy: 1719, 97
+  size: 105, 102
+  orig: 105, 102
+  offset: 0, 0
+  index: -1
+L_leg_big
+  rotate: true
+  xy: 1846, 468
+  size: 112, 125
+  orig: 112, 125
+  offset: 0, 0
+  index: -1
+L_leg_small
+  rotate: true
+  xy: 1640, 201
+  size: 142, 181
+  orig: 142, 181
+  offset: 0, 0
+  index: -1
+R_1
+  rotate: true
+  xy: 1251, 36
+  size: 269, 371
+  orig: 290, 387
+  offset: 10, 16
+  index: -1
+R_2
+  rotate: false
+  xy: 870, 305
+  size: 316, 393
+  orig: 336, 429
+  offset: 10, 16
+  index: -1
+R_3
+  rotate: false
+  xy: 912, 8
+  size: 337, 295
+  orig: 364, 323
+  offset: 14, 12
+  index: -1
+R_4
+  rotate: true
+  xy: 693, 4
+  size: 271, 217
+  orig: 307, 239
+  offset: 20, 13
+  index: -1
+R_arm_big
+  rotate: false
+  xy: 1482, 535
+  size: 105, 163
+  orig: 105, 163
+  offset: 0, 0
+  index: -1
+R_arm_small
+  rotate: false
+  xy: 1827, 357
+  size: 156, 109
+  orig: 156, 118
+  offset: 0, 9
+  index: -1
+R_finger
+  rotate: false
+  xy: 1719, 2
+  size: 64, 93
+  orig: 67, 93
+  offset: 0, 0
+  index: -1
+R_hand
+  rotate: true
+  xy: 1902, 48
+  size: 47, 73
+  orig: 50, 104
+  offset: 2, 6
+  index: -1
+R_leg
+  rotate: true
+  xy: 1846, 582
+  size: 116, 125
+  orig: 116, 125
+  offset: 0, 0
+  index: -1
+R_leg_small
+  rotate: false
+  xy: 1482, 308
+  size: 156, 202
+  orig: 156, 202
+  offset: 0, 0
+  index: -1
+bg_y
+  rotate: true
+  xy: 2, 219
+  size: 479, 161
+  orig: 562, 168
+  offset: 24, 4
+  index: -1
+body_1
+  rotate: true
+  xy: 299, 35
+  size: 228, 164
+  orig: 228, 164
+  offset: 0, 0
+  index: -1
+body_2
+  rotate: false
+  xy: 1827, 193
+  size: 153, 162
+  orig: 158, 162
+  offset: 0, 0
+  index: -1
+di
+  rotate: false
+  xy: 1826, 97
+  size: 91, 94
+  orig: 91, 94
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 1640, 345
+  size: 165, 185
+  orig: 165, 189
+  offset: 0, 4
+  index: -1

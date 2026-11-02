@@ -1,0 +1,48 @@
+
+magic_stickDH.png
+size: 410,370
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2
+  rotate: false
+  xy: 144, 73
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+Flare_Omnimax
+  rotate: false
+  xy: 231, 75
+  size: 162, 131
+  orig: 163, 131
+  offset: 1, 0
+  index: -1
+VFX_Circle_out2
+  rotate: false
+  xy: 1, 143
+  size: 228, 226
+  orig: 228, 226
+  offset: 0, 0
+  index: -1
+guangyun
+  rotate: false
+  xy: 1, 1
+  size: 141, 140
+  orig: 155, 155
+  offset: 7, 7
+  index: -1
+linght_point
+  rotate: false
+  xy: 214, 32
+  size: 41, 41
+  orig: 42, 41
+  offset: 0, 0
+  index: -1
+magic-stick
+  rotate: true
+  xy: 231, 208
+  size: 161, 178
+  orig: 161, 178
+  offset: 0, 0
+  index: -1

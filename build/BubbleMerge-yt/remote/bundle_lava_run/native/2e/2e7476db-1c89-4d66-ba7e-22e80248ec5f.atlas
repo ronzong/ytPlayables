@@ -1,0 +1,13 @@
+FX_Reward.png
+size:304,188
+filter:Linear,Linear
+Unlocked Glow(2)
+bounds:170,29,155,130
+offsets:3,2,162,133
+rotate:90
+fx/fx-dot-blur
+bounds:170,2,25,25
+offsets:5,5,35,35
+fx/fx-glow-rays-03-yellow
+bounds:2,14,166,170
+offsets:7,12,186,187

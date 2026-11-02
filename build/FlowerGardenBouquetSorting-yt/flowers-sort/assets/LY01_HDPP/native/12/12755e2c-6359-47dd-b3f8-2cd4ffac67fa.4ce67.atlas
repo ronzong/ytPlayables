@@ -1,0 +1,27 @@
+
+snowDH.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bing2
+  rotate: true
+  xy: 1, 1
+  size: 480, 802
+  orig: 480, 802
+  offset: 0, 0
+  index: -1
+linght_point
+  rotate: false
+  xy: 805, 293
+  size: 84, 83
+  orig: 84, 83
+  offset: 0, 0
+  index: -1
+xuehua
+  rotate: false
+  xy: 805, 378
+  size: 94, 103
+  orig: 94, 103
+  offset: 0, 0
+  index: -1

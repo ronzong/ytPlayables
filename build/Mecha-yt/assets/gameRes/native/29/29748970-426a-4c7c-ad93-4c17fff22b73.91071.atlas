@@ -1,0 +1,27 @@
+
+TX_DaoDanJiQiang.png
+size: 191,132
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ZiDan
+  rotate: true
+  xy: 156, 12
+  size: 118, 33
+  orig: 125, 37
+  offset: 5, 2
+  index: -1
+ZiDan_01
+  rotate: true
+  xy: 2, 2
+  size: 128, 75
+  orig: 130, 75
+  offset: 0, 0
+  index: -1
+ZiDan_02
+  rotate: true
+  xy: 79, 2
+  size: 128, 75
+  orig: 130, 75
+  offset: 0, 0
+  index: -1

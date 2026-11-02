@@ -1,0 +1,28 @@
+Ad banner Close.png
+size:236,156
+filter:Linear,Linear
+Ad_close ribbon
+bounds:82,53,78,99
+offsets:1,0,80,100
+Ad_close ribbon - Active
+bounds:2,53,78,99
+offsets:1,0,80,100
+Ad_close_Cross
+bounds:131,2,50,49
+offsets:9,3,68,56
+Ad_close_Cross_2
+bounds:183,3,50,49
+offsets:9,3,68,56
+rotate:90
+Ad_close_Heart
+bounds:162,55,59,47
+offsets:4,4,68,56
+Ad_close_morph_02
+bounds:69,4,60,47
+offsets:4,4,68,56
+Ad_close_morph_03
+bounds:2,4,65,47
+offsets:2,4,68,56
+Ad_close_morph_04
+bounds:162,104,61,48
+offsets:3,4,68,56

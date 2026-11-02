@@ -1,0 +1,20 @@
+
+ui_vip_renwu.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+flame
+  rotate: true
+  xy: 1, 9
+  size: 41, 187
+  orig: 41, 187
+  offset: 0, 0
+  index: -1
+vip
+  rotate: false
+  xy: 190, 1
+  size: 59, 49
+  orig: 59, 49
+  offset: 0, 0
+  index: -1

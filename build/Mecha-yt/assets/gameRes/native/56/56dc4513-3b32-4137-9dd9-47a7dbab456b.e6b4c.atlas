@@ -1,0 +1,300 @@
+
+毁灭帝星.png
+size: 1513,1044
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BL_arm_di
+  rotate: false
+  xy: 570, 213
+  size: 273, 296
+  orig: 273, 296
+  offset: 0, 0
+  index: -1
+BL_arm_gai
+  rotate: false
+  xy: 845, 284
+  size: 225, 232
+  orig: 225, 232
+  offset: 0, 0
+  index: -1
+BL_finger_1
+  rotate: false
+  xy: 1072, 284
+  size: 122, 102
+  orig: 122, 102
+  offset: 0, 0
+  index: -1
+BL_finger_2
+  rotate: false
+  xy: 1361, 344
+  size: 145, 100
+  orig: 145, 100
+  offset: 0, 0
+  index: -1
+BL_finger_3
+  rotate: false
+  xy: 629, 512
+  size: 159, 135
+  orig: 159, 135
+  offset: 0, 0
+  index: -1
+BL_finger_4
+  rotate: true
+  xy: 1079, 655
+  size: 152, 108
+  orig: 152, 108
+  offset: 0, 0
+  index: -1
+BL_finger_5
+  rotate: false
+  xy: 1400, 255
+  size: 111, 87
+  orig: 111, 87
+  offset: 0, 0
+  index: -1
+BL_hand
+  rotate: true
+  xy: 1093, 10
+  size: 204, 223
+  orig: 204, 223
+  offset: 0, 0
+  index: -1
+BL_jian_1
+  rotate: false
+  xy: 917, 8
+  size: 174, 206
+  orig: 174, 206
+  offset: 0, 0
+  index: -1
+BL_jian_2
+  rotate: false
+  xy: 788, 772
+  size: 247, 270
+  orig: 247, 270
+  offset: 0, 0
+  index: -1
+BODY_s
+  rotate: true
+  xy: 1165, 816
+  size: 226, 208
+  orig: 226, 208
+  offset: 0, 0
+  index: -1
+BODY_x
+  rotate: false
+  xy: 951, 525
+  size: 149, 125
+  orig: 149, 125
+  offset: 0, 0
+  index: -1
+BR_arm
+  rotate: false
+  xy: 1037, 809
+  size: 126, 233
+  orig: 126, 233
+  offset: 0, 0
+  index: -1
+BR_arm_small
+  rotate: false
+  xy: 1189, 628
+  size: 179, 186
+  orig: 179, 186
+  offset: 0, 0
+  index: -1
+BR_hand_1
+  rotate: true
+  xy: 1187, 438
+  size: 188, 172
+  orig: 188, 172
+  offset: 0, 0
+  index: -1
+BR_hand_2
+  rotate: false
+  xy: 1107, 497
+  size: 78, 77
+  orig: 78, 77
+  offset: 0, 0
+  index: -1
+BR_hand_3
+  rotate: true
+  xy: 1370, 595
+  size: 171, 140
+  orig: 171, 140
+  offset: 0, 0
+  index: -1
+BR_hand_g
+  rotate: false
+  xy: 790, 518
+  size: 159, 129
+  orig: 159, 129
+  offset: 0, 0
+  index: -1
+BR_jian
+  rotate: true
+  xy: 1375, 930
+  size: 112, 124
+  orig: 112, 124
+  offset: 0, 0
+  index: -1
+L_arm_big
+  rotate: false
+  xy: 1361, 446
+  size: 150, 147
+  orig: 150, 147
+  offset: 0, 0
+  index: -1
+L_arm_small
+  rotate: false
+  xy: 1107, 388
+  size: 77, 107
+  orig: 77, 107
+  offset: 0, 0
+  index: -1
+L_foot
+  rotate: true
+  xy: 788, 649
+  size: 121, 78
+  orig: 129, 78
+  offset: 8, 0
+  index: -1
+L_hand
+  rotate: true
+  xy: 1102, 576
+  size: 77, 83
+  orig: 77, 83
+  offset: 0, 0
+  index: -1
+L_jian
+  rotate: true
+  xy: 1196, 227
+  size: 115, 202
+  orig: 115, 202
+  offset: 0, 0
+  index: -1
+L_leg_big
+  rotate: true
+  xy: 1400, 158
+  size: 95, 106
+  orig: 95, 106
+  offset: 0, 0
+  index: -1
+L_leg_small
+  rotate: true
+  xy: 713, 2
+  size: 209, 202
+  orig: 209, 202
+  offset: 0, 0
+  index: -1
+R_arm_big
+  rotate: false
+  xy: 403, 511
+  size: 152, 136
+  orig: 152, 136
+  offset: 0, 0
+  index: -1
+R_arm_small
+  rotate: true
+  xy: 1318, 66
+  size: 104, 70
+  orig: 104, 70
+  offset: 0, 0
+  index: -1
+R_finger
+  rotate: false
+  xy: 845, 214
+  size: 56, 68
+  orig: 56, 68
+  offset: 0, 0
+  index: -1
+R_foot
+  rotate: true
+  xy: 557, 511
+  size: 136, 70
+  orig: 136, 70
+  offset: 0, 0
+  index: -1
+R_hand
+  rotate: false
+  xy: 1318, 172
+  size: 77, 53
+  orig: 85, 53
+  offset: 8, 0
+  index: -1
+R_jian
+  rotate: true
+  xy: 1375, 768
+  size: 160, 123
+  orig: 160, 123
+  offset: 0, 0
+  index: -1
+R_leg_big
+  rotate: false
+  xy: 1390, 62
+  size: 100, 94
+  orig: 100, 94
+  offset: 0, 0
+  index: -1
+R_leg_small
+  rotate: true
+  xy: 868, 652
+  size: 118, 209
+  orig: 118, 210
+  offset: 0, 1
+  index: -1
+bg
+  rotate: true
+  xy: 391, 43
+  size: 464, 177
+  orig: 464, 177
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 570, 45
+  size: 141, 166
+  orig: 141, 166
+  offset: 0, 0
+  index: -1
+head_1
+  rotate: true
+  xy: 521, 6
+  size: 35, 134
+  orig: 35, 134
+  offset: 0, 0
+  index: -1
+head_2
+  rotate: true
+  xy: 903, 216
+  size: 66, 202
+  orig: 66, 202
+  offset: 0, 0
+  index: -1
+head_3
+  rotate: true
+  xy: 391, 3
+  size: 38, 128
+  orig: 38, 128
+  offset: 0, 0
+  index: -1
+yuaj_1
+  rotate: false
+  xy: 403, 649
+  size: 383, 393
+  orig: 388, 398
+  offset: 3, 4
+  index: -1
+yuaj_2
+  rotate: false
+  xy: 2, 16
+  size: 387, 491
+  orig: 391, 496
+  offset: 2, 3
+  index: -1
+yuaj_3
+  rotate: true
+  xy: 2, 509
+  size: 533, 399
+  orig: 536, 404
+  offset: 1, 3
+  index: -1

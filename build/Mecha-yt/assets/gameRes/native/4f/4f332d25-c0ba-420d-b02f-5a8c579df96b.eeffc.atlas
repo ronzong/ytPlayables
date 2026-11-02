@@ -1,0 +1,83 @@
+
+wuqishengji.png
+size: 1162,469
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guangxiao_0
+  rotate: true
+  xy: 952, 284
+  size: 183, 182
+  orig: 250, 250
+  offset: 33, 39
+  index: -1
+guangxiao_1
+  rotate: true
+  xy: 659, 13
+  size: 202, 199
+  orig: 250, 250
+  offset: 41, 33
+  index: -1
+guangxiao_10
+  rotate: true
+  xy: 1048, 165
+  size: 117, 112
+  orig: 250, 250
+  offset: 64, 66
+  index: -1
+guangxiao_2
+  rotate: false
+  xy: 860, 27
+  size: 186, 192
+  orig: 250, 250
+  offset: 37, 37
+  index: -1
+guangxiao_3
+  rotate: true
+  xy: 454, 8
+  size: 207, 203
+  orig: 250, 250
+  offset: 12, 22
+  index: -1
+guangxiao_4
+  rotate: true
+  xy: 2, 2
+  size: 213, 224
+  orig: 250, 250
+  offset: 13, 10
+  index: -1
+guangxiao_5
+  rotate: false
+  xy: 491, 217
+  size: 220, 250
+  orig: 250, 250
+  offset: 10, 0
+  index: -1
+guangxiao_6
+  rotate: false
+  xy: 713, 221
+  size: 237, 246
+  orig: 250, 250
+  offset: 4, 1
+  index: -1
+guangxiao_7
+  rotate: true
+  xy: 2, 217
+  size: 250, 247
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+guangxiao_8
+  rotate: true
+  xy: 251, 217
+  size: 250, 238
+  orig: 250, 250
+  offset: 0, 3
+  index: -1
+guangxiao_9
+  rotate: false
+  xy: 228, 2
+  size: 224, 213
+  orig: 250, 250
+  offset: 11, 17
+  index: -1

@@ -1,0 +1,312 @@
+{
+    "en": {
+        "texts": {
+            "gameName": "Floor Plan: Home & Interior Design",
+            "preloader": {
+                "progress": "{progress}%"
+            },
+            "startScreen": {
+                "title1": "Floor Plan",
+                "title2": "Home & Interior Design",
+                "designBtn": "Design",
+                "decorateBtn": "Decorate",
+                "buildNudge": "Build your new plan!",
+                "playPattern": "Level {number} ▶",
+                "playBtn": "PLAY",
+                "dailyBonusBtn": "Daily bonus: +{coins}"
+            },
+            "play": {
+                "stagePattern": "Stage {number}",
+                "levelPattern": "Level {number}",
+                "hardBoard": "HARD LEVEL!",
+                "hintBtn": "Hint ▶",
+                "hintCooldownPattern": "{seconds}s",
+                "teach": {
+                    "pinned": "This room is pinned in place — tap it to rotate!",
+                    "fixed": "This room is built in and can't move — arrange the rest around it",
+                    "swap": "These rooms are linked — tap one to swap them",
+                    "rail": "This room slides along its rail — drag it into place",
+                    "timer": "A timed board! Finish the plan before time runs out",
+                    "rotatable": "This room can spin — tap to rotate, drag to place",
+                    "suite": "A two-room suite — both rooms place together as one piece",
+                    "drag": "Drag the room onto its matching spot on the floor plan!",
+                    "ghost": "A mystery room — its walls and doors are hidden! Solve the plan to reveal them",
+                    "decoy": "Careful — this plan includes extra rooms that are NOT used!",
+                    "budget": "A move budget! Placing a room costs a move — finish the plan before they run out",
+                    "lockedDoor": "A bolted door — it must NOT line up with any other door! Keep it against a wall."
+                },
+                "movesPattern": "Moves: {count}"
+            },
+            "pausePopup": {
+                "title": "Pause",
+                "homeBtn": "Home",
+                "restartBtn": "Retry",
+                "resumeBtn": "Play"
+            },
+            "losePopup": {
+                "title": "Time is up!",
+                "info": "Watch an ad to get extra time and keep building!",
+                "reviveBtn": "More time ▶",
+                "restartBtn": "Restart",
+                "homeBtn": "Home",
+                "movesTitle": "Out of moves!",
+                "movesInfo": "Watch an ad to get extra moves and keep building!",
+                "movesReviveBtn": "More moves ▶"
+            },
+            "rooms": {
+                "livingRoom": "Lounge",
+                "bedroom": "Bedroom",
+                "kitchen": "Kitchen",
+                "dining": "Canteen",
+                "bathroom": "Bathroom",
+                "kidsRoom": "Kids Room",
+                "office": "Office",
+                "hall": "Hall",
+                "laundry": "Laundry"
+            },
+            "decorate": {
+                "title": "Store",
+                "buyBtn": "Buy",
+                "owned": "Owned ✓",
+                "closeBtn": "Close",
+                "balancePattern": "Coins: {coins}",
+                "pickUpBtn": "Pick up section",
+                "buyPricePattern": "Buy ● {price}",
+                "progressPattern": "Furnished: {owned} of {total}"
+            },
+            "decorateScreen": {
+                "backBtn": "Home",
+                "storeBtn": "Store",
+                "cardCountPattern": "{available} of {total}",
+                "toastUnlocked": "Plot unlocked!",
+                "toastNoCoins": "Not enough coins",
+                "lotCelebration": "Dream lot complete!",
+                "tasksBtn": "Tasks",
+                "confirmPlotPattern": "Buy this plot for {cost}?",
+                "variantOkBtn": "OK",
+                "planPickerCostPattern": "Cost ● {cost}",
+                "planPickerFree": "Free plot",
+                "planPickerPagePattern": "{index} / {total}",
+                "noCoinsInfo": "Clear levels to earn coins!",
+                "noPlansTitle": "No plans yet",
+                "noPlansInfo": "Clear levels to earn new floor plans!",
+                "noCoinsPlayBtn": "Play"
+            },
+            "furniture": {
+                "sofa": "Cozy Sofa",
+                "bed": "Double Bed",
+                "stove": "Stove",
+                "diningTable": "Dining Table",
+                "bathtub": "Bathtub",
+                "crib": "Crib",
+                "desk": "Work Desk",
+                "coatRack": "Coat Rack",
+                "washer": "Washer"
+            },
+            "dailyBonus": {
+                "title": "Daily Rewards",
+                "dayPattern": "Day {day}",
+                "claim2xBtn": "CLAIM 2x ▶",
+                "claim2xPattern": "CLAIM 2x ● {coins} ▶",
+                "claimPlainBtn": "Get without bonus",
+                "claimPlainPattern": "Get without bonus ● {coins}"
+            },
+            "winFlow": {
+                "planEarned": "Floor plan earned!",
+                "duplicateBonusPattern": "Plan owned: bonus +{coins}!",
+                "giftFullPattern": "Gift! +{coins}",
+                "levelClear": "LEVEL CLEAR!",
+                "collectPattern": "Collect! ● {coins}",
+                "wonPattern": "You won {coins}",
+                "collect2xPattern": "CLAIM 2x ● {coins} ▶",
+                "collectPlain": "Get without bonus"
+            },
+            "goal": {
+                "nextPlotPattern": "Next plot: {coins} / {cost}",
+                "allPlotsUnlocked": "All plots unlocked!",
+                "plotAffordable": "You can buy a new plot!"
+            },
+            "taskPanel": {
+                "title": "Tasks",
+                "rowPattern": "{room} — {item}",
+                "doItPattern": "Do it! ● {coins}",
+                "empty": "All done!",
+                "morePattern": "+{count} more"
+            },
+            "settings": {
+                "title": "Settings",
+                "soundOn": "Sound: on",
+                "soundOff": "Sound: off",
+                "musicOn": "Music: on",
+                "musicOff": "Music: off",
+                "resetBtn": "Reset progress"
+            },
+            "resetConfirm": {
+                "title": "Reset progress?",
+                "warning": "All progress, coins, plans and buildings will be deleted forever. Start over?",
+                "confirmBtn": "Reset",
+                "cancelBtn": "Cancel"
+            },
+            "decorateHint": {
+                "placePlan": "Tap a free plot\nto build a plan!",
+                "furnishRoom": "Tap a room\nto furnish it!",
+                "earn": "Clear levels to earn\nnew plans and coins!"
+            }
+        }
+    },
+    "ru": {
+        "texts": {
+            "gameName": "Планировка: план и интерьер дома",
+            "preloader": {
+                "progress": "{progress}%"
+            },
+            "startScreen": {
+                "title1": "Планировка",
+                "title2": "план и интерьер дома",
+                "designBtn": "План",
+                "decorateBtn": "Декор",
+                "buildNudge": "Постройте свой новый план!",
+                "playPattern": "Уровень {number} ▶",
+                "playBtn": "ИГРАТЬ",
+                "dailyBonusBtn": "Бонус дня: +{coins}"
+            },
+            "play": {
+                "stagePattern": "Этап {number}",
+                "levelPattern": "Уровень {number}",
+                "hardBoard": "СЛОЖНЫЙ УРОВЕНЬ!",
+                "hintBtn": "Совет ▶",
+                "hintCooldownPattern": "{seconds}с",
+                "teach": {
+                    "pinned": "Эта комната закреплена — нажмите на неё, чтобы повернуть!",
+                    "fixed": "Эта комната уже встроена, её нельзя двигать — разместите остальные вокруг",
+                    "swap": "Эти комнаты связаны — нажмите, чтобы поменять их местами",
+                    "rail": "Эта комната скользит вдоль направляющей — перетащите её на место",
+                    "timer": "Уровень на время! Соберите план до конца таймера",
+                    "rotatable": "Эту комнату можно вращать — коснитесь, чтобы повернуть, и перетащите на место",
+                    "suite": "Двойной блок — обе комнаты ставятся вместе, как одна деталь",
+                    "drag": "Перетащите комнату на её место на плане!",
+                    "ghost": "Загадочная комната — её стены и двери скрыты! Соберите план, чтобы их увидеть",
+                    "decoy": "Осторожно — среди комнат есть лишние, они не нужны в плане!",
+                    "budget": "Лимит ходов! Каждая установка комнаты тратит ход — соберите план, пока ходы не кончились",
+                    "lockedDoor": "Дверь на засове — она НЕ должна совпадать с другой дверью! Поставьте её к стене."
+                },
+                "movesPattern": "Ходы: {count}"
+            },
+            "pausePopup": {
+                "title": "Пауза",
+                "homeBtn": "Домой",
+                "restartBtn": "Заново",
+                "resumeBtn": "Играть"
+            },
+            "losePopup": {
+                "title": "Время вышло!",
+                "info": "Посмотрите рекламу, чтобы получить дополнительное время и продолжить строить!",
+                "reviveBtn": "Ещё время ▶",
+                "restartBtn": "Заново",
+                "homeBtn": "Домой",
+                "movesTitle": "Ходы закончились!",
+                "movesInfo": "Посмотрите рекламу, чтобы получить дополнительные ходы и продолжить строить!",
+                "movesReviveBtn": "Ещё ходы ▶"
+            },
+            "rooms": {
+                "livingRoom": "Гостиная",
+                "bedroom": "Спальня",
+                "kitchen": "Кухня",
+                "dining": "Столовая",
+                "bathroom": "Ванная",
+                "kidsRoom": "Детская",
+                "office": "Кабинет",
+                "hall": "Прихожая",
+                "laundry": "Прачечная"
+            },
+            "decorate": {
+                "title": "Магазин",
+                "buyBtn": "Купить",
+                "owned": "Куплено ✓",
+                "closeBtn": "Закрыть",
+                "balancePattern": "Монеты: {coins}",
+                "pickUpBtn": "Убрать секцию",
+                "buyPricePattern": "Купить ● {price}",
+                "progressPattern": "Куплено: {owned} из {total}"
+            },
+            "decorateScreen": {
+                "backBtn": "Домой",
+                "storeBtn": "Магазин",
+                "cardCountPattern": "{available} из {total}",
+                "toastUnlocked": "Участок куплен!",
+                "toastNoCoins": "Не хватает монет",
+                "lotCelebration": "Участок мечты застроен!",
+                "tasksBtn": "Задания",
+                "confirmPlotPattern": "Купить участок за {cost}?",
+                "variantOkBtn": "Готово",
+                "planPickerCostPattern": "Цена ● {cost}",
+                "planPickerFree": "Участок уже куплен",
+                "planPickerPagePattern": "{index} / {total}",
+                "noCoinsInfo": "Проходите уровни, чтобы заработать монеты!",
+                "noPlansTitle": "Нет свободных планов",
+                "noPlansInfo": "Проходите уровни, чтобы получать новые планы!",
+                "noCoinsPlayBtn": "Играть"
+            },
+            "furniture": {
+                "sofa": "Диван",
+                "bed": "Кровать",
+                "stove": "Плита",
+                "diningTable": "Стол",
+                "bathtub": "Ванна",
+                "crib": "Кроватка",
+                "desk": "Рабочий стол",
+                "coatRack": "Вешалка",
+                "washer": "Стиралка"
+            },
+            "dailyBonus": {
+                "title": "Ежедневные награды",
+                "dayPattern": "День {day}",
+                "claim2xBtn": "ЗАБРАТЬ 2x ▶",
+                "claim2xPattern": "ЗАБРАТЬ 2x ● {coins} ▶",
+                "claimPlainBtn": "Забрать без бонуса",
+                "claimPlainPattern": "Забрать без бонуса ● {coins}"
+            },
+            "winFlow": {
+                "planEarned": "Получен план этажа!",
+                "duplicateBonusPattern": "План уже есть: бонус +{coins}!",
+                "giftFullPattern": "Подарок! +{coins}",
+                "levelClear": "УРОВЕНЬ ПРОЙДЕН!",
+                "collectPattern": "Забрать! ● {coins}",
+                "wonPattern": "Вы выиграли {coins}",
+                "collect2xPattern": "ЗАБРАТЬ 2x ● {coins} ▶",
+                "collectPlain": "Забрать без бонуса"
+            },
+            "goal": {
+                "nextPlotPattern": "Новый участок: {coins} / {cost}",
+                "allPlotsUnlocked": "Все участки открыты!",
+                "plotAffordable": "Можно купить новый участок!"
+            },
+            "taskPanel": {
+                "title": "Задания",
+                "rowPattern": "{room} — {item}",
+                "doItPattern": "Сделать! ● {coins}",
+                "empty": "Всё готово!",
+                "morePattern": "ещё +{count}"
+            },
+            "settings": {
+                "title": "Настройки",
+                "soundOn": "Звук: вкл",
+                "soundOff": "Звук: выкл",
+                "musicOn": "Музыка: вкл",
+                "musicOff": "Музыка: выкл",
+                "resetBtn": "Сбросить прогресс"
+            },
+            "resetConfirm": {
+                "title": "Сбросить прогресс?",
+                "warning": "Весь прогресс, монеты, планы и постройки будут удалены навсегда. Начать заново?",
+                "confirmBtn": "Сбросить",
+                "cancelBtn": "Отмена"
+            },
+            "decorateHint": {
+                "placePlan": "Коснитесь свободного\nучастка, чтобы строить!",
+                "furnishRoom": "Коснитесь комнаты,\nчтобы обставить её!",
+                "earn": "Проходите уровни, чтобы получать\nновые планы и монеты!"
+            }
+        }
+    }
+}

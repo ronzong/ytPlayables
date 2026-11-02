@@ -1,0 +1,97 @@
+
+TX_PaoDan.png
+size: 1396,425
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+paodan
+  rotate: false
+  xy: 943, 143
+  size: 35, 59
+  orig: 35, 59
+  offset: 0, 0
+  index: -1
+paodan_0
+  rotate: false
+  xy: 2, 19
+  size: 171, 158
+  orig: 280, 280
+  offset: 48, 58
+  index: -1
+paodan_1
+  rotate: false
+  xy: 744, 204
+  size: 250, 219
+  orig: 280, 280
+  offset: 30, 27
+  index: -1
+paodan_10
+  rotate: false
+  xy: 1198, 29
+  size: 192, 196
+  orig: 280, 280
+  offset: 33, 40
+  index: -1
+paodan_2
+  rotate: false
+  xy: 2, 179
+  size: 262, 244
+  orig: 280, 280
+  offset: 18, 16
+  index: -1
+paodan_3
+  rotate: false
+  xy: 266, 179
+  size: 245, 244
+  orig: 280, 280
+  offset: 17, 16
+  index: -1
+paodan_4
+  rotate: false
+  xy: 513, 194
+  size: 229, 229
+  orig: 280, 280
+  offset: 25, 23
+  index: -1
+paodan_5
+  rotate: true
+  xy: 1196, 227
+  size: 196, 198
+  orig: 280, 280
+  offset: 47, 36
+  index: -1
+paodan_6
+  rotate: false
+  xy: 996, 220
+  size: 198, 203
+  orig: 280, 280
+  offset: 47, 34
+  index: -1
+paodan_7
+  rotate: false
+  xy: 996, 20
+  size: 200, 198
+  orig: 280, 280
+  offset: 43, 38
+  index: -1
+paodan_8
+  rotate: false
+  xy: 744, 12
+  size: 197, 190
+  orig: 280, 280
+  offset: 40, 40
+  index: -1
+paodan_9
+  rotate: true
+  xy: 513, 2
+  size: 190, 196
+  orig: 280, 280
+  offset: 35, 40
+  index: -1
+炮弹
+  rotate: false
+  xy: 175, 118
+  size: 99, 59
+  orig: 100, 63
+  offset: 0, 4
+  index: -1

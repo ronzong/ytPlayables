@@ -1,0 +1,132 @@
+
+BaWangLong_BaoZha01.png
+size: 1119,553
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+DaoDan
+  rotate: true
+  xy: 204, 5
+  size: 35, 100
+  orig: 35, 100
+  offset: 0, 0
+  index: -1
+baozha01
+  rotate: true
+  xy: 1009, 314
+  size: 119, 87
+  orig: 132, 98
+  offset: 8, 6
+  index: -1
+baozha02
+  rotate: false
+  xy: 862, 437
+  size: 146, 114
+  orig: 156, 124
+  offset: 5, 5
+  index: -1
+baozha03
+  rotate: true
+  xy: 862, 253
+  size: 180, 145
+  orig: 189, 154
+  offset: 4, 4
+  index: -1
+baozha04
+  rotate: true
+  xy: 204, 42
+  size: 190, 153
+  orig: 199, 163
+  offset: 4, 4
+  index: -1
+baozha05
+  rotate: true
+  xy: 596, 2
+  size: 242, 154
+  orig: 253, 163
+  offset: 6, 4
+  index: -1
+baozha06
+  rotate: true
+  xy: 450, 246
+  size: 305, 177
+  orig: 311, 187
+  offset: 1, 5
+  index: -1
+baozha07
+  rotate: true
+  xy: 2, 234
+  size: 317, 211
+  orig: 323, 220
+  offset: 1, 5
+  index: -1
+baozha08
+  rotate: true
+  xy: 629, 250
+  size: 301, 231
+  orig: 308, 239
+  offset: 1, 4
+  index: -1
+baozha09
+  rotate: true
+  xy: 215, 244
+  size: 307, 233
+  orig: 315, 245
+  offset: 1, 4
+  index: -1
+baozha10
+  rotate: false
+  xy: 752, 3
+  size: 281, 245
+  orig: 283, 247
+  offset: 1, 1
+  index: -1
+baozha11
+  rotate: false
+  xy: 359, 5
+  size: 235, 237
+  orig: 246, 239
+  offset: 10, 1
+  index: -1
+guangyun
+  rotate: false
+  xy: 2, 32
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+huo1
+  rotate: true
+  xy: 1035, 81
+  size: 83, 57
+  orig: 87, 64
+  offset: 1, 1
+  index: -1
+huo2
+  rotate: false
+  xy: 1035, 435
+  size: 80, 56
+  orig: 87, 64
+  offset: 3, 2
+  index: -1
+huo3
+  rotate: false
+  xy: 1035, 493
+  size: 82, 58
+  orig: 87, 64
+  offset: 2, 4
+  index: -1
+huo4
+  rotate: false
+  xy: 1009, 252
+  size: 85, 60
+  orig: 87, 64
+  offset: 2, 2
+  index: -1
+huo5
+  rotate: true
+  xy: 1035, 166
+  size: 84, 58
+  orig: 87, 64
+  offset: 3, 3
+  index: -1

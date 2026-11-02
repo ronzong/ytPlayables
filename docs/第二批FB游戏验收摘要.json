@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-02",
+  "note": "本批五款 MUST、暂停九项及本地套件云档刷新/广告分支均已通过；正式账号跨设备与全部关卡未覆盖。Dominators 已按用户授权采用 RGBA4444。",
+  "games": [
+    {
+      "id": "Dominators",
+      "interactionPassed": true,
+      "mustPassed": true,
+      "pausePassed": true,
+      "restoredBytes": 837,
+      "rejectedReward": false,
+      "grantedReward": true,
+      "initialMiB": 28.44,
+      "bundleMiB": 28.97,
+      "zipMiB": 28.28,
+      "readySeconds": 4.127,
+      "heapMiB": 301.58
+    },
+    {
+      "id": "EggyCar",
+      "interactionPassed": true,
+      "mustPassed": true,
+      "pausePassed": true,
+      "restoredBytes": 112,
+      "rejectedReward": false,
+      "grantedReward": true
+    },
+    {
+      "id": "FallToRescue",
+      "interactionPassed": true,
+      "mustPassed": true,
+      "pausePassed": true,
+      "restoredBytes": 141,
+      "rejectedReward": false,
+      "grantedReward": true
+    },
+    {
+      "id": "FindTheDifference",
+      "interactionPassed": true,
+      "mustPassed": true,
+      "pausePassed": true,
+      "restoredBytes": 51,
+      "rejectedReward": false,
+      "grantedReward": true
+    },
+    {
+      "id": "FloorPlanHomeDesign",
+      "interactionPassed": true,
+      "mustPassed": true,
+      "pausePassed": true,
+      "restoredBytes": 11066,
+      "rejectedReward": false,
+      "grantedReward": true
+    }
+  ]
+}

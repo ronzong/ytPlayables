@@ -1,0 +1,83 @@
+
+TX_JianKe.png
+size: 1907,1034
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+baodian_1
+  rotate: false
+  xy: 419, 620
+  size: 214, 214
+  orig: 500, 500
+  offset: 143, 143
+  index: -1
+baodian_2
+  rotate: false
+  xy: 404, 2
+  size: 395, 394
+  orig: 500, 500
+  offset: 52, 56
+  index: -1
+baodian_3
+  rotate: true
+  xy: 2, 421
+  size: 413, 415
+  orig: 500, 500
+  offset: 41, 44
+  index: -1
+baodian_4
+  rotate: true
+  xy: 1487, 610
+  size: 422, 418
+  orig: 500, 500
+  offset: 40, 43
+  index: -1
+baodian_5
+  rotate: true
+  xy: 2, 15
+  size: 404, 400
+  orig: 500, 500
+  offset: 48, 49
+  index: -1
+baodian_6
+  rotate: true
+  xy: 1470, 43
+  size: 353, 365
+  orig: 500, 500
+  offset: 93, 61
+  index: -1
+hei
+  rotate: false
+  xy: 801, 21
+  size: 667, 375
+  orig: 667, 375
+  offset: 0, 0
+  index: -1
+jianqi_0
+  rotate: false
+  xy: 635, 638
+  size: 607, 196
+  orig: 1500, 200
+  offset: 26, 0
+  index: -1
+jianqi_1
+  rotate: false
+  xy: 2, 836
+  size: 1483, 196
+  orig: 1500, 200
+  offset: 15, 0
+  index: -1
+jianqi_2
+  rotate: false
+  xy: 419, 398
+  size: 1455, 137
+  orig: 1500, 200
+  offset: 45, 25
+  index: -1
+jianqi_3
+  rotate: false
+  xy: 419, 537
+  size: 1469, 71
+  orig: 1500, 200
+  offset: 19, 56
+  index: -1

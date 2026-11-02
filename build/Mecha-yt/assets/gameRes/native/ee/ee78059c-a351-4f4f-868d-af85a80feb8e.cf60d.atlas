@@ -1,0 +1,62 @@
+
+UI_TX_zjjn.png
+size: 727,380
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ZJJN_0
+  rotate: false
+  xy: 549, 15
+  size: 176, 179
+  orig: 200, 200
+  offset: 8, 11
+  index: -1
+ZJJN_1
+  rotate: false
+  xy: 369, 5
+  size: 178, 185
+  orig: 200, 200
+  offset: 9, 8
+  index: -1
+ZJJN_2
+  rotate: false
+  xy: 369, 192
+  size: 178, 186
+  orig: 200, 200
+  offset: 10, 7
+  index: -1
+ZJJN_3
+  rotate: false
+  xy: 188, 190
+  size: 179, 188
+  orig: 200, 200
+  offset: 11, 8
+  index: -1
+ZJJN_4
+  rotate: false
+  xy: 2, 3
+  size: 184, 186
+  orig: 200, 200
+  offset: 9, 9
+  index: -1
+ZJJN_5
+  rotate: true
+  xy: 2, 191
+  size: 187, 184
+  orig: 200, 200
+  offset: 7, 10
+  index: -1
+ZJJN_6
+  rotate: true
+  xy: 188, 2
+  size: 186, 179
+  orig: 200, 200
+  offset: 6, 14
+  index: -1
+ZJJN_7
+  rotate: true
+  xy: 549, 196
+  size: 182, 176
+  orig: 200, 200
+  offset: 7, 15
+  index: -1

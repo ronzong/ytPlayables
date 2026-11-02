@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script src="https://www.youtube.com/game_api/v1"></script>
+<script src="yt-bridge.js"></script>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#6FBF54"/>
+<title>Lumberjack: Forest Empire</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%93%3C/text%3E%3C/svg%3E"/>
+<meta name="game-release" content="20"/>
+
+<link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="responsive.css"/>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="world-layer"></div>
+<div id="hud">
+<div id="top">
+<div class="pill ui-block" id="money-pill"><span class="ic">💰</span><span id="money">0</span></div>
+<div class="pill acorn ui-block hidden" id="acorn-pill"><span class="ic">🌰</span><span id="acorns">0</span></div>
+<div class="pill bag ui-block">
+<span class="ic log-icon" aria-hidden="true"></span><span id="bag">0/10</span>
+<div class="bar"><i id="bagbar"></i></div>
+</div>
+<div class="spacer"></div>
+<div class="top-right ui-block">
+<button id="btn-sound" class="icobtn" title="Sound">🔊</button>
+<div id="volpop" class="volpop hidden">
+<span class="v-ic">🔈</span>
+<input id="vol" type="range" min="0" max="100" value="50"/>
+<span class="v-ic">🔊</span>
+</div>
+<button id="btn-lb" class="icobtn" title="Leaderboard">🏆</button>
+</div>
+</div>
+<div id="boost" class="badge hidden"><b>×2</b> <span id="boost-t">0:00</span></div>
+<div id="rainbow" class="rainbow-badge hidden"><b id="rainbow-label">🌈 MEGA HARVESTER</b><span id="rainbow-t">0:20</span><small id="rainbow-pay"></small></div>
+<div id="hint" class="hint"></div>
+<div id="tut" class="tut hidden">
+<div class="tut-step"><span id="tut-n">1</span>/<span id="tut-max">10</span></div>
+<div class="tut-text" id="tut-text"></div>
+<button id="tut-next" class="tut-next hidden">Got it</button>
+</div>
+<div id="gatebar" class="gatebar hidden ui-block">
+<button id="gb-close" class="gb-close" type="button" aria-label="Close" title="Close">×</button>
+<span class="gb-ic">🪓</span>
+<span class="gb-txt"><b id="gb-title"></b><br/><span id="gb-sub"></span><br/><span id="gb-levels" class="gb-levels"></span></span>
+<button id="gb-shop" class="gb-btn"></button>
+<button id="gb-ad" class="gb-btn gb-ad hidden" type="button">🎬 <span id="gb-ad-txt"></span></button>
+</div>
+<button id="btn-ad" class="adbtn ui-block hidden" type="button">
+<span class="ad-ic">🎬</span>
+<span class="ad-txt">🌈 Mega run<br/><b>20 seconds</b></span>
+</button>
+<button id="btn-shop" class="shopbtn ui-block">
+<span class="sb-ic">🛒</span>
+<span class="sb-txt" id="shop-label">Shop</span>
+<i id="shop-dot" class="dot hidden"></i>
+</button>
+</div>
+<div id="joy" class="joy"><div class="joy-knob"></div></div>
+<div id="shop" class="sheet hidden ui-block">
+<div class="sheet-head">
+<h2 id="shop-title">Shop</h2>
+<div class="tabs">
+<button class="tab active" data-tab="run" id="tab-run">🪓</button>
+<button class="tab" data-tab="meta" id="tab-meta">🌰</button>
+</div>
+<div class="mults" id="mults">
+<button class="mult active" data-m="1">×1</button>
+<button class="mult" data-m="10">×10</button>
+<button class="mult" data-m="max" id="mult-max">MAX</button>
+</div>
+<div class="sheet-money"><span class="ic" id="shop-cur">💰</span><span id="shop-money">0</span></div>
+<button id="shop-close" class="close">✕</button>
+</div>
+<div id="prep-banner" class="prep-banner hidden">
+<div><b id="prep-title">🌰 Prepare your new run</b><span id="prep-got"></span></div>
+<p id="prep-text">The game is paused. Spend acorns now: starting cash, levels, machinery and crew will apply as soon as the run begins.</p>
+</div>
+<div id="meta-head" class="meta-head hidden"></div>
+<div id="shop-tip" class="shop-tip">Hold the green price for fast buying · ×10 and MAX buy in batches</div>
+<div id="shop-list" class="sheet-body"></div>
+<div id="meta-list" class="sheet-body hidden"></div>
+<div class="sheet-foot">
+<button id="prep-start" class="prep-start hidden">▶ Apply and start the run</button>
+<button id="btn-prestige" class="prestigebtn">🌰 <b id="prestige-label">New run</b> <i id="prestige-num">+0</i></button>
+<button id="btn-reset" class="linkbtn">Reset progress</button>
+</div>
+</div>
+<div id="modal" class="modal hidden ui-block">
+<div class="modal-card">
+<h2 id="modal-title"></h2>
+<div id="modal-body"></div>
+<div id="modal-actions" class="modal-actions"></div>
+</div>
+</div>
+<div id="loader">
+<div class="loader-inner">
+<div class="axe">🪓</div>
+<div class="lname" id="game-name">LUMBERJACK: FOREST EMPIRE</div>
+<div class="lbar"><i id="lbar-fill"></i></div>
+<div class="ltext" id="loader-text">Loading…</div>
+</div>
+</div>
+<div id="fatal" class="fatal hidden"><div></div></div>
+<script>__ytCloudReady.then(function(){var s=document.createElement("script");s.type="module";s.src="src/main.js";document.body.appendChild(s)});</script>
+<div id="adwarn" class="adwarn hidden"><div class="aw-box"><div class="aw-txt" id="aw-txt"></div><div class="aw-n" id="aw-n">2</div></div></div>
+</body>
+</html>

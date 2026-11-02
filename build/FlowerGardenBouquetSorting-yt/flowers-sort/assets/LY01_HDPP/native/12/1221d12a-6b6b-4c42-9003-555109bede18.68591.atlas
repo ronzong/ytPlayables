@@ -1,0 +1,76 @@
+
+baoxiangDH.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+VFX_Glow
+  rotate: false
+  xy: 913, 364
+  size: 74, 74
+  orig: 74, 74
+  offset: 0, 0
+  index: -1
+emit-light2
+  rotate: true
+  xy: 581, 84
+  size: 174, 270
+  orig: 174, 270
+  offset: 0, 0
+  index: -1
+glow-behind
+  rotate: false
+  xy: 913, 440
+  size: 98, 98
+  orig: 98, 98
+  offset: 0, 0
+  index: -1
+mask
+  rotate: false
+  xy: 298, 213
+  size: 281, 58
+  orig: 281, 58
+  offset: 0, 0
+  index: -1
+shadow-p
+  rotate: false
+  xy: 298, 75
+  size: 257, 136
+  orig: 257, 136
+  offset: 0, 0
+  index: -1
+shadow-r
+  rotate: true
+  xy: 853, 1
+  size: 257, 136
+  orig: 257, 136
+  offset: 0, 0
+  index: -1
+xiang1-1
+  rotate: false
+  xy: 313, 273
+  size: 307, 265
+  orig: 307, 265
+  offset: 0, 0
+  index: -1
+xiang1-open
+  rotate: false
+  xy: 622, 260
+  size: 289, 278
+  orig: 289, 278
+  offset: 0, 0
+  index: -1
+xiang2
+  rotate: false
+  xy: 1, 283
+  size: 310, 255
+  orig: 310, 255
+  offset: 0, 0
+  index: -1
+xiang2-open
+  rotate: false
+  xy: 1, 3
+  size: 295, 278
+  orig: 295, 278
+  offset: 0, 0
+  index: -1

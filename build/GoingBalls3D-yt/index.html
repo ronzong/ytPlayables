@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<script src="https://www.youtube.com/game_api/v1"></script>
+<script src="yt-bridge.js"></script>
+	<meta charset='utf-8' />
+	<meta name='renderer' content='webkit' />
+	<meta name='viewport'
+		content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no' />
+
+	<meta name='apple-mobile-web-app-capable' content='yes' />
+	<meta name='full-screen' content='true' />
+	<meta name='x5-fullscreen' content='true' />
+	<meta name='360-fullscreen' content='true' />
+	<meta name='laya' screenorientation='landscape' />
+	<meta http-equiv='expires' content='0' />
+	<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' />
+	<meta http-equiv='expires' content='0' />
+	<meta http-equiv='Cache-Control' content='no-siteapp' />
+	<title>Going Balls 3D</title>
+	<style>
+		@font-face {
+			font-family: "Arial";
+			src: url("rrzzhh.ttf");
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+
+		body {
+			overflow: 'hidden';
+			/* 页面背景颜色 */
+			background: #AD9EE7
+		}
+
+		#unity-container {
+			z-index: 1000;
+			background: #AD9EE7;
+			position: absolute;
+			overflow: hidden;
+		}
+
+		#LoadingView {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+			transform: translate(-50%, -50%);
+
+			text-align: center;
+		}
+
+		#top-container {
+			flex: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			/* 距离顶部位置 */
+			margin-top: 10%;
+		}
+
+		#progress {
+			flex: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			position: absolute;
+			bottom: 10%;
+		}
+
+		div {
+			text-align: center;
+		}
+	</style>
+
+</head>
+
+<body>
+	<script>
+  /************  游戏启动与脚本加载（保留你的 StartGame 入口）  ************/
+  function loadLib(url) {
+    var s = document.createElement("script");
+    s.async = false;
+    s.src = url;
+    document.body.appendChild(s);
+  }
+
+  function StartGame() {
+    // 移除启动提示（如果有）
+    var tip = document.getElementById('boot-tip');
+    if (tip) tip.remove();
+
+    // 加载你的入口脚本（如需更名，改这里即可）
+    var s = document.createElement('script');
+    s.src = 'index.js';
+    s.async = false;
+    document.body.appendChild(s);
+  }
+
+  /************  统一的暂停管理：暂停游戏 + 静音  ************/
+  const PauseMgr = {
+    saved: false,
+    soundMuted: false,
+    musicMuted: false,
+    _savedFrameRate: null,
+
+    pause() {
+      try {
+        // 只保存一次原始状态
+        if (!this.saved && window.Laya) {
+          if (Laya.SoundManager) {
+            this.soundMuted = !!Laya.SoundManager.soundMuted;
+            this.musicMuted = !!Laya.SoundManager.musicMuted;
+          }
+          if (Laya.stage) this._savedFrameRate = Laya.stage.frameRate;
+          this.saved = true;
+        }
+
+        // 1) 暂停所有计时器
+        if (window.Laya) {
+          if (Laya.timer && typeof Laya.timer.pause === 'function') Laya.timer.pause();
+          else if (Laya.timer) Laya.timer.scale = 0;
+
+          if (Laya.updateTimer && typeof Laya.updateTimer.pause === 'function') Laya.updateTimer.pause();
+          if (Laya.physicsTimer && typeof Laya.physicsTimer.pause === 'function') Laya.physicsTimer.pause();
+
+          // 2) 停止渲染
+          if (Laya.stage) Laya.stage.renderingEnabled = false;
+
+          // 3) 屏蔽输入（鼠标/触摸）
+          if (Laya.stage) Laya.stage.mouseEnabled = false;
+          if (Laya.MouseManager) Laya.MouseManager.enabled = false;
+
+          // 4) 静音
+          if (Laya.SoundManager) {
+            Laya.SoundManager.soundMuted = true;
+            Laya.SoundManager.musicMuted = true;
+          }
+        }
+
+        window.__AD_LOCK__ = true;
+      } catch (e) {
+        console.warn('[GD] hard pause error:', e);
+      }
+    },
+
+    resume() {
+      try {
+        if (window.Laya) {
+          // 恢复计时器
+          if (Laya.timer && typeof Laya.timer.resume === 'function') Laya.timer.resume();
+          else if (Laya.timer) Laya.timer.scale = 1;
+
+          if (Laya.updateTimer && typeof Laya.updateTimer.resume === 'function') Laya.updateTimer.resume();
+          if (Laya.physicsTimer && typeof Laya.physicsTimer.resume === 'function') Laya.physicsTimer.resume();
+
+          // 恢复渲染
+          if (Laya.stage) {
+            Laya.stage.renderingEnabled = true;
+            if (this._savedFrameRate) Laya.stage.frameRate = this._savedFrameRate;
+          }
+
+          // 恢复输入
+          if (Laya.stage) Laya.stage.mouseEnabled = true;
+          if (Laya.MouseManager) Laya.MouseManager.enabled = true;
+
+          // 恢复静音状态
+          if (Laya.SoundManager) {
+            Laya.SoundManager.soundMuted = !!this.soundMuted;
+            Laya.SoundManager.musicMuted = !!this.musicMuted;
+          }
+        }
+
+        window.__AD_LOCK__ = false;
+        this.saved = false;
+      } catch (e) {
+        console.warn('[GD] hard resume error:', e);
+      }
+    }
+  };
+
+  // 兼容你之前的函数名（如果项目里有调用）
+  window.__gdPauseForAd = () => PauseMgr.pause();
+  window.__gdResumeFromAd = () => PauseMgr.resume();
+
+  /************  激励广告奖励回调，只在 WATCH_COMPLETE 里调用  ************/
+  // 游戏里真实“发奖励”的函数，等会你在 index.js 里实现它
+  window.gdGiveRewardToPlayer = window.gdGiveRewardToPlayer || function () {
+    // TODO：在这里写：给玩家加金币 / 复活 等逻辑
+    console.log('[GD] reward callback not implemented yet');
+  };
+
+  // 内部用：记录当前这次激励广告要用的回调
+  window.__GD_rewardCb = null;
+
+  /************  GD SDK 接入（按你的 gameId）  ************/
+  window.GD_OPTIONS = Object.assign(window.GD_OPTIONS || {}, {
+    gameId: "7ce6f365c8d1433c862b2d6917d4c6b3", // 这里保持你原来的 gameId
+    debug: false,
+    onEvent: function (event) {
+      console.log('[GD] event:', event.name, event);
+
+      switch (event.name) {
+        case "SDK_READY":
+          console.log("[GD] SDK_READY");
+          StartGame();                 // SDK 初始化完成后才进入游戏
+          break;
+
+        case "SDK_GAME_PAUSE":
+          console.log("[GD] SDK_GAME_PAUSE");
+          PauseMgr.pause();            // 广告展示 -> 暂停/静音/屏蔽输入
+          break;
+
+        case "SDK_GAME_START":
+          console.log("[GD] SDK_GAME_START");
+          PauseMgr.resume();           // 广告结束 -> 恢复
+          break;
+
+        case "SDK_REWARDED_WATCH_COMPLETE":
+          // ✅ 只有完整观看激励广告才会触发这个事件
+          console.log("[GD] SDK_REWARDED_WATCH_COMPLETE");
+          try {
+            if (typeof window.__GD_rewardCb === 'function') {
+              window.__GD_rewardCb();  // 调用这次广告对应的奖励回调
+            } else {
+              // 兜底：如果没传回调，就调用一个全局的统一奖励函数
+              window.gdGiveRewardToPlayer();
+            }
+          } catch (e) {
+            console.warn('[GD] reward callback error:', e);
+          }
+          // 用完清掉，防止意外再次调用
+          window.__GD_rewardCb = null;
+          break;
+
+        case "AD_ERROR":
+          // ❌ 广告错误：只记录，不给奖励
+          console.warn('[GD] AD_ERROR:', event);
+          window.__GD_rewardCb = null;
+          break;
+
+        // 其他事件按需处理，例如 GDPR：
+        // case "SDK_GDPR_TRACKING": ...
+        // case "SDK_GDPR_TARGETING": ...
+      }
+    }
+  });
+
+  // 注入 GD SDK（若你已在别处注入，这段可保留；会自动跳过重复）
+  (function (d, s, id) {
+    if (d.getElementById(id)) return;
+    const js = d.createElement(s); js.id = id;
+    // 本地单机版使用兼容层触发 SDK_READY，不访问 GameDistribution。
+    js.src = "local-gd-sdk.js";
+    d.body.appendChild(js);
+  })(document, "script", "gamedistribution-jssdk");
+
+  /************  游戏里调用广告时用的封装函数  ************/
+
+  // 普通插屏广告：游戏里直接调用 window.showInterstitialSafe()
+  window.showInterstitialSafe = function () {
+    if (typeof gdsdk !== 'undefined' && gdsdk.showAd) {
+      gdsdk.showAd('interstitial').catch(function (e) {
+        console.warn('[GD] interstitial failed:', e);
+      });
+    } else {
+      console.warn('[GD] interstitial: gdsdk not ready');
+    }
+  };
+
+  /**
+   * 激励广告：
+   * 游戏内这样调用：
+   *   window.showRewardedSafe(function () {
+   *     // ✅ 只在广告完整观看后执行这里
+   *     // 在这里给玩家发奖励
+   *   });
+   */
+  window.showRewardedSafe = function (onReward) {
+    if (typeof onReward === 'function') {
+      window.__GD_rewardCb = onReward;
+    } else {
+      window.__GD_rewardCb = null;
+      console.warn('[GD] showRewardedSafe called without callback');
+    }
+
+    if (typeof gdsdk !== 'undefined' && gdsdk.showAd) {
+      gdsdk.showAd('rewarded').catch(function (e) {
+        console.warn('[GD] rewarded failed:', e);
+        // 注意：这里也不发奖励，奖励只在 SDK_REWARDED_WATCH_COMPLETE 事件里发
+      });
+    } else {
+      console.warn('[GD] rewarded: gdsdk not ready');
+    }
+  };
+
+  /************  兜底：切浏览器后台也暂停，回前台恢复  ************/
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) PauseMgr.pause();
+    else PauseMgr.resume();
+  });
+</script>
+	
+	<script>
+
+		// Adapter.hideLoading()
+		const keysToBlockWhenFramed = [32, 33, 34, 35, 36, 37, 38, 39, 40, 44];
+		document.addEventListener('keydown', function (info) {
+			if (window != window.top && keysToBlockWhenFramed.indexOf(info.which) > -1) {
+				info.preventDefault();
+				info.stopPropagation();
+			}
+		}, true)
+		document.addEventListener("mousedown", function () {
+			window.focus();
+		}, true);
+		document.addEventListener("touchstart", function () {
+			window.focus();
+		}, true);
+
+		//游戏加载时关闭触控
+		document.addEventListener('gesturestart', function (event) {
+			event.preventDefault()
+		})
+		
+	</script>
+	<!-- <script type="text/javascript" src="index.js"></script> -->
+
+</body>
+
+</html>

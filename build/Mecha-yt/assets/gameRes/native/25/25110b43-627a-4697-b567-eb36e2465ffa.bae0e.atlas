@@ -1,0 +1,265 @@
+
+法师立绘.png
+size: 2014,383
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 1577, 2
+  size: 187, 187
+  orig: 205, 204
+  offset: 4, 9
+  index: -1
+2
+  rotate: true
+  xy: 942, 142
+  size: 239, 238
+  orig: 247, 252
+  offset: 4, 2
+  index: -1
+3
+  rotate: false
+  xy: 1250, 179
+  size: 198, 202
+  orig: 225, 222
+  offset: 6, 9
+  index: -1
+L_arm
+  rotate: true
+  xy: 1085, 18
+  size: 122, 114
+  orig: 122, 114
+  offset: 0, 0
+  index: -1
+L_ch_1
+  rotate: false
+  xy: 656, 121
+  size: 121, 260
+  orig: 123, 261
+  offset: 1, 0
+  index: -1
+L_ch_2
+  rotate: true
+  xy: 1450, 191
+  size: 190, 154
+  orig: 190, 154
+  offset: 0, 0
+  index: -1
+L_ch_3
+  rotate: true
+  xy: 1182, 147
+  size: 234, 66
+  orig: 235, 66
+  offset: 1, 0
+  index: -1
+L_chi_1
+  rotate: true
+  xy: 1752, 236
+  size: 145, 94
+  orig: 145, 94
+  offset: 0, 0
+  index: -1
+L_chi_2
+  rotate: true
+  xy: 473, 62
+  size: 319, 76
+  orig: 320, 76
+  offset: 0, 0
+  index: -1
+L_chi_3
+  rotate: true
+  xy: 779, 124
+  size: 257, 161
+  orig: 262, 166
+  offset: 0, 5
+  index: -1
+L_chi_4
+  rotate: false
+  xy: 551, 113
+  size: 103, 268
+  orig: 108, 272
+  offset: 3, 4
+  index: -1
+L_finger_1
+  rotate: false
+  xy: 1962, 277
+  size: 45, 40
+  orig: 45, 40
+  offset: 0, 0
+  index: -1
+L_finger_2
+  rotate: true
+  xy: 1962, 319
+  size: 62, 47
+  orig: 62, 47
+  offset: 0, 0
+  index: -1
+L_finger_3
+  rotate: true
+  xy: 445, 6
+  size: 52, 43
+  orig: 52, 43
+  offset: 0, 0
+  index: -1
+L_finger_4
+  rotate: false
+  xy: 1953, 233
+  size: 59, 42
+  orig: 59, 44
+  offset: 0, 0
+  index: -1
+L_finger_5
+  rotate: false
+  xy: 1752, 191
+  size: 59, 43
+  orig: 59, 43
+  offset: 0, 0
+  index: -1
+L_finger_6
+  rotate: false
+  xy: 1766, 104
+  size: 76, 85
+  orig: 76, 85
+  offset: 0, 0
+  index: -1
+L_foot
+  rotate: false
+  xy: 1841, 13
+  size: 86, 89
+  orig: 86, 89
+  offset: 0, 0
+  index: -1
+L_jian_1
+  rotate: true
+  xy: 956, 12
+  size: 128, 127
+  orig: 128, 127
+  offset: 0, 0
+  index: -1
+L_jian_2
+  rotate: false
+  xy: 1848, 182
+  size: 103, 100
+  orig: 103, 100
+  offset: 0, 0
+  index: -1
+L_leg_g
+  rotate: false
+  xy: 1606, 195
+  size: 144, 186
+  orig: 144, 186
+  offset: 0, 0
+  index: -1
+L_leg_y
+  rotate: true
+  xy: 1848, 284
+  size: 97, 112
+  orig: 97, 112
+  offset: 0, 0
+  index: -1
+R_arm_big
+  rotate: false
+  xy: 643, 6
+  size: 90, 105
+  orig: 90, 105
+  offset: 0, 0
+  index: -1
+R_arm_small
+  rotate: true
+  xy: 1929, 78
+  size: 102, 65
+  orig: 102, 65
+  offset: 0, 0
+  index: -1
+R_arm_small2
+  rotate: false
+  xy: 225, 4
+  size: 93, 54
+  orig: 93, 54
+  offset: 0, 0
+  index: -1
+R_finger
+  rotate: true
+  xy: 490, 11
+  size: 49, 66
+  orig: 49, 66
+  offset: 0, 0
+  index: -1
+R_foot
+  rotate: true
+  xy: 1766, 12
+  size: 90, 73
+  orig: 90, 73
+  offset: 0, 0
+  index: -1
+R_hand
+  rotate: false
+  xy: 320, 5
+  size: 69, 53
+  orig: 76, 53
+  offset: 0, 0
+  index: -1
+R_jian
+  rotate: false
+  xy: 835, 3
+  size: 119, 119
+  orig: 119, 119
+  offset: 0, 0
+  index: -1
+R_leg1
+  rotate: false
+  xy: 735, 2
+  size: 98, 117
+  orig: 98, 117
+  offset: 0, 0
+  index: -1
+R_leg2
+  rotate: false
+  xy: 1844, 107
+  size: 82, 73
+  orig: 82, 73
+  offset: 0, 0
+  index: -1
+R_yuan
+  rotate: false
+  xy: 391, 5
+  size: 52, 53
+  orig: 52, 53
+  offset: 0, 0
+  index: -1
+bg_y
+  rotate: true
+  xy: 2, 28
+  size: 353, 221
+  orig: 576, 344
+  offset: 63, 88
+  index: -1
+body
+  rotate: false
+  xy: 1201, 5
+  size: 183, 140
+  orig: 183, 140
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 1386, 11
+  size: 166, 189
+  orig: 166, 189
+  offset: 0, 0
+  index: -1
+kua
+  rotate: true
+  xy: 558, 2
+  size: 109, 83
+  orig: 109, 83
+  offset: 0, 0
+  index: -1
+yuan
+  rotate: false
+  xy: 225, 60
+  size: 246, 321
+  orig: 246, 321
+  offset: 0, 0
+  index: -1

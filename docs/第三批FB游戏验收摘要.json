@@ -1,0 +1,174 @@
+{
+  "date": "2026-11-02",
+  "scope": "本地官方套件；不代表正式账号跨设备、全部关卡或真机长测",
+  "games": [
+    {
+      "id": "FlowerGardenBouquetSorting",
+      "files": 2598,
+      "bytes": 19104324,
+      "zipBytes": 13590731,
+      "deterministic": true,
+      "officialMust": "5/5",
+      "pause": "9/9",
+      "cloud": {
+        "loadSucceeded": true,
+        "loadedBytes": 10180,
+        "successfulWrites": 6,
+        "failedWrites": 0,
+        "lastSavedBytes": 10185
+      },
+      "restoredKeys": [
+        "flashist__defaultStorageId",
+        "main_isFirstShow",
+        "enterCount",
+        "lieyou_sdk_openid_uuid",
+        "newUserFlag",
+        "firsttime",
+        "comeGameNum",
+        "begingGameTime",
+        "isNewPlayer",
+        "begingGameTimeDay",
+        "lieyou_newPlayer",
+        "SDKShowPraiseNum",
+        "lieyou_showSpotCount",
+        "lieyou_showSpotTime",
+        "lieyou_initDay",
+        "lieyou_sdk_online_data",
+        "sdk_activate_times",
+        "LY01_HDPP__e_loginDaily",
+        "Ly_SaveGameData",
+        "LY01_HDPP__e_watchAdDaily",
+        "LY01_HDPP__e_levelDaily",
+        "LY01_HDPP__e_crashDaily",
+        "LY01_HDPP__e_useProp0",
+        "LY01_HDPP__e_useProp1",
+        "LY01_HDPP__e_useProp2",
+        "LY01_HDPP__e_useProp3",
+        "LY01_HDPP__e_useProp4",
+        "LY01_HDPP__e_useProp5",
+        "LY01_HDPP__e_useProp6",
+        "LY01_HDPP__e_revive",
+        "LY01_HDPP__e_boxRecieved",
+        "LY01_HDPP__e_starBoxRecieved",
+        "LY01_HDPP__e_share",
+        "LY01_HDPP__e_dailyMissions",
+        "LY01_HDPP__e_dailyVIPMissions",
+        "LY01_HDPP__f_recieveCount",
+        "LY01_HDPP__f_timeRecord",
+        "LY01_HDPP__f_dailyReward",
+        "LY01_HDPP__f_dailyRewardPop",
+        "LY01_HDPP__f_giftUnlocked",
+        "LY01_HDPP__a_todayChallenge",
+        "LY01_HDPP__a_todayChallengePop",
+        "LY01_HDPP__pay_freeRecieved",
+        "LY01_HDPP__wf_dailyShare",
+        "LY01_HDPP__wf_gameClubRecieved",
+        "LY01_HDPP__g_dateSign",
+        "LY01_HDPP__e_watchAdTotal",
+        "LY01_HDPP__e_levelTotal",
+        "LY01_HDPP__e_constMissions",
+        "LY01_HDPP__g_weekSign",
+        "LY01_HDPP__pi_newPlayerFlag",
+        "LY01_HDPP__pi_newPlayerTimeCore",
+        "LY01_HDPP__pi_isNewPlayer",
+        "yandex-player",
+        "LY01_HDPP__a_gametype",
+        "LY01_HDPP__d_vitRecoverTime",
+        "LY01_HDPP__d_vit"
+      ],
+      "rejectedReward": false,
+      "grantedReward": true,
+      "consoleErrors": []
+    },
+    {
+      "id": "FruitCafeMatch3",
+      "files": 164,
+      "bytes": 4440987,
+      "zipBytes": 2872907,
+      "deterministic": true,
+      "officialMust": "5/5",
+      "pause": "9/9",
+      "cloud": {
+        "loadSucceeded": true,
+        "loadedBytes": 1647,
+        "successfulWrites": 2,
+        "failedWrites": 0,
+        "lastSavedBytes": 1647
+      },
+      "restoredKeys": [
+        "gamepush-player"
+      ],
+      "rejectedReward": false,
+      "grantedReward": true,
+      "consoleErrors": []
+    },
+    {
+      "id": "GardenSlide",
+      "files": 46,
+      "bytes": 4614442,
+      "zipBytes": 3794311,
+      "deterministic": true,
+      "officialMust": "5/5",
+      "pause": "9/9",
+      "cloud": {
+        "loadSucceeded": true,
+        "loadedBytes": 2679,
+        "successfulWrites": 1,
+        "failedWrites": 0,
+        "lastSavedBytes": 2679
+      },
+      "restoredKeys": [
+        "cg:gardenslide_achievements",
+        "cg:gardenslide_daily_quests"
+      ],
+      "rejectedReward": false,
+      "grantedReward": true,
+      "consoleErrors": []
+    },
+    {
+      "id": "GoingBalls3D",
+      "files": 107,
+      "bytes": 14119417,
+      "zipBytes": 6443203,
+      "deterministic": true,
+      "officialMust": "5/5",
+      "pause": "9/9",
+      "cloud": {
+        "loadSucceeded": true,
+        "loadedBytes": 51,
+        "successfulWrites": 1,
+        "failedWrites": 0,
+        "lastSavedBytes": 51
+      },
+      "restoredKeys": [
+        "soundsound"
+      ],
+      "rejectedReward": false,
+      "grantedReward": true,
+      "consoleErrors": []
+    },
+    {
+      "id": "GrowIntoTheSun",
+      "files": 6,
+      "bytes": 1876028,
+      "zipBytes": 455736,
+      "deterministic": true,
+      "officialMust": "5/5",
+      "pause": "9/9",
+      "cloud": {
+        "loadSucceeded": true,
+        "loadedBytes": 254,
+        "successfulWrites": 1,
+        "failedWrites": 0,
+        "lastSavedBytes": 254
+      },
+      "restoredKeys": [
+        "yagame.bestiary.v2",
+        "yandex-player"
+      ],
+      "rejectedReward": false,
+      "grantedReward": true,
+      "consoleErrors": []
+    }
+  ]
+}

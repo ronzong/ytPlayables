@@ -1,0 +1,48 @@
+
+ui_jiesuo.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+board
+  rotate: true
+  xy: 338, 74
+  size: 171, 108
+  orig: 171, 108
+  offset: 0, 0
+  index: -1
+en
+  rotate: false
+  xy: 414, 36
+  size: 55, 36
+  orig: 55, 36
+  offset: 0, 0
+  index: -1
+lock
+  rotate: true
+  xy: 414, 4
+  size: 30, 36
+  orig: 30, 36
+  offset: 0, 0
+  index: -1
+video
+  rotate: true
+  xy: 452, 4
+  size: 30, 32
+  orig: 30, 32
+  offset: 0, 0
+  index: -1
+zh
+  rotate: false
+  xy: 338, 35
+  size: 74, 37
+  orig: 74, 37
+  offset: 0, 0
+  index: -1
+zhizhuwang
+  rotate: false
+  xy: 2, 2
+  size: 334, 243
+  orig: 334, 243
+  offset: 0, 0
+  index: -1

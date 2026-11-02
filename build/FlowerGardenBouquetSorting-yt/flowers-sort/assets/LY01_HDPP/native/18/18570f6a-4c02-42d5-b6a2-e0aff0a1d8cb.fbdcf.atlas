@@ -1,0 +1,27 @@
+
+ui_duigou.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: true
+  xy: 204, 19
+  size: 103, 75
+  orig: 103, 75
+  offset: 0, 0
+  index: -1
+2
+  rotate: true
+  xy: 124, 3
+  size: 119, 78
+  orig: 119, 78
+  offset: 0, 0
+  index: -1
+icon_gou
+  rotate: false
+  xy: 1, 1
+  size: 121, 121
+  orig: 121, 121
+  offset: 0, 0
+  index: -1

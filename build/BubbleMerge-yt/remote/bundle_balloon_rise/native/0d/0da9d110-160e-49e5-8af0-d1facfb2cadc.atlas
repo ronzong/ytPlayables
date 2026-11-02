@@ -1,0 +1,9 @@
+Sky_Stars.png
+size:1073,575
+filter:Linear,Linear
+Stars
+bounds:2,2,1020,571
+offsets:1,304,1023,876
+star_1
+bounds:1024,526,47,47
+offsets:9,14,68,65

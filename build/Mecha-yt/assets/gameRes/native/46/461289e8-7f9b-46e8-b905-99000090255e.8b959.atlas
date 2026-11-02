@@ -1,0 +1,55 @@
+
+BaWangLong_1.png
+size: 664,716
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Light_glow
+  rotate: false
+  xy: 419, 2
+  size: 212, 198
+  orig: 223, 202
+  offset: 11, 4
+  index: -1
+shandian_000
+  rotate: false
+  xy: 2, 568
+  size: 512, 146
+  orig: 512, 146
+  offset: 0, 0
+  index: -1
+shandian_001
+  rotate: true
+  xy: 516, 202
+  size: 512, 146
+  orig: 512, 146
+  offset: 0, 0
+  index: -1
+shandian_002
+  rotate: false
+  xy: 2, 420
+  size: 491, 146
+  orig: 512, 146
+  offset: 0, 0
+  index: -1
+shandian_003
+  rotate: false
+  xy: 2, 285
+  size: 487, 133
+  orig: 512, 146
+  offset: 0, 1
+  index: -1
+shandian_004
+  rotate: false
+  xy: 2, 155
+  size: 415, 128
+  orig: 512, 146
+  offset: 0, 4
+  index: -1
+shandian_005
+  rotate: false
+  xy: 2, 28
+  size: 410, 125
+  orig: 512, 146
+  offset: 0, 5
+  index: -1

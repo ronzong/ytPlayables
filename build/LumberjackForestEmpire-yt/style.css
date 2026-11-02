@@ -1,0 +1,362 @@
+:root{
+  --brown:#5A3A22; --brown2:#7A5334; --wood:#C9A06A;
+  --green:#4CAF3F; --green2:#3B8F31; --gold:#FFC93C; --gold2:#E0A21C;
+  --ink:#20140C; --panel:rgba(28,20,14,.82);
+  --safe-t:env(safe-area-inset-top,0px); --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-l:env(safe-area-inset-left,0px); --safe-r:env(safe-area-inset-right,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;height:100%;overflow:hidden;background:#7FC3E8;
+  font-family:'Nunito','Segoe UI Rounded','SF Pro Rounded',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  color:#fff;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:none;overscroll-behavior:none}
+canvas{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+
+#world-layer{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.float-num{position:absolute;left:0;top:0;font-weight:900;font-size:20px;white-space:nowrap;
+  text-shadow:0 2px 0 rgba(0,0,0,.45),0 0 12px rgba(0,0,0,.3);color:#FFE27A;will-change:transform,opacity}
+.float-num.wood{color:#FFDFA8}
+.float-num.big{font-size:28px}
+
+/* Своя иконка бревна: U+1FAB5 отсутствует в стандартном Segoe UI Emoji на
+   части Windows 10 и превращается в квадрат. Рисуем её CSS-градиентами. */
+.log-icon,.float-num.log-count::after{display:inline-block;width:1.12em;height:.72em;vertical-align:-.08em;
+  border-radius:.18em;background:
+    radial-gradient(ellipse at 18% 50%,#F1C083 0 18%,#9B5B31 20% 27%,transparent 29%),
+    linear-gradient(90deg,transparent 0 16%,#A76538 17% 78%,#75401F 79% 100%);
+  box-shadow:inset 0 .08em 0 rgba(255,255,255,.18),0 .08em .12em rgba(0,0,0,.32);
+  transform:rotate(-7deg)}
+.float-num.log-count::after{content:"";margin-left:.28em;font-size:.9em}
+.daily-track{margin-top:10px;font-size:12px;opacity:.7;font-weight:800;line-height:1.7}
+.daily-track .daily-current{color:#FFD94A;opacity:1;text-shadow:0 1px 5px #7A4A00}
+
+.wlabel{position:absolute;left:0;top:0;transform:translate(-50%,-50%);pointer-events:none;
+  background:var(--panel);border:2px solid rgba(255,255,255,.18);border-radius:14px;padding:6px 12px;
+  text-align:center;font-weight:800;font-size:14px;line-height:1.25;box-shadow:0 6px 16px rgba(0,0,0,.35);
+  backdrop-filter:blur(4px);white-space:nowrap}
+.wlabel .big{font-size:18px;color:var(--gold)}
+.wlabel .sub{font-size:11px;opacity:.75;font-weight:700}
+.wlabel .pbar{margin-top:5px;height:7px;border-radius:5px;background:rgba(0,0,0,.45);overflow:hidden}
+.wlabel .pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));width:0%}
+
+#hud{position:fixed;inset:0;z-index:21;pointer-events:none;padding:calc(10px + var(--safe-t)) calc(10px + var(--safe-r)) calc(10px + var(--safe-b)) calc(10px + var(--safe-l))}
+#hud > *{pointer-events:none}
+.ui-block,#hud .ui-block,#hud>.ui-block{pointer-events:auto!important}
+
+#top{display:flex;gap:7px;align-items:flex-start;flex-wrap:wrap;padding-right:100px}
+.spacer{flex:1 1 auto;min-width:0}
+.pill{display:flex;align-items:center;gap:6px;background:var(--panel);border:2px solid rgba(255,255,255,.16);
+  border-radius:999px;padding:6px 12px 6px 8px;font-weight:900;font-size:16px;box-shadow:0 5px 14px rgba(0,0,0,.3);
+  backdrop-filter:blur(6px);position:relative}
+.pill .ic{font-size:19px;line-height:1}
+.pill.bag{padding-right:16px}
+.pill .bar{position:absolute;left:10px;right:10px;bottom:3px;height:4px;border-radius:3px;background:rgba(0,0,0,.4);overflow:hidden}
+.pill .bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#8ED462,#4CAF3F);transition:width .12s}
+.pill.warn{animation:pulse .5s infinite alternate}
+@keyframes pulse{from{box-shadow:0 5px 14px rgba(0,0,0,.3)}to{box-shadow:0 0 0 4px rgba(255,90,60,.5)}}
+
+.top-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;position:absolute;right:calc(10px + var(--safe-r));top:calc(10px + var(--safe-t))}
+.icobtn{width:42px;height:42px;border-radius:14px;border:2px solid rgba(255,255,255,.16);background:var(--panel);
+  color:#fff;font-size:19px;cursor:pointer;backdrop-filter:blur(6px);box-shadow:0 5px 14px rgba(0,0,0,.3)}
+.icobtn:active{transform:scale(.94)}
+.icobtn.off{opacity:.45}
+
+.badge{position:absolute;left:50%;top:calc(60px + var(--safe-t));transform:translateX(-50%);
+  background:linear-gradient(180deg,var(--gold),var(--gold2));color:#3A2408;font-weight:900;
+  padding:6px 16px;border-radius:999px;font-size:15px;box-shadow:0 5px 16px rgba(0,0,0,.35);letter-spacing:.3px}
+.badge b{font-size:17px}
+
+.hint{position:absolute;left:50%;bottom:calc(96px + var(--safe-b));transform:translateX(-50%);
+  background:var(--panel);border:2px solid rgba(255,255,255,.14);border-radius:14px;padding:8px 16px;
+  font-weight:800;font-size:14px;max-width:min(86vw,420px);text-align:center;opacity:0;transition:opacity .3s;
+  backdrop-filter:blur(6px);box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.hint.show{opacity:1}
+
+.shopbtn{position:absolute;right:calc(12px + var(--safe-r));bottom:calc(14px + var(--safe-b));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  width:86px;height:86px;border-radius:26px;border:3px solid rgba(255,255,255,.28);
+  background:linear-gradient(180deg,#5FC94E,#3B8F31);color:#fff;font-weight:900;font-size:13px;
+  box-shadow:0 8px 0 #2C6C25,0 12px 22px rgba(0,0,0,.35);cursor:pointer}
+.shopbtn:active{transform:translateY(4px);box-shadow:0 4px 0 #2C6C25,0 8px 14px rgba(0,0,0,.35)}
+.sb-ic{font-size:28px;line-height:1}
+.dot{position:absolute;top:-5px;right:-5px;width:20px;height:20px;border-radius:50%;
+  background:#FF4D3D;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+
+/* Полоса «дальше не пройти»: живёт всё время, пока ворота закрыты */
+.gatebar{position:absolute;left:50%;bottom:calc(16px + var(--safe-b));transform:translateX(-50%);
+  display:flex;align-items:center;gap:10px;max-width:min(96vw,640px);
+  background:linear-gradient(180deg,rgba(74,26,18,.95),rgba(48,17,12,.95));
+  border:3px solid #FF7A4D;border-radius:18px;padding:9px 42px 9px 12px;
+  box-shadow:0 8px 24px rgba(0,0,0,.45);z-index:9}
+.gatebar.hidden{display:none}
+.gb-close{position:absolute;top:5px;right:5px;width:30px;height:30px;padding:0;border:0;border-radius:10px;
+  display:grid;place-items:center;background:rgba(255,255,255,.14);color:#fff;font:900 24px/1 Arial,sans-serif;
+  text-shadow:0 1px 2px rgba(0,0,0,.5);cursor:pointer;touch-action:manipulation}
+.gb-close:active{transform:scale(.92);background:rgba(255,255,255,.25)}
+.gatebar .gb-ic{font-size:26px;line-height:1}
+.gatebar .gb-txt{font-size:12.5px;font-weight:800;line-height:1.3;opacity:.9;flex:1 1 auto;min-width:90px}
+.gatebar .gb-txt b{font-size:14.5px;opacity:1;color:#FFC08A}
+.gatebar .gb-levels{color:#FFD25E;font-weight:900}
+.gb-btn{flex:0 0 auto;padding:10px 14px;border-radius:14px;border:none;cursor:pointer;touch-action:manipulation;
+  background:linear-gradient(180deg,#5FC94E,#3B8F31);color:#fff;font-weight:900;font-size:13.5px;
+  box-shadow:0 4px 0 #2C6C25;white-space:nowrap}
+.gb-btn:active{transform:translateY(2px);box-shadow:0 2px 0 #2C6C25}
+.gb-ad{background:linear-gradient(180deg,#FFD25E,#E0A21C);color:#3A2408;box-shadow:0 4px 0 #B37E12;
+  animation:gbglow 1.3s infinite alternate}
+.gb-ad:active{box-shadow:0 2px 0 #B37E12}
+.gb-ad.hidden{display:none}
+.gb-ad.ad-loading,.adbtn.ad-loading,.adlvl.ad-loading,.mbtn.ad-loading{filter:saturate(.45);opacity:.72;cursor:wait}
+@keyframes gbglow{from{filter:brightness(1)}to{filter:brightness(1.16)}}
+@media (max-width:560px){
+  .gatebar{bottom:calc(112px + var(--safe-b));left:calc(10px + var(--safe-l));right:calc(112px + var(--safe-r));
+    transform:none;max-width:none;flex-wrap:wrap}
+  .gatebar .gb-txt{flex:1 1 100%;order:-1}
+}
+
+/* Предупреждение перед полноэкранной рекламой */
+.adwarn{position:fixed;inset:0;z-index:45;display:grid;place-items:center;background:rgba(0,0,0,.55);
+  backdrop-filter:blur(2px)}
+.adwarn.hidden{display:none}
+.aw-box{background:linear-gradient(180deg,#33251A,#241A12);border:3px solid var(--wood);
+  border-radius:20px;padding:22px 34px;text-align:center;box-shadow:0 16px 40px rgba(0,0,0,.6)}
+.aw-txt{font-size:15px;font-weight:800;opacity:.85}
+.aw-n{font-size:44px;font-weight:900;color:var(--gold);line-height:1.1;font-variant-numeric:tabular-nums}
+
+.adbtn{position:absolute;right:calc(12px + var(--safe-r));bottom:calc(112px + var(--safe-b));
+  display:flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border-radius:20px;
+  border:3px solid rgba(255,255,255,.28);background:linear-gradient(180deg,#FFD25E,#E0A21C);
+  color:#3A2408;font-weight:900;font-size:12px;line-height:1.15;text-align:left;
+  box-shadow:0 6px 0 #B37E12,0 10px 18px rgba(0,0,0,.3);cursor:pointer;touch-action:manipulation}
+.adbtn:active{transform:translateY(3px);box-shadow:0 3px 0 #B37E12}
+.ad-ic{font-size:22px}
+.rainbow-badge{position:absolute;left:50%;top:calc(58px + var(--safe-t));transform:translateX(-50%);
+  display:grid;grid-template-columns:auto auto;gap:1px 12px;align-items:center;padding:8px 14px;border-radius:16px;
+  background:linear-gradient(105deg,#ff4f81,#ffbf3f,#61d66f,#54b9ff,#a96bff);color:#fff;
+  border:3px solid rgba(255,255,255,.78);box-shadow:0 6px 24px rgba(70,20,110,.45);font-weight:900;text-shadow:0 2px 2px rgba(0,0,0,.4)}
+.rainbow-badge small{grid-column:1/3;text-align:center;font-size:11px}
+@media (max-width:600px){body.rush-open .tut{top:calc(154px + var(--safe-t))}}
+
+.joy{position:fixed;width:0;height:0;display:none;pointer-events:none;z-index:5}
+.joy::before{content:'';position:absolute;left:-58px;top:-58px;width:116px;height:116px;border-radius:50%;
+  background:rgba(255,255,255,.13);border:3px solid rgba(255,255,255,.35);backdrop-filter:blur(2px)}
+.joy-knob{position:absolute;width:52px;height:52px;border-radius:50%;
+  background:rgba(255,255,255,.75);border:3px solid rgba(255,255,255,.9);box-shadow:0 4px 12px rgba(0,0,0,.3);
+  transform:translate(-26px,-26px)}
+
+.sheet{position:fixed;left:0;right:0;bottom:0;max-height:min(78vh,620px);z-index:20;
+  background:linear-gradient(180deg,#2E2117,#241A12);border-top:4px solid var(--wood);
+  border-radius:24px 24px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.5);
+  display:flex;flex-direction:column;transform:translateY(0);transition:transform .26s cubic-bezier(.2,.9,.3,1);
+  padding-bottom:var(--safe-b)}
+.sheet.hidden{transform:translateY(102%);pointer-events:none}
+.sheet-head{display:flex;align-items:center;gap:10px;padding:12px 14px 8px;border-bottom:2px solid rgba(255,255,255,.08)}
+.sheet-head h2{margin:0;font-size:20px;font-weight:900;flex:0 0 auto}
+.sheet-money{margin-left:auto;display:flex;align-items:center;gap:6px;font-weight:900;font-size:18px;color:var(--gold)}
+.close{width:38px;height:38px;border-radius:12px;border:none;background:rgba(255,255,255,.1);color:#fff;font-size:17px;cursor:pointer}
+.close:active{transform:scale(.93)}
+@media (max-width:560px){
+  .sheet-head{gap:5px;padding:10px 8px 7px}
+  .sheet-head h2{display:none}
+  .sheet-head .tabs,.sheet-head .mults{margin-left:0}
+  .sheet-head .tab{padding:5px 10px}
+  .sheet-head .mult{padding:5px 7px}
+  .sheet-head .sheet-money{font-size:15px;gap:3px;min-width:0}
+  .sheet-head .close{flex:0 0 36px;width:36px;height:36px}
+}
+.sheet-body{overflow-y:auto;overscroll-behavior:contain;padding:10px 12px 16px;display:grid;gap:9px;
+  grid-template-columns:1fr;-webkit-overflow-scrolling:touch}
+@media (min-width:640px){.sheet-body{grid-template-columns:1fr 1fr}}
+
+.card{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.09);
+  border-radius:16px;padding:10px 11px}
+.card.cant{opacity:.55}
+.card.locked{opacity:.4}
+.card .cic{width:46px;height:46px;flex:0 0 46px;border-radius:14px;display:grid;place-items:center;font-size:24px;
+  background:linear-gradient(180deg,#4A3524,#33241A);border:2px solid rgba(255,255,255,.1)}
+.card .cmid{flex:1 1 auto;min-width:0}
+.card .cname{font-weight:900;font-size:15px;display:flex;align-items:center;gap:7px}
+.card .clvl{font-size:11px;font-weight:800;background:rgba(255,255,255,.14);border-radius:6px;padding:1px 6px;opacity:.9}
+.card .cdesc{font-size:12px;opacity:.65;font-weight:700;margin-top:1px}
+.card .cval{font-size:12.5px;font-weight:900;color:#9FE07A;margin-top:2px}
+.card .cval s{opacity:.5;color:#ccc;font-weight:700;margin-right:5px}
+.card .cval em{font-style:normal;color:#FFD25E;opacity:.9}
+.buy{flex:0 0 auto;min-width:92px;padding:10px 12px;border-radius:14px;border:none;cursor:pointer;
+  background:linear-gradient(180deg,#5FC94E,#3B8F31);color:#fff;font-weight:900;font-size:14px;
+  box-shadow:0 4px 0 #2C6C25;display:flex;align-items:center;justify-content:center;gap:5px}
+.buy:active{transform:translateY(2px);box-shadow:0 2px 0 #2C6C25}
+.buy.cant{background:linear-gradient(180deg,#6B6B6B,#4A4A4A);box-shadow:0 4px 0 #333}
+.buy.max{background:linear-gradient(180deg,#C9A06A,#8A6A45);box-shadow:0 4px 0 #5A452C}
+
+.sheet-foot{padding:0 14px 10px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
+.prestigebtn{display:flex;align-items:center;gap:8px;padding:11px 20px;border-radius:16px;border:none;cursor:pointer;
+  background:linear-gradient(180deg,#C98A3C,#8A5A22);color:#fff;font-weight:900;font-size:15px;
+  box-shadow:0 4px 0 #5F3C13;margin-bottom:4px}
+.prestigebtn:active{transform:translateY(2px);box-shadow:0 2px 0 #5F3C13}
+.prestigebtn.ready{background:linear-gradient(180deg,#FFD25E,#E0A21C);color:#3A2408;box-shadow:0 4px 0 #B37E12;
+  animation:glow 1.2s infinite alternate}
+.prestigebtn.cant{opacity:.5}
+.prestigebtn i{font-style:normal;background:rgba(0,0,0,.22);border-radius:8px;padding:2px 8px;font-size:13px}
+@keyframes glow{from{filter:brightness(1)}to{filter:brightness(1.18)}}
+
+.tabs{display:flex;gap:4px;background:rgba(0,0,0,.3);border-radius:12px;padding:3px;margin-left:6px}
+.tab{border:none;background:none;color:rgba(255,255,255,.5);font-size:18px;padding:5px 13px;border-radius:9px;cursor:pointer}
+.tab.active{background:rgba(255,255,255,.16);color:#fff}
+.tab .dotm{position:absolute}
+
+.mults{display:flex;gap:3px;background:rgba(0,0,0,.3);border-radius:11px;padding:3px;margin-left:8px}
+.mults.hidden{display:none}
+.mult{border:none;background:none;color:rgba(255,255,255,.5);font:inherit;font-weight:900;font-size:12px;
+  padding:5px 9px;border-radius:8px;cursor:pointer}
+.mult.active{background:rgba(255,255,255,.16);color:#fff}
+
+.volpop{position:absolute;top:0;right:calc(100% + 8px);display:flex;align-items:center;gap:8px;
+  background:var(--panel);border:2px solid rgba(255,255,255,.16);border-radius:14px;padding:9px 12px;
+  box-shadow:0 8px 20px rgba(0,0,0,.4);backdrop-filter:blur(6px);z-index:12}
+.volpop.hidden{display:none}
+.volpop .v-ic{font-size:14px;opacity:.8}
+.volpop input[type=range]{width:120px;accent-color:#5FC94E}
+
+.meta-head{padding:6px 14px 2px;font-size:12.5px;font-weight:800;opacity:.6;text-align:center}
+.cinfo{display:inline-block;margin-top:4px;padding:2px 7px;border:0;border-radius:7px;background:rgba(255,210,94,.16);
+  color:#FFD25E;font:inherit;font-size:11px;font-weight:900;cursor:pointer}
+.prep-banner{margin:8px 12px 0;padding:11px 14px;border-radius:15px;background:linear-gradient(135deg,rgba(255,210,94,.23),rgba(95,201,78,.16));
+  border:2px solid rgba(255,210,94,.45);text-align:left}
+.prep-banner div{display:flex;justify-content:space-between;gap:12px;color:#FFD25E;font-weight:900}
+.prep-banner p{margin:5px 0 0;font-size:12px;line-height:1.35;font-weight:800;opacity:.82}
+.prep-start{width:min(520px,94vw);padding:13px 18px;border:0;border-radius:16px;cursor:pointer;background:linear-gradient(180deg,#70DE5B,#3E9B35);
+  color:#fff;font:inherit;font-size:16px;font-weight:900;box-shadow:0 5px 0 #2C6C25;margin:4px 0 6px}
+.prep-start:active{transform:translateY(2px);box-shadow:0 3px 0 #2C6C25}
+body.prep-open .sheet{max-height:94vh;z-index:35;border-radius:22px 22px 0 0}
+body.prep-open #btn-shop,body.prep-open #btn-ad,body.prep-open #tut{visibility:hidden}
+.machine-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 11px;margin:5px 0;
+  border-radius:11px;background:rgba(255,255,255,.06);text-align:left;font-size:13px}
+.machine-row span{color:#9FE07A;font-weight:900;text-align:right}
+.machine-row.current{border:2px solid rgba(255,210,94,.6);background:rgba(255,210,94,.12)}
+
+.pill.acorn{background:linear-gradient(180deg,rgba(120,80,30,.9),rgba(70,45,16,.9))}
+
+.pbar2{margin-top:8px;height:9px;border-radius:6px;background:rgba(0,0,0,.4);overflow:hidden}
+.pbar2 i{display:block;height:100%;background:linear-gradient(90deg,#C98A3C,#FFD25E)}
+
+.tut{position:absolute;left:50%;top:calc(108px + var(--safe-t));transform:translateX(-50%);
+  max-width:min(90vw,460px);background:linear-gradient(180deg,rgba(46,33,23,.95),rgba(30,21,14,.95));
+  border:3px solid var(--gold);border-radius:18px;padding:12px 18px;text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.45);pointer-events:none;z-index:25}
+body.shop-open .tut{top:calc(8px + var(--safe-t));max-width:min(90vw,760px)}
+body.shop-open #btn-shop,body.shop-open #btn-ad{visibility:hidden}
+.wlabel.blocked{border-color:rgba(255,90,60,.7)}
+.wlabel.blocked .big{color:#FF8A6A}
+
+.hidden{display:none}
+.tut-step{font-size:11px;font-weight:900;color:var(--gold);letter-spacing:1px;margin-bottom:3px}
+.tut-text{font-size:15px;font-weight:900;line-height:1.35;white-space:pre-line}
+.tut.has-next{pointer-events:auto}
+#hud > .tut.has-next{pointer-events:auto!important}
+.tut-next{margin-top:9px;padding:7px 16px;border:0;border-radius:11px;cursor:pointer;
+  background:linear-gradient(180deg,#FFD25E,#E0A21C);color:#3A2408;font:inherit;font-size:13px;font-weight:900;
+  box-shadow:0 3px 0 #B37E12}
+.tut-next:active{transform:translateY(2px);box-shadow:0 1px 0 #B37E12}
+
+/* Подсветка через outline, а не box-shadow: box-shadow в кадрах анимации
+   жёстко задавал зелёную «подложку» кнопки магазина и ломал её вид на ПК.
+   outline рисуется поверх и не зависит от того, что за элемент подсвечен. */
+.hl{animation:hlpulse .9s infinite alternate;border-radius:inherit;z-index:9}
+@keyframes hlpulse{
+  from{outline:3px solid rgba(255,201,60,.95);outline-offset:3px;filter:brightness(1)}
+  to{outline:3px solid rgba(255,201,60,.15);outline-offset:12px;filter:brightness(1.14)}}
+
+.card.meta .cic{background:linear-gradient(180deg,#4A3A24,#2E2416)}
+.shop-tip{padding:7px 14px 0;text-align:center;font-size:12px;font-weight:900;color:#FFD25E;opacity:.9}
+.shop-tip.hidden{display:none}
+.buy.acorn{background:linear-gradient(180deg,#D9A44C,#9C6A22);box-shadow:0 4px 0 #6B4715}
+.adlvl{flex:0 0 auto;width:46px;height:46px;margin-left:6px;border-radius:14px;border:none;cursor:pointer;
+  background:linear-gradient(180deg,#FFD25E,#E0A21C);color:#3A2408;font-size:20px;box-shadow:0 4px 0 #B37E12;
+  display:flex;align-items:center;justify-content:center;animation:glow 1.4s infinite alternate;touch-action:manipulation}
+.adlvl:active{transform:translateY(2px);box-shadow:0 2px 0 #B37E12}
+/* В узком портрете grid-элемент раньше сохранял min-content ширину карточки.
+   Когда рядом появлялись обычная цена и rewarded-кнопка, вся карточка
+   становилась шире экрана и жёлтая кнопка обрезалась справа. */
+@media (max-width:560px){
+  .sheet-body{grid-template-columns:minmax(0,1fr);padding-left:8px;padding-right:8px}
+  .card{min-width:0;gap:7px;padding-left:8px;padding-right:8px}
+  .card .cic{width:42px;height:42px;flex-basis:42px;font-size:22px}
+  .buy{min-width:78px;padding-left:8px;padding-right:8px}
+  .adlvl{width:42px;height:42px;margin-left:0;border-radius:13px}
+}
+.wlabel.blocked{border-color:rgba(255,90,60,.7)}
+.wlabel.blocked .big{color:#FF8A6A}
+
+.hidden{display:none}
+
+.linkbtn{background:none;border:none;color:rgba(255,255,255,.4);font:inherit;font-size:12px;font-weight:800;
+  cursor:pointer;padding:6px 10px;text-decoration:underline;text-underline-offset:3px}
+.linkbtn:active{color:rgba(255,255,255,.7)}
+
+.modal{position:fixed;inset:0;z-index:30;display:grid;place-items:center;background:rgba(0,0,0,.6);
+  backdrop-filter:blur(3px);padding:16px}
+.wlabel.blocked{border-color:rgba(255,90,60,.7)}
+.wlabel.blocked .big{color:#FF8A6A}
+
+.hidden{display:none}
+.modal-card{background:linear-gradient(180deg,#33251A,#241A12);border:3px solid var(--wood);border-radius:22px;
+  padding:20px;max-width:420px;width:100%;max-height:82vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.6);text-align:center}
+.modal-card h2{margin:0 0 10px;font-size:22px;font-weight:900}
+.modal-actions{display:flex;gap:9px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.mbtn{padding:12px 20px;border-radius:15px;border:none;cursor:pointer;touch-action:manipulation;font-weight:900;font-size:15px;
+  background:linear-gradient(180deg,#5FC94E,#3B8F31);color:#fff;box-shadow:0 4px 0 #2C6C25}
+.mbtn.gold{background:linear-gradient(180deg,#FFD25E,#E0A21C);color:#3A2408;box-shadow:0 4px 0 #B37E12}
+.mbtn.ghost{background:rgba(255,255,255,.12);box-shadow:0 4px 0 rgba(0,0,0,.3)}
+.mbtn:active{transform:translateY(2px)}
+.bigmoney{font-size:34px;font-weight:900;color:var(--gold);margin:8px 0}
+.lb-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.05);margin-bottom:5px;text-align:left}
+.lb-row.me{background:rgba(255,201,60,.18);border:2px solid rgba(255,201,60,.4)}
+.lb-rank{width:28px;font-weight:900;opacity:.75;flex:0 0 28px}
+.lb-name{flex:1 1 auto;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}
+.lb-score{font-weight:900;color:var(--gold)}
+
+#loader{position:fixed;inset:0;z-index:50;display:grid;place-items:center;
+  background:linear-gradient(180deg,#6FB6E0,#A8D98C);transition:opacity .45s}
+#loader.gone{opacity:0;pointer-events:none}
+.loader-inner{text-align:center}
+.axe{font-size:62px;animation:chop 1s infinite ease-in-out;transform-origin:60% 80%}
+@keyframes chop{0%,100%{transform:rotate(-18deg)}50%{transform:rotate(22deg)}}
+.lname{max-width:min(92vw,680px);font-size:clamp(18px,4.5vw,30px);font-weight:900;line-height:1.12;letter-spacing:clamp(1px,.35vw,3px);margin:6px auto 0;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.25)}
+.lbar{width:220px;height:12px;border-radius:8px;background:rgba(0,0,0,.25);margin:16px auto 8px;overflow:hidden}
+.lbar i{display:block;height:100%;width:5%;background:linear-gradient(90deg,#FFD25E,#4CAF3F);transition:width .3s}
+.ltext{font-weight:800;opacity:.85;font-size:14px}
+
+.fatal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;background:#241A12;padding:24px;
+  text-align:center;font-weight:800;font-size:16px;line-height:1.5}
+.wlabel.blocked{border-color:rgba(255,90,60,.7)}
+.wlabel.blocked .big{color:#FF8A6A}
+
+.hidden{display:none}
+.wlabel.blocked{border-color:rgba(255,90,60,.7)}
+.wlabel.blocked .big{color:#FF8A6A}
+
+.hidden{display:none}
+
+/* ---------- Отладочная панель (?debug=1 или флаг debugPanel) ---------- */
+.dbg{position:fixed;right:8px;top:60px;z-index:60;width:min(360px,84vw);max-height:78vh;
+  background:rgba(12,14,18,.94);border:2px solid rgba(255,255,255,.16);border-radius:14px;
+  font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#D8E0E8;
+  display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(0,0,0,.5);pointer-events:auto}
+.dbg.hidden{display:none}
+.dbg-head{display:flex;align-items:center;gap:6px;padding:7px 9px;border-bottom:1px solid rgba(255,255,255,.12)}
+.dbg-head b{flex:1 1 auto;font-size:12px;letter-spacing:.5px;color:#FFD25E}
+.dbg-head button{background:rgba(255,255,255,.1);border:none;color:#D8E0E8;border-radius:7px;
+  padding:3px 8px;font:inherit;cursor:pointer}
+.dbg-head button:active{background:rgba(255,255,255,.22)}
+.dbg-stats{padding:7px 9px;overflow-y:auto;max-height:52vh}
+.dbg-stats div{display:flex;justify-content:space-between;gap:10px}
+.dbg-stats span{opacity:.55}
+.dbg-stats b{font-weight:700;color:#9FE07A;text-align:right;word-break:break-all}
+.dbg-log{padding:6px 9px;border-top:1px solid rgba(255,255,255,.12);white-space:pre-wrap;
+  overflow-y:auto;max-height:22vh;opacity:.8;font-size:11px}
+
+/* Подсветка нужной карточки после перехода «В магазин» с полосы ворот */
+.card-hl{animation:cardhl 1.1s ease-out 2}
+@keyframes cardhl{
+  0%{box-shadow:0 0 0 0 rgba(255,201,60,.85)}
+  70%{box-shadow:0 0 0 12px rgba(255,201,60,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,201,60,0)}
+}

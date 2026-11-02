@@ -1,0 +1,13 @@
+
+TX_HeTi_BJ.png
+size: 754,425
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BG_0
+  rotate: false
+  xy: 2, 2
+  size: 750, 421
+  orig: 750, 421
+  offset: 0, 0
+  index: -1

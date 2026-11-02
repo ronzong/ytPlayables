@@ -1,0 +1,118 @@
+
+连杀.png
+size: 349,971
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2lian
+  rotate: false
+  xy: 2, 88
+  size: 260, 78
+  orig: 260, 78
+  offset: 0, 0
+  index: -1
+3lian
+  rotate: false
+  xy: 2, 5
+  size: 258, 81
+  orig: 258, 81
+  offset: 0, 0
+  index: -1
+4lian
+  rotate: true
+  xy: 207, 375
+  size: 259, 81
+  orig: 259, 81
+  offset: 0, 0
+  index: -1
+5lian
+  rotate: false
+  xy: 2, 168
+  size: 261, 82
+  orig: 261, 82
+  offset: 0, 0
+  index: -1
+baozha3
+  rotate: true
+  xy: 210, 754
+  size: 215, 132
+  orig: 215, 132
+  offset: 0, 0
+  index: -1
+baozha4
+  rotate: true
+  xy: 2, 636
+  size: 333, 206
+  orig: 333, 206
+  offset: 0, 0
+  index: -1
+chaoshen
+  rotate: true
+  xy: 264, 2
+  size: 164, 82
+  orig: 164, 82
+  offset: 0, 0
+  index: -1
+di
+  rotate: true
+  xy: 2, 252
+  size: 382, 203
+  orig: 452, 253
+  offset: 35, 25
+  index: -1
+dian1
+  rotate: true
+  xy: 294, 738
+  size: 14, 16
+  orig: 14, 16
+  offset: 0, 0
+  index: -1
+dian2
+  rotate: true
+  xy: 294, 721
+  size: 15, 8
+  orig: 15, 8
+  offset: 0, 0
+  index: -1
+dian3
+  rotate: false
+  xy: 312, 736
+  size: 14, 16
+  orig: 14, 16
+  offset: 0, 0
+  index: -1
+dian4
+  rotate: false
+  xy: 304, 727
+  size: 14, 7
+  orig: 14, 7
+  offset: 0, 0
+  index: -1
+jian1
+  rotate: false
+  xy: 210, 663
+  size: 62, 24
+  orig: 62, 24
+  offset: 0, 0
+  index: -1
+jian2
+  rotate: false
+  xy: 210, 689
+  size: 82, 63
+  orig: 82, 64
+  offset: 0, 1
+  index: -1
+zhongjie
+  rotate: true
+  xy: 265, 209
+  size: 164, 82
+  orig: 164, 82
+  offset: 0, 0
+  index: -1
+zidan
+  rotate: false
+  xy: 274, 664
+  size: 60, 23
+  orig: 61, 23
+  offset: 0, 0
+  index: -1

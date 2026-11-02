@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script src="https://www.youtube.com/game_api/v1"></script>
+<script src="yt-bridge.js"></script>
+<!-- 本地单机版使用本地 Yandex SDK 兼容层。 -->
+
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+<meta name="theme-color" content="#f3e2c9"/>
+<!--
+      The two lines that are read off the page rather than on it, and the only words in this file
+      (see src/strings.ts). Both carry the game's name, so both are rewritten by `applyStaticText`
+      in whatever language the shop opens in — the tab says «Пикай Мелодию» in Russian, and the
+      name alone, exactly as the title card has it. What is written here is the English pair,
+      which is what a document that never gets that far says.
+    -->
+<meta name="description" content="Beat Sort — flip the groceries so every barcode meets the scanner and turn the beeps into a melody."/>
+<title>Beat Sort</title>
+<!--
+      The loading screen, and the only CSS in the project that does not live in src/style.css.
+      It has to be here: style.css is imported by main.ts, so it arrives *with* the bundle it
+      would be covering the wait for. Written inline, the first paint of the document is already
+      the shop's own loading card rather than a blank cream page.
+
+      Everything that moves is a `transform`, which the compositor animates on its own thread —
+      so the boxes keep rolling while the main thread is busy parsing three.js, which is exactly
+      the moment there is something to wait for. The bar creeps by itself until `ui/Boot.ts`
+      takes it over (`is-live`), and from then on it is real progress, ending on the backing
+      track's own download. No words anywhere: the markup carries none (see src/strings.ts) and
+      a percentage reads the same in every language.
+    -->
+<style>
+      #boot {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: grid;
+        place-items: center;
+        background: #f3e2c9;
+        font-family: ui-rounded, 'Segoe UI Rounded', 'SF Pro Rounded', 'Trebuchet MS', system-ui, sans-serif;
+        color: #4a3526;
+        transition: opacity 0.45s ease;
+      }
+
+      #boot.is-done {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* a fixed width, so the boxes can be given a distance to travel in pixels; 240 fits the
+         narrowest phone the game is playable on with room either side */
+      .boot-stage {
+        width: 240px;
+        text-align: center;
+      }
+
+      .boot-belt {
+        position: relative;
+        height: 44px;
+        margin-bottom: 16px;
+      }
+
+      .boot-rubber {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 9px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #c9b39a, #a68d72);
+        box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.3);
+      }
+
+      .boot-box {
+        position: absolute;
+        left: 0;
+        bottom: 9px;
+        width: 26px;
+        height: 26px;
+        border-radius: 6px;
+        border: 2px solid rgba(255, 255, 255, 0.85);
+        background: linear-gradient(180deg, #fff6e4, #f0cb9a);
+        box-shadow: 0 3px 0 rgba(150, 105, 62, 0.3);
+        transform-origin: 50% 100%;
+        animation: boot-ride 2.7s linear infinite;
+      }
+
+      .boot-box:nth-child(3) {
+        animation-delay: -0.9s;
+        background: linear-gradient(180deg, #fff3ef, #f2a0ab);
+      }
+
+      .boot-box:nth-child(4) {
+        animation-delay: -1.8s;
+        background: linear-gradient(180deg, #f2fbf5, #86c79b);
+      }
+
+      @keyframes boot-ride {
+        from {
+          transform: translateX(240px) rotate(0deg);
+        }
+        to {
+          transform: translateX(-34px) rotate(-540deg);
+        }
+      }
+
+      .boot-bar {
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(140, 116, 92, 0.22);
+        overflow: hidden;
+        box-shadow: inset 0 2px 3px rgba(120, 90, 58, 0.2);
+      }
+
+      /* scaleX rather than width for the same reason as above — and the creep is what shows
+         while the bundle is still coming down, before anything can measure anything */
+      .boot-fill {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #e88a76, #d4635f);
+        transform: scaleX(var(--boot-p, 0));
+        transform-origin: left center;
+        transition: transform 0.35s cubic-bezier(0.3, 1, 0.4, 1);
+        animation: boot-creep 9s cubic-bezier(0.1, 0.7, 0.3, 1) forwards;
+      }
+
+      #boot.is-live .boot-fill {
+        animation: none;
+      }
+
+      @keyframes boot-creep {
+        from {
+          transform: scaleX(0.04);
+        }
+        to {
+          transform: scaleX(0.3);
+        }
+      }
+
+      .boot-pct {
+        margin-top: 11px;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        color: #8a7360;
+        min-height: 1.2em;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .boot-box {
+          display: none;
+        }
+      }
+    </style>
+<script type="module" crossorigin="" src="./assets/index-pshsYDa0.js"></script>
+<link rel="stylesheet" crossorigin="" href="./assets/index-DZYs3g4B.css"/>
+</head>
+<body>
+<!-- the shop, still shuttered: three boxes riding a belt and a bar that fills as the game
+         loads. `ui/Boot.ts` drives it and takes it off the page once the first frame is up. -->
+<div id="boot" aria-hidden="true">
+<div class="boot-stage">
+<div class="boot-belt">
+<span class="boot-rubber"></span>
+<span class="boot-box"></span>
+<span class="boot-box"></span>
+<span class="boot-box"></span>
+</div>
+<div class="boot-bar"><span class="boot-fill"></span></div>
+<div class="boot-pct" id="boot-pct"></div>
+</div>
+</div>
+<!--
+      The markup carries element ids and i18n keys, never words: every player-facing string in
+      the game lives in src/locales/, and `applyStaticText` (src/strings.ts) fills these nodes in
+      before the first frame — `data-i18n` for text, `data-i18n-html` where the line has markup
+      of its own, `data-i18n-aria` / `data-i18n-title` for the two attributes that are read out.
+      `lang` on <html> is set from the same place. The ids are load bearing: ui/dom.ts#el()
+      throws if one goes missing, and main.ts then shows the WebGL fallback card.
+    -->
+<div id="app">
+<canvas id="scene"></canvas>
+<!-- world-anchored DOM layer (arrow pad, floating numbers) -->
+<div id="world-ui">
+<div id="floaters"></div>
+<div id="arrow-rig" class="arrow-rig is-hidden">
+<button class="arrow arrow--up" data-dir="up" data-i18n-aria="arrow.up">
+<svg viewbox="0 0 24 24"><path d="M12 4.5 4.5 15h15z"></path></svg>
+<span class="arrow-step" aria-hidden="true"></span>
+</button>
+<button class="arrow arrow--left" data-dir="left" data-i18n-aria="arrow.left">
+<svg viewbox="0 0 24 24"><path d="M4.5 12 15 4.5v15z"></path></svg>
+<span class="arrow-step" aria-hidden="true"></span>
+</button>
+<button class="arrow arrow--right" data-dir="right" data-i18n-aria="arrow.right">
+<svg viewbox="0 0 24 24"><path d="M19.5 12 9 19.5v-15z"></path></svg>
+<span class="arrow-step" aria-hidden="true"></span>
+</button>
+<button class="arrow arrow--down" data-dir="down" data-i18n-aria="arrow.down">
+<svg viewbox="0 0 24 24"><path d="M12 19.5 19.5 9h-15z"></path></svg>
+<span class="arrow-step" aria-hidden="true"></span>
+</button>
+</div>
+</div>
+<div id="flash" class="screen-flash"></div>
+<!-- heads up display -->
+<div id="hud">
+<div class="hud-row hud-row--top">
+<section class="card card--score">
+<div class="score-label" data-i18n="hud.score"></div>
+<div class="score-value" id="score-value">0</div>
+<div class="combo" id="combo-chip">
+<span class="combo-x" id="combo-text">x1</span>
+<span class="combo-streak" id="combo-streak"></span>
+</div>
+</section>
+<section class="card card--stats" id="stats-card">
+<div class="stat">
+<span class="stat-key" data-i18n="hud.shift"></span><span class="stat-val" id="shift-value">1</span>
+</div>
+<div class="stat">
+<span class="stat-key" data-i18n="hud.scanned"></span><span class="stat-val" id="scanned-value">0</span>
+</div>
+<div class="stat">
+<span class="stat-key" data-i18n="hud.accuracy"></span><span class="stat-val" id="accuracy-value">100%</span>
+</div>
+</section>
+<!-- The two buttons, in a panel of their own rather than tucked into the corner of the
+               readouts: they are the only things up here that are pressed, so they are sized for
+               a press and kept where nothing else moves. Under the readouts on a desktop, beside
+               them on a phone (where the readouts themselves move down to the melody strip). -->
+<div class="card card--tools" id="hud-tools">
+<div class="icon-row">
+<button class="icon-btn" id="btn-sound" data-i18n-title="hud.sound" data-i18n-aria="hud.sound">
+<svg viewbox="0 0 24 24" aria-hidden="true">
+<path d="M4 9h3.4L12 5v14l-4.6-4H4z"></path>
+<path class="ico-line ico-on" d="M15.4 9.4a3.7 3.7 0 0 1 0 5.2"></path>
+<path class="ico-line ico-on" d="M17.9 6.9a7.2 7.2 0 0 1 0 10.2"></path>
+<path class="ico-line ico-off" d="m15.8 9.8 4.6 4.4m0-4.4-4.6 4.4"></path>
+</svg>
+</button>
+<button class="icon-btn" id="btn-pause" data-i18n-title="hud.pause" data-i18n-aria="hud.pause">
+<svg viewbox="0 0 24 24" aria-hidden="true">
+<rect x="7" y="5" width="3.6" height="14" rx="1.6"></rect>
+<rect x="13.4" y="5" width="3.6" height="14" rx="1.6"></rect>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<div class="hud-row hud-row--bottom">
+<!-- Mimi stands in the corner; the <img> stays empty until ui/Cashier.ts has all
+               four drawings decoded, and the emoji under it is what shows if they never arrive -->
+<section class="card card--cashier" id="cashier-card">
+<div class="cashier-avatar" id="cashier-avatar">
+<img class="cashier-art" id="cashier-art" alt="" draggable="false"/>
+<span class="cashier-face" id="cashier-face"><span class="mimi-mark" aria-hidden="true"></span></span>
+<span class="cashier-sparkle" id="cashier-sparkle" aria-hidden="true">
+<svg viewbox="0 0 24 24"><path d="M12 1c.7 6.3 3.9 9.6 11 11-7.1 1.4-10.3 4.7-11 11-.7-6.3-3.9-9.6-11-11C8.1 10.6 11.3 7.3 12 1z"></path></svg>
+</span>
+</div>
+<div class="cashier-body">
+<div class="cashier-name">
+<span data-i18n="cashier.name"></span> <span class="cashier-tag" data-i18n="cashier.tag"></span>
+</div>
+<div class="meter" role="img" data-i18n-aria="hud.patience">
+<div class="meter-fill" id="patience-fill"></div>
+</div>
+</div>
+<div class="bubble" id="cashier-bubble"></div>
+</section>
+<!-- the melody strip, and above it on a touch screen the shift/accuracy readouts,
+               which `ui/HUD.ts` moves in here out of the panel at the top of the screen -->
+<div class="hud-stack" id="hud-stack">
+<section class="card card--melody">
+<div class="melody-head">
+<span class="melody-title" id="melody-name"></span>
+<span class="melody-hint" id="melody-progress">0 / 32</span>
+</div>
+<div class="melody-strip" id="melody-strip"></div>
+</section>
+</div>
+</div>
+</div>
+<!-- Level 0. Mimi talks you through it — near the middle of the screen while the opening
+           guide is up, back in her corner once it is dismissed; the drawing is fetched only when
+           the tutorial starts, and the CSS mark under it stands in if it is missing.
+           The bubble holds the centre, under the belt. -->
+<aside id="tutorial" class="tut" hidden="">
+<div class="tut-figure" id="tut-figure">
+<img class="tut-art" id="tut-art" alt="" draggable="false"/>
+<span class="mimi-mark" aria-hidden="true"></span>
+</div>
+<div class="tut-bubble">
+<p class="tut-text" id="tut-text"></p>
+<!-- the real arrow button, same classes as the rig above the box, so what the guide
+               shows and what the player then looks for are the same object -->
+<div class="tut-demo" id="tut-demo" hidden="">
+<span class="arrow arrow--demo is-hint" aria-hidden="true">
+<svg viewbox="0 0 24 24"><path d="M12 4.5 4.5 15h15z"></path></svg>
+<span class="arrow-step">1</span>
+</span>
+<span class="tut-demo-note" id="tut-demo-note"></span>
+</div>
+<p class="tut-keys" id="tut-keys" hidden=""></p>
+<p class="tut-start" id="tut-start" hidden=""></p>
+<button class="btn btn--primary tut-go" id="btn-tut-go" type="button" hidden=""></button>
+</div>
+</aside>
+<!-- full screen overlays -->
+<!-- is-on matches the title being the screen that starts active, below -->
+<div id="screens" class="is-on">
+<section class="screen screen--title is-active" id="screen-title">
+<div class="screen-inner">
+<div class="logo">
+<!-- Mimi herself if her drawings are there, the CSS-drawn mark under her if not -->
+<span class="logo-mimi" id="logo-mimi">
+<img class="logo-art" id="logo-art" alt="" draggable="false"/>
+<span class="mimi-mark" aria-hidden="true"></span>
+</span>
+<!-- The game's own name, and it does translate: `Beep Melody` in English, «Пикай
+                   мелодию» in Russian. It carries markup of its own (the second word takes the
+                   gradient), so it comes through `data-i18n-html` like the how-to bullets rather
+                   than being written here. Nothing under it: the tagline that used to sit there
+                   said what the shop was in words, and the shop itself is on screen behind the
+                   card saying it better. -->
+<h1 class="logo-title" data-i18n-html="title.name"></h1>
+</div>
+<!-- filled by ui/TrackPicker.ts, one chip per entry of CONFIG.audio.musicUrls -->
+<div class="tracks" id="tracks-title" role="group"></div>
+<!-- two ways in, deliberately apart: the levels are their own scene, the endless
+                 shift starts a run straight from here -->
+<div class="btn-row btn-row--even">
+<button class="btn btn--primary btn--endless" id="btn-endless" data-i18n="title.endless"></button>
+<button class="btn btn--primary" id="btn-levels" data-i18n="title.levels"></button>
+</div>
+<div class="btn-row btn-row--tight">
+<button class="btn btn--ghost" id="btn-help" data-i18n="title.help"></button>
+<button class="btn btn--ghost" id="btn-settings" data-i18n="title.settings"></button>
+</div>
+<!-- filled by ui/LangPicker.ts **on the dev server only** — the shipped game takes
+                 its language from the URL or the browser and shows no chips, so this stays empty
+                 there and `.langs:empty` gives it no room -->
+<div class="langs" id="langs" role="group" data-i18n-aria="title.lang"></div>
+<p class="screen-foot" id="best-line"></p>
+</div>
+</section>
+<!-- the rules, off the title screen and behind their own button -->
+<section class="screen screen--help" id="screen-help">
+<div class="screen-inner">
+<h2 class="screen-title" data-i18n="help.title"></h2>
+<ul class="howto">
+<li data-i18n-html="help.1"></li>
+<li data-i18n-html="help.2"></li>
+<li data-i18n-html="help.3"></li>
+<li data-i18n-html="help.4"></li>
+</ul>
+<button class="btn btn--primary" id="btn-help-close" data-i18n="help.close"></button>
+</div>
+</section>
+<!-- the mix, off the title screen and behind its own button. The two faders are the
+             real gains the game is playing at, so they open where it actually is; mute is not
+             here, it is the master bus and keeps its own HUD button. -->
+<section class="screen screen--settings" id="screen-settings">
+<div class="screen-inner">
+<h2 class="screen-title" data-i18n="settings.title"></h2>
+<div class="settings">
+<label class="setting">
+<span class="setting-key" data-i18n="settings.music"></span>
+<input class="slider" id="vol-music" type="range" min="0" max="100" step="1"/>
+<span class="setting-val" id="vol-music-val">0%</span>
+</label>
+<label class="setting">
+<span class="setting-key" data-i18n="settings.sfx"></span>
+<input class="slider" id="vol-sfx" type="range" min="0" max="100" step="1"/>
+<span class="setting-val" id="vol-sfx-val">0%</span>
+</label>
+</div>
+<!-- Mute, on the same card as the two faders and above both of them: the belt's own
+                 button is behind this card while it is up, exactly as it is behind the pause menu
+                 (which carries the same row). It used to be a line of small print here saying
+                 that the button on the belt existed. -->
+<div class="mute-row">
+<button class="icon-btn" id="btn-mute" data-i18n-title="hud.sound" data-i18n-aria="hud.sound">
+<svg viewbox="0 0 24 24" aria-hidden="true">
+<path d="M4 9h3.4L12 5v14l-4.6-4H4z"></path>
+<path class="ico-line ico-on" d="M15.4 9.4a3.7 3.7 0 0 1 0 5.2"></path>
+<path class="ico-line ico-on" d="M17.9 6.9a7.2 7.2 0 0 1 0 10.2"></path>
+<path class="ico-line ico-off" d="m15.8 9.8 4.6 4.4m0-4.4-4.6 4.4"></path>
+</svg>
+</button>
+<span class="mute-key" data-i18n="settings.sound"></span>
+</div>
+<button class="btn btn--primary" id="btn-settings-close" data-i18n="settings.close"></button>
+</div>
+</section>
+<!-- the levels scene, entered from the title. The backing track picker sits across the
+             top of the card because the tune is picked for the level you are about to start. -->
+<section class="screen screen--levels" id="screen-levels">
+<div class="screen-inner screen-inner--wide">
+<header class="levels-head">
+<h2 class="screen-title" data-i18n="levels.title"></h2>
+<div class="tracks tracks--head" id="tracks-levels" role="group"></div>
+</header>
+<!-- filled by ui/LevelPicker.ts from src/levels.ts: one tile per level, so writing
+                 a new one never touches this file -->
+<div class="levels-grid" id="levels-grid"></div>
+<div class="btn-row">
+<button class="btn btn--ghost" id="btn-levels-back" data-i18n="levels.back"></button>
+</div>
+</div>
+</section>
+<section class="screen screen--pause" id="screen-pause">
+<div class="screen-inner">
+<h2 class="screen-title" data-i18n="pause.title"></h2>
+<p class="screen-text" data-i18n="pause.text"></p>
+<!-- The same two faders as the settings card, on the same handlers (ui/SettingsCard.ts,
+                 built twice): the mix is usually found to be wrong in the middle of a shift, and
+                 from here the title screen is a whole run away. The mute button comes with them
+                 because the one on the belt is behind this card. -->
+<div class="settings">
+<label class="setting">
+<span class="setting-key" data-i18n="settings.music"></span>
+<input class="slider" id="vol-music-pause" type="range" min="0" max="100" step="1"/>
+<span class="setting-val" id="vol-music-pause-val">0%</span>
+</label>
+<label class="setting">
+<span class="setting-key" data-i18n="settings.sfx"></span>
+<input class="slider" id="vol-sfx-pause" type="range" min="0" max="100" step="1"/>
+<span class="setting-val" id="vol-sfx-pause-val">0%</span>
+</label>
+</div>
+<div class="mute-row">
+<button class="icon-btn" id="btn-mute-pause" data-i18n-title="hud.sound" data-i18n-aria="hud.sound">
+<svg viewbox="0 0 24 24" aria-hidden="true">
+<path d="M4 9h3.4L12 5v14l-4.6-4H4z"></path>
+<path class="ico-line ico-on" d="M15.4 9.4a3.7 3.7 0 0 1 0 5.2"></path>
+<path class="ico-line ico-on" d="M17.9 6.9a7.2 7.2 0 0 1 0 10.2"></path>
+<path class="ico-line ico-off" d="m15.8 9.8 4.6 4.4m0-4.4-4.6 4.4"></path>
+</svg>
+</button>
+<span class="mute-key" data-i18n="settings.sound"></span>
+</div>
+<div class="btn-row">
+<button class="btn btn--primary" id="btn-resume" data-i18n="pause.resume"></button>
+<button class="btn btn--ghost" id="btn-quit" data-i18n="pause.quit"></button>
+</div>
+</div>
+</section>
+<!-- The one card that stands between losing and the results, and only when there is a
+             portal with a video to offer (see `ads.ts`). The ad tag is inside the button on
+             purpose: nothing may open a video without saying so first. -->
+<section class="screen screen--revive" id="screen-revive">
+<div class="screen-inner">
+<h2 class="screen-title" data-i18n="revive.title"></h2>
+<p class="screen-text" data-i18n="revive.text"></p>
+<div class="btn-row">
+<button class="btn btn--primary btn--ad" id="btn-revive">
+<span data-i18n="revive.take"></span>
+<span class="btn-tag" data-i18n="revive.ad"></span>
+</button>
+<button class="btn btn--ghost" id="btn-revive-skip" data-i18n="revive.skip"></button>
+</div>
+<p class="screen-foot" id="revive-left"></p>
+</div>
+</section>
+<section class="screen screen--over" id="screen-over">
+<div class="screen-inner">
+<div class="over-face" id="over-face">
+<img class="over-art" id="over-art" alt="" draggable="false"/>
+<span class="mimi-mark" aria-hidden="true"></span>
+</div>
+<!-- the headline and then the numbers: no line of prose in between, on any ending -->
+<h2 class="screen-title" id="over-title"></h2>
+<!-- six numbers, and none of them on the lesson: it is not scored against anything
+                 and a first-time player's first card should not be a table (ui/Screens.ts) -->
+<div class="result-grid" id="over-stats">
+<div class="result"><span class="result-key" data-i18n="over.score"></span><span class="result-val" id="over-score">0</span></div>
+<div class="result"><span class="result-key" data-i18n="over.best"></span><span class="result-val" id="over-best">0</span></div>
+<div class="result"><span class="result-key" data-i18n="over.scanned"></span><span class="result-val" id="over-scanned">0</span></div>
+<div class="result"><span class="result-key" data-i18n="over.accuracy"></span><span class="result-val" id="over-accuracy">0%</span></div>
+<div class="result"><span class="result-key" data-i18n="over.streak"></span><span class="result-val" id="over-streak">0</span></div>
+<div class="result"><span class="result-key" data-i18n="over.shift"></span><span class="result-val" id="over-shift">1</span></div>
+</div>
+<div class="tracks" id="tracks-over" role="group"></div>
+<div class="btn-row btn-row--even btn-row--tight" id="over-row">
+<button class="btn btn--primary" id="btn-retry"></button>
+<button class="btn btn--ghost" id="btn-menu" data-i18n="over.menu"></button>
+</div>
+<!-- The second row, and what is in it depends on the run (ui/Screens.ts moves one
+                 button between the two). Off the lesson the endless shift joins the row above,
+                 in the title screen's own colours and beside the way on through the levels — a
+                 first-time player lands in level 0 without choosing it (Game.openFirstScreen),
+                 so "on through the levels" must not be the only way out of it — and Back to the
+                 menu drops down here. Every other run leaves this row hidden. -->
+<div class="btn-row btn-row--tight" id="over-second-row" hidden="">
+<button class="btn btn--primary btn--endless" id="btn-endless-over" data-i18n="title.endless"></button>
+</div>
+</div>
+</section>
+</div>
+<div id="rotate-hint">
+<div class="rotate-inner">
+<svg class="rotate-icon" viewbox="0 0 48 48" aria-hidden="true">
+<rect class="ico-line" x="17" y="6" width="14" height="26" rx="3"></rect>
+<path class="ico-line" d="M12 36a14 14 0 0 0 24 0"></path>
+<path d="M36 30.5 40 37h-8z"></path>
+</svg>
+<p data-i18n="rotate"></p>
+</div>
+</div>
+</div>
+</body>
+</html>

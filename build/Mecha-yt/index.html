@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://www.youtube.com/game_api/v1"></script>
+<script src="yt-bridge.js"></script>
+  <meta charset="utf-8">
+
+  <title>Cocos Creator | mecha-pvp</title>
+
+  <!--http://www.html5rocks.com/en/mobile/mobifying/-->
+  <meta name="viewport"
+        content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>
+
+  <!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- force webkit on 360 -->
+  <meta name="renderer" content="webkit"/>
+  <meta name="force-rendering" content="webkit"/>
+  <!-- force edge on IE -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- force full screen on some browser -->
+  <meta name="full-screen" content="yes"/>
+  <meta name="x5-fullscreen" content="true"/>
+  <meta name="360-fullscreen" content="true"/>
+  
+  <!-- force screen orientation on some browser -->
+  <meta name="screen-orientation" content="landscape"/>
+  <meta name="x5-orientation" content="landscape">
+
+  <!--fix fireball/issues/3568 -->
+  <!--<meta name="browsermode" content="application">-->
+  <meta name="x5-page-mode" content="app">
+
+  <!--<link rel="apple-touch-icon" href=".png" />-->
+  <!--<link rel="apple-touch-icon-precomposed" href=".png" />-->
+
+  <link rel="stylesheet" type="text/css" href="style-mobile.6e9cd.css"/>
+  <link rel="icon" href="splash.85cfd.png"/>
+  <style>
+    #mecha-mock-ad{position:fixed;inset:0;z-index:999999;display:flex;align-items:center;justify-content:center;background:#0b0d14;color:#fff;font-family:Arial,sans-serif;text-align:center;pointer-events:none}
+    .mecha-mock-ad-box{display:flex;flex-direction:column;gap:10px;align-items:center;filter:drop-shadow(0 3px 2px #000)}
+    .mecha-mock-ad-title{font-size:clamp(22px,3vw,34px);font-weight:800;letter-spacing:.06em}
+    .mecha-mock-ad-kind{font-size:clamp(13px,1.4vw,16px);opacity:.85}
+    .mecha-mock-ad-left{font-size:clamp(12px,1.2vw,14px);opacity:.6}
+    #mecha-continue-overlay{position:fixed;inset:0;z-index:999998;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.62);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s ease;font-family:Arial,sans-serif;touch-action:none;outline:none}
+    #mecha-continue-overlay.is-visible{opacity:1;visibility:visible;pointer-events:auto}
+    .mecha-continue-content{display:flex;flex-direction:column;align-items:center;gap:clamp(12px,3vh,28px);transform:translateY(2vh);color:#fff;text-align:center;filter:drop-shadow(0 3px 2px #000)}
+    .mecha-continue-title{font-size:clamp(24px,4.1vw,52px);font-weight:900;letter-spacing:.02em;-webkit-text-stroke:clamp(1px,.18vw,3px) #111;text-shadow:0 3px 0 #111;white-space:nowrap}
+    .mecha-touch{position:relative;width:clamp(90px,12vw,150px);height:clamp(100px,15vw,180px);display:flex;align-items:flex-end;justify-content:center}
+    .mecha-finger{position:relative;z-index:2;font-size:clamp(70px,10vw,128px);line-height:1;transform:rotate(-8deg);filter:drop-shadow(0 4px 1px rgba(0,0,0,.75));animation:mechaTap 1.25s ease-in-out infinite}
+    .mecha-ring{position:absolute;left:50%;top:22%;width:28px;height:16px;border:5px solid #fff;border-bottom:0;border-radius:30px 30px 0 0;transform:translate(-50%,-50%);opacity:0;animation:mechaRipple 1.25s ease-out infinite}.mecha-ring-b{animation-delay:.28s}
+    @keyframes mechaTap{0%,100%{transform:rotate(-8deg) translateY(4px)}45%{transform:rotate(-8deg) translateY(-5px)}}
+    @keyframes mechaRipple{0%{opacity:.9;transform:translate(-50%,-50%) scale(.55)}85%,100%{opacity:0;transform:translate(-50%,-50%) scale(2.25)}}
+    @media (max-height:420px){.mecha-continue-content{flex-direction:row;gap:4vw;transform:none}.mecha-touch{width:100px;height:110px}.mecha-continue-title{font-size:clamp(22px,4vw,38px)}}
+  </style>
+</head>
+<body>
+
+
+  <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
+  <div id="splash">
+    <div class="progress-bar stripes">
+      <span style="width: 0%"></span>
+    </div>
+  </div>
+  
+  <script src="src/pause-dialog.js" charset="utf-8"></script>
+  <script src="src/gdAd.js" charset="utf-8"></script>
+<script src="src/settings.b640d.js" charset="utf-8"></script>
+
+<script src="main.f1cd7.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+(function () {
+    // open web debugger console
+    if (typeof VConsole !== 'undefined') {
+        window.vConsole = new VConsole();
+    }
+
+    var debug = window._CCSettings.debug;
+    var splash = document.getElementById('splash');
+    splash.style.display = 'block';
+
+    function loadScript (moduleName, cb) {
+      function scriptLoaded () {
+          document.body.removeChild(domScript);
+          domScript.removeEventListener('load', scriptLoaded, false);
+          cb && cb();
+      };
+      var domScript = document.createElement('script');
+      domScript.async = true;
+      domScript.src = moduleName;
+      domScript.addEventListener('load', scriptLoaded, false);
+      document.body.appendChild(domScript);
+    }
+
+    loadScript(debug ? 'cocos2d-js.js' : 'cocos2d-js-min.d2401.js', function () {
+      if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
+        loadScript(debug ? 'physics.js' : 'physics-min.js', window.boot);
+      }
+      else {
+        __ytCloudReady.then(window.boot);
+      }
+    });
+})();
+</script>
+</body>
+</html>

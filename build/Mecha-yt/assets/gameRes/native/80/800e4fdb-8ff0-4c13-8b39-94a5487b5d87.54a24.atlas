@@ -1,0 +1,83 @@
+
+level_3.png
+size: 780,266
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+3_1
+  rotate: false
+  xy: 601, 2
+  size: 100, 37
+  orig: 100, 37
+  offset: 0, 0
+  index: -1
+3_2
+  rotate: false
+  xy: 601, 195
+  size: 111, 69
+  orig: 112, 69
+  offset: 0, 0
+  index: -1
+3_3
+  rotate: false
+  xy: 32, 9
+  size: 240, 255
+  orig: 240, 255
+  offset: 0, 0
+  index: -1
+3_di
+  rotate: true
+  xy: 601, 110
+  size: 83, 107
+  orig: 84, 108
+  offset: 1, 1
+  index: -1
+3_l_1
+  rotate: true
+  xy: 438, 12
+  size: 252, 161
+  orig: 252, 162
+  offset: 0, 1
+  index: -1
+3_l_2
+  rotate: true
+  xy: 714, 191
+  size: 73, 63
+  orig: 73, 64
+  offset: 0, 1
+  index: -1
+3_l_3
+  rotate: false
+  xy: 601, 41
+  size: 101, 67
+  orig: 101, 68
+  offset: 0, 1
+  index: -1
+3_r_1
+  rotate: true
+  xy: 274, 12
+  size: 252, 162
+  orig: 252, 163
+  offset: 0, 1
+  index: -1
+3_r_2
+  rotate: false
+  xy: 704, 25
+  size: 74, 62
+  orig: 74, 63
+  offset: 0, 1
+  index: -1
+3_r_3
+  rotate: true
+  xy: 710, 89
+  size: 100, 68
+  orig: 100, 68
+  offset: 0, 0
+  index: -1
+light_1
+  rotate: true
+  xy: 2, 5
+  size: 259, 28
+  orig: 259, 28
+  offset: 0, 0
+  index: -1

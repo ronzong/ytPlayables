@@ -1,0 +1,160 @@
+
+TX_HeTi.png
+size: 2020,1610
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: true
+  xy: 788, 2
+  size: 400, 341
+  orig: 400, 400
+  offset: 0, 38
+  index: -1
+10
+  rotate: false
+  xy: 1754, 12
+  size: 247, 266
+  orig: 400, 400
+  offset: 79, 80
+  index: -1
+11
+  rotate: true
+  xy: 1754, 280
+  size: 261, 264
+  orig: 400, 400
+  offset: 68, 93
+  index: -1
+12
+  rotate: false
+  xy: 1470, 125
+  size: 282, 297
+  orig: 400, 400
+  offset: 62, 83
+  index: -1
+13
+  rotate: true
+  xy: 404, 404
+  size: 400, 383
+  orig: 400, 400
+  offset: 0, 17
+  index: -1
+14
+  rotate: true
+  xy: 404, 806
+  size: 400, 385
+  orig: 400, 400
+  offset: 0, 15
+  index: -1
+15
+  rotate: true
+  xy: 404, 1208
+  size: 400, 386
+  orig: 400, 400
+  offset: 0, 14
+  index: -1
+16
+  rotate: false
+  xy: 2, 404
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+17
+  rotate: true
+  xy: 2, 2
+  size: 400, 393
+  orig: 400, 400
+  offset: 0, 7
+  index: -1
+18
+  rotate: true
+  xy: 791, 811
+  size: 395, 378
+  orig: 400, 400
+  offset: 0, 22
+  index: -1
+19
+  rotate: true
+  xy: 1169, 1220
+  size: 388, 382
+  orig: 400, 400
+  offset: 0, 18
+  index: -1
+2
+  rotate: true
+  xy: 789, 408
+  size: 396, 337
+  orig: 400, 400
+  offset: 0, 42
+  index: -1
+20
+  rotate: true
+  xy: 1171, 834
+  size: 384, 377
+  orig: 400, 400
+  offset: 0, 23
+  index: -1
+21
+  rotate: false
+  xy: 1550, 543
+  size: 371, 357
+  orig: 400, 400
+  offset: 0, 35
+  index: -1
+22
+  rotate: true
+  xy: 1131, 65
+  size: 357, 337
+  orig: 400, 400
+  offset: 7, 44
+  index: -1
+3
+  rotate: false
+  xy: 1553, 1269
+  size: 382, 339
+  orig: 400, 400
+  offset: 0, 36
+  index: -1
+4
+  rotate: true
+  xy: 1128, 424
+  size: 385, 344
+  orig: 400, 400
+  offset: 0, 27
+  index: -1
+5
+  rotate: false
+  xy: 792, 1213
+  size: 375, 395
+  orig: 400, 400
+  offset: 20, 4
+  index: -1
+6
+  rotate: false
+  xy: 2, 1208
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+7
+  rotate: false
+  xy: 2, 806
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+8
+  rotate: false
+  xy: 397, 2
+  size: 389, 400
+  orig: 400, 400
+  offset: 11, 0
+  index: -1
+9
+  rotate: false
+  xy: 1553, 902
+  size: 381, 365
+  orig: 400, 400
+  offset: 19, 19
+  index: -1

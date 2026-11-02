@@ -1,0 +1,153 @@
+
+TX_JuJiQiang.png
+size: 1920,328
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Light
+  rotate: true
+  xy: 1178, 94
+  size: 232, 147
+  orig: 232, 232
+  offset: 0, 43
+  index: -1
+QiangKou_0
+  rotate: true
+  xy: 576, 46
+  size: 280, 161
+  orig: 300, 180
+  offset: 20, 9
+  index: -1
+QiangKou_1
+  rotate: true
+  xy: 1434, 108
+  size: 218, 161
+  orig: 300, 180
+  offset: 66, 10
+  index: -1
+QiangKou_2
+  rotate: true
+  xy: 971, 86
+  size: 240, 101
+  orig: 300, 180
+  offset: 42, 28
+  index: -1
+QiangKou_3
+  rotate: true
+  xy: 1074, 88
+  size: 238, 102
+  orig: 300, 180
+  offset: 38, 28
+  index: -1
+QiangKou_4
+  rotate: true
+  xy: 1327, 97
+  size: 229, 105
+  orig: 300, 180
+  offset: 36, 27
+  index: -1
+QiangKou_5
+  rotate: false
+  xy: 1404, 8
+  size: 193, 87
+  orig: 300, 180
+  offset: 69, 40
+  index: -1
+QiangKou_6
+  rotate: false
+  xy: 1661, 44
+  size: 184, 83
+  orig: 300, 180
+  offset: 70, 44
+  index: -1
+QiangKou_7
+  rotate: false
+  xy: 1215, 16
+  size: 187, 76
+  orig: 300, 180
+  offset: 69, 50
+  index: -1
+Red_000
+  rotate: false
+  xy: 2, 2
+  size: 1334, 12
+  orig: 1334, 13
+  offset: 0, 1
+  index: -1
+ZiDan
+  rotate: true
+  xy: 739, 23
+  size: 40, 182
+  orig: 44, 187
+  offset: 3, 0
+  index: -1
+baodian_000
+  rotate: false
+  xy: 1775, 178
+  size: 143, 148
+  orig: 350, 350
+  offset: 91, 103
+  index: -1
+baodian_001
+  rotate: true
+  xy: 2, 16
+  size: 310, 300
+  orig: 350, 350
+  offset: 4, 31
+  index: -1
+baodian_002
+  rotate: true
+  xy: 304, 27
+  size: 299, 270
+  orig: 350, 350
+  offset: 10, 32
+  index: -1
+baodian_003
+  rotate: true
+  xy: 739, 65
+  size: 261, 230
+  orig: 350, 350
+  offset: 34, 39
+  index: -1
+baodian_004
+  rotate: false
+  xy: 1597, 129
+  size: 176, 197
+  orig: 350, 350
+  offset: 108, 71
+  index: -1
+yanwu_000
+  rotate: false
+  xy: 304, 16
+  size: 41, 9
+  orig: 140, 80
+  offset: 41, 10
+  index: -1
+yanwu_001
+  rotate: false
+  xy: 1093, 24
+  size: 120, 62
+  orig: 140, 80
+  offset: 13, 9
+  index: -1
+yanwu_002
+  rotate: false
+  xy: 971, 20
+  size: 120, 64
+  orig: 140, 80
+  offset: 3, 8
+  index: -1
+yanwu_003
+  rotate: true
+  xy: 1599, 16
+  size: 111, 60
+  orig: 140, 80
+  offset: 4, 8
+  index: -1
+yanwu_004
+  rotate: true
+  xy: 1847, 128
+  size: 48, 59
+  orig: 140, 80
+  offset: 50, 9
+  index: -1

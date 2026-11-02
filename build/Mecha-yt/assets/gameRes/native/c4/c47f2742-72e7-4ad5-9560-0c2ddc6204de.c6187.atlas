@@ -1,0 +1,181 @@
+
+浩劫.png
+size: 736,543
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+L_arm_dowe
+  rotate: false
+  xy: 656, 10
+  size: 68, 58
+  orig: 68, 58
+  offset: 0, 0
+  index: -1
+L_arm_up
+  rotate: true
+  xy: 679, 161
+  size: 59, 55
+  orig: 59, 55
+  offset: 0, 0
+  index: -1
+L_bijia
+  rotate: true
+  xy: 684, 412
+  size: 74, 44
+  orig: 74, 44
+  offset: 0, 0
+  index: -1
+L_dao
+  rotate: true
+  xy: 134, 256
+  size: 285, 270
+  orig: 288, 273
+  offset: 2, 1
+  index: -1
+L_foot
+  rotate: true
+  xy: 585, 69
+  size: 75, 66
+  orig: 75, 66
+  offset: 0, 0
+  index: -1
+L_hand
+  rotate: true
+  xy: 684, 488
+  size: 53, 48
+  orig: 53, 48
+  offset: 0, 0
+  index: -1
+L_jianjia
+  rotate: true
+  xy: 626, 308
+  size: 74, 88
+  orig: 74, 88
+  offset: 0, 0
+  index: -1
+L_pao
+  rotate: false
+  xy: 255, 123
+  size: 248, 131
+  orig: 248, 131
+  offset: 0, 0
+  index: -1
+L_shank
+  rotate: true
+  xy: 406, 451
+  size: 90, 97
+  orig: 90, 97
+  offset: 0, 0
+  index: -1
+L_thigh
+  rotate: false
+  xy: 594, 146
+  size: 83, 74
+  orig: 83, 74
+  offset: 0, 0
+  index: -1
+R_arm_dowe
+  rotate: false
+  xy: 545, 294
+  size: 79, 88
+  orig: 79, 88
+  offset: 0, 0
+  index: -1
+R_arm_up
+  rotate: true
+  xy: 406, 363
+  size: 86, 94
+  orig: 86, 94
+  offset: 0, 0
+  index: -1
+R_bijia
+  rotate: true
+  xy: 653, 70
+  size: 74, 73
+  orig: 74, 73
+  offset: 0, 0
+  index: -1
+R_dao
+  rotate: false
+  xy: 2, 118
+  size: 130, 423
+  orig: 132, 428
+  offset: 0, 3
+  index: -1
+R_foot
+  rotate: false
+  xy: 505, 178
+  size: 87, 89
+  orig: 87, 89
+  offset: 0, 0
+  index: -1
+R_hand
+  rotate: true
+  xy: 585, 3
+  size: 64, 69
+  orig: 64, 69
+  offset: 0, 0
+  index: -1
+R_jianjia
+  rotate: true
+  xy: 476, 269
+  size: 92, 67
+  orig: 92, 67
+  offset: 0, 0
+  index: -1
+R_jianpao
+  rotate: false
+  xy: 505, 384
+  size: 177, 157
+  orig: 177, 157
+  offset: 0, 0
+  index: -1
+R_shank
+  rotate: false
+  xy: 134, 118
+  size: 119, 136
+  orig: 119, 137
+  offset: 0, 0
+  index: -1
+R_thigh
+  rotate: true
+  xy: 626, 222
+  size: 84, 87
+  orig: 84, 87
+  offset: 0, 0
+  index: -1
+R_xiongjia
+  rotate: true
+  xy: 406, 267
+  size: 94, 68
+  orig: 94, 68
+  offset: 0, 0
+  index: -1
+bg
+  rotate: false
+  xy: 2, 2
+  size: 189, 114
+  orig: 189, 114
+  offset: 0, 0
+  index: -1
+crotch
+  rotate: true
+  xy: 193, 3
+  size: 113, 90
+  orig: 113, 90
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 452, 24
+  size: 131, 97
+  orig: 131, 97
+  offset: 0, 0
+  index: -1
+xiong
+  rotate: false
+  xy: 285, 18
+  size: 165, 103
+  orig: 165, 103
+  offset: 0, 0
+  index: -1

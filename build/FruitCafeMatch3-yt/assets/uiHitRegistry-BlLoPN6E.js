@@ -1,0 +1,1 @@
+import{bA as n}from"./index-CIx3myyv.js";const e=new Map;function t(t,o){n()&&e.set(t,o)}function o(n){e.delete(n)}function s(n){return!!n&&!1!==n.active&&null!=n.scene}function u(){const n=[];for(const[t,o]of e)s(o)?n.push(t):e.delete(t);return n}function c(n){const t=e.get(n);return s(t)?t:(e.delete(n),null)}export{c as g,u as l,t as r,o as u};

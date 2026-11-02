@@ -1,0 +1,9 @@
+fx-Puzzle-end-1.png
+size:558,504
+filter:Linear,Linear
+fx-Puzzle
+bounds:2,2,500,500
+offsets:6,6,512,512
+fx/fx-Blick_star_03
+bounds:504,450,52,52
+offsets:4,4,60,60

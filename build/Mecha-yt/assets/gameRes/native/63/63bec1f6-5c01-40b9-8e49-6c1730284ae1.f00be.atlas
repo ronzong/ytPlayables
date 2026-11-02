@@ -1,0 +1,13 @@
+
+BaWangLong_DianQiu.png
+size: 386,383
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianqiu
+  rotate: false
+  xy: 2, 2
+  size: 382, 379
+  orig: 387, 388
+  offset: 4, 0
+  index: -1

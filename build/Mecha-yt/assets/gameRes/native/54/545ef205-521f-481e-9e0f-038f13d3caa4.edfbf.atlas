@@ -1,0 +1,76 @@
+
+TX_ShengQiShi_LiHui.png
+size: 619,1077
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Light1
+  rotate: false
+  xy: 485, 864
+  size: 132, 211
+  orig: 136, 224
+  offset: 4, 0
+  index: -1
+Light2
+  rotate: false
+  xy: 485, 435
+  size: 96, 180
+  orig: 97, 180
+  offset: 1, 0
+  index: -1
+Light3
+  rotate: false
+  xy: 488, 90
+  size: 83, 163
+  orig: 84, 164
+  offset: 1, 0
+  index: -1
+Light4
+  rotate: true
+  xy: 216, 2
+  size: 76, 324
+  orig: 77, 324
+  offset: 0, 0
+  index: -1
+Light5
+  rotate: false
+  xy: 485, 617
+  size: 104, 245
+  orig: 105, 245
+  offset: 0, 0
+  index: -1
+Light6
+  rotate: true
+  xy: 233, 80
+  size: 173, 253
+  orig: 185, 294
+  offset: 0, 0
+  index: -1
+Light7
+  rotate: true
+  xy: 2, 4
+  size: 169, 212
+  orig: 169, 213
+  offset: 0, 0
+  index: -1
+Ring
+  rotate: false
+  xy: 233, 255
+  size: 376, 148
+  orig: 410, 176
+  offset: 17, 14
+  index: -1
+Ring2
+  rotate: true
+  xy: 2, 175
+  size: 228, 229
+  orig: 256, 256
+  offset: 14, 13
+  index: -1
+guang
+  rotate: false
+  xy: 2, 405
+  size: 481, 670
+  orig: 481, 670
+  offset: 0, 0
+  index: -1

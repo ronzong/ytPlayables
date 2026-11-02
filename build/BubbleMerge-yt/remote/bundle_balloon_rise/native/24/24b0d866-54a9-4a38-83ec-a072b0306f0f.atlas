@@ -1,0 +1,22 @@
+Widget Illustration.png
+size:1186,814
+filter:Linear,Linear
+Cloud_1
+bounds:739,6,169,36
+offsets:2,2,175,40
+Cloud_2
+bounds:1084,44,487,97
+offsets:8,6,500,104
+rotate:90
+Cloud_7
+bounds:2,2,409,127
+offsets:3,2,414,159
+Stars
+bounds:2,131,1080,400
+offsets:1,1,1082,402
+Town
+bounds:2,533,1182,279
+offsets:1,3,1184,285
+Слой 10
+bounds:413,19,324,110
+offsets:23,6,349,124

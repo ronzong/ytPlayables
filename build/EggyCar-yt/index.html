@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://www.youtube.com/game_api/v1"></script>
+<script src="yt-bridge.js"></script>
+    <meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="robots" content="noindex, nofollow" />
+
+	<title>Eggy Car</title>
+	<script>
+		/*if (window.self === window.top) {
+		    var gLoc = window.location.pathname;
+		    var gPath = gLoc.substring(0, gLoc.lastIndexOf('/'));
+		    var gName = gPath.substring(gPath.lastIndexOf("/") + 1);
+		    window.location.replace('../../../../' + gName + '-game/');
+		}*/
+	</script>
+
+	<!-- Allow fullscreen mode on iOS devices. (These are Apple specific meta tags.) -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="apple-touch-icon" sizes="256x256" href="icon-256.png" />
+	<meta name="HandheldFriendly" content="true" />
+
+	<!-- Chrome for Android web app tags -->
+	<meta name="mobile-web-app-capable" content="yes" />
+	<link rel="shortcut icon" sizes="256x256" href="icon-256.png" />
+
+    <!-- All margins and padding must be zero for the canvas to fill the screen. -->
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		html, body {
+			background: #000;
+			color: #fff;
+			overflow: hidden;
+			touch-action: none;
+			-ms-touch-action: none;
+		}
+		canvas {
+			touch-action-delay: none;
+			touch-action: none;
+			-ms-touch-action: none;
+		}
+		@font-face {
+		  font-family: Changa One;
+		  src: url(changaone_regular.ttf);
+		}
+		@font-face {
+		  font-family: Changa One;
+		  src: url(changaone_regular.ttf);
+		  font-weight: bold;
+		}
+    </style>
+	<!-- offline: 移除 drifted 外部 loader 样式 -->
+    
+
+</head> 
+
+<body> 
+	<div id="fb-root"></div>
+    <div id="gameContainer">
+	    <div id="c2canvasdiv">
+        <!-- The canvas must be inside a div called c2canvasdiv -->
+            <!-- The canvas the project will render to.  If you change its ID, don't forget to change the
+            ID the runtime looks for in the jQuery events above (ready() and cr_sizeCanvas()). -->
+            <canvas id="c2canvas" width="1280" height="720">
+                <!-- This text is displayed if the visitor's browser does not support HTML5.
+                You can change it, but it is a good idea to link to a description of a browser
+                and provide some links to download some popular HTML5-compatible browsers. -->
+                <h1>Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.</h1>
+            </canvas>
+        </div>
+    </div>
+	
+	<!-- Pages load faster with scripts at the bottom -->
+
+	<!-- Construct 2 exported games require jQuery. -->
+	<script src="jquery-2.1.1.min.js"></script>
+
+
+
+    <!-- The runtime script.  You can rename it, but don't forget to rename the reference here as well.
+    This file will have been minified and obfuscated if you enabled "Minify script" during export. -->
+	<script src="c2runtime.js"></script>
+
+    <script>
+		// Start the Construct 2 project running on window load.
+		jQuery(document).ready(function ()
+		{			
+			// Create new runtime using the c2canvas
+			__ytCloudReady.then(function(){__ytInstallForage();cr_createRuntime("c2canvas");});
+		});
+
+		// Pause and resume on page becoming visible/invisible
+		function onVisibilityChanged() {
+			if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
+				cr_setSuspended(true);
+			else
+				cr_setSuspended(false);
+		};
+
+		document.addEventListener("visibilitychange", onVisibilityChanged, false);
+		document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
+		document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
+		document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
+
+		function OnRegisterSWError(e)
+		{
+			console.warn("Failed to register service worker: ", e);
+		};
+
+		// Runtime calls this global method when ready to start caching (i.e. after startup).
+		// This registers the service worker which caches resources for offline support.
+		window.C2_RegisterSW = function C2_RegisterSW()
+		{
+			/* offline: 不注册 Service Worker */
+		};
+
+    </script>
+    <script>
+            try {
+		    if (window !== window.parent) {
+		        const allowedDomain = 'drifted.com';
+		        const referrer = document.referrer;
+			if (referrer) {
+		            const parentHost = new URL(referrer).hostname;
+		            if (parentHost.endsWith(allowedDomain)) {
+		                document.getElementById('game-footer')?.style.setProperty('display', 'none', 'important');
+				document.getElementById('gameContainer')?.style.setProperty('bottom', '0', 'important');
+		            }
+		        } else {
+		            console.log("No referrer available.");
+		        }
+		    }
+		} catch (e) {
+		    // failure, somehow
+		}
+    </script>
+    <script>
+		// EggyCar 音效/音乐按钮修复：
+		// 原游戏按钮走 Touch 插件事件链（按下置家族变量 → 菜单事件），本构建中该链路不生效，
+		// 导致音效/音乐按钮点击无响应。这里在 DOM 层直接监听点击，命中对应按钮时
+		// 调用游戏自身的 Update_Sound / Update_Music 函数完成切换（改全局、存档、换按钮图标）。
+		(function () {
+			var ready = false;
+			var lastHandled = 0;
+
+			function getRuntime() {
+				try { return window.cr_getC2Runtime && window.cr_getC2Runtime(); } catch (e) { return null; }
+			}
+
+			function hitTest(inst, cx, cy) {
+				try {
+					var layer = inst.layer;
+					var lx = layer.canvasToLayer(cx, cy, true);
+					var ly = layer.canvasToLayer(cx, cy, false);
+					inst.update_bbox();
+					return inst.contains_pt(lx, ly);
+				} catch (e) { return false; }
+			}
+
+			function toggle(name, gvIndex, typeName) {
+				var rt = getRuntime();
+				if (!rt) return;
+				var gv = rt.all_global_vars[gvIndex];
+				var newVal = gv.data ? 0 : 1;
+				try {
+					var fnInst = rt.types['t0'] && rt.types['t0'].instances[0];
+					if (fnInst) {
+						// 走游戏自己的函数：设置全局变量 + window.__ytStorage 存档 + 更新按钮图标
+						cr.plugins_.Function.prototype.acts.CallFunction.call(fnInst, name, [newVal]);
+						return;
+					}
+				} catch (e) {}
+				// 兜底：直接改全局并切换按钮图标
+				gv.data = newVal;
+				var inst = rt.types[typeName] && rt.types[typeName].instances[0];
+				if (inst && inst.setAnimation) {
+					try { inst.setAnimation(0, newVal, false); } catch (e) {}
+				}
+			}
+
+			function onPointer(e) {
+				var rt = getRuntime();
+				if (!rt || !rt.running_layout) return;
+				var cv = document.querySelector('canvas');
+				if (!cv) return;
+				var rect = cv.getBoundingClientRect();
+				var cx = e.clientX - rect.left;
+				var cy = e.clientY - rect.top;
+				var now = Date.now();
+				if (now - lastHandled < 400) return; // 防抖，避免 pointerdown/mousedown 双触发
+				var t60 = rt.types['t60'] && rt.types['t60'].instances[0];
+				var t61 = rt.types['t61'] && rt.types['t61'].instances[0];
+				if (t60 && hitTest(t60, cx, cy)) {
+					lastHandled = now;
+					toggle('Update_Sound', 29, 't60');
+					try { e.preventDefault(); e.stopPropagation(); } catch (err) {}
+				} else if (t61 && hitTest(t61, cx, cy)) {
+					lastHandled = now;
+					toggle('Update_Music', 31, 't61');
+					try { e.preventDefault(); e.stopPropagation(); } catch (err) {}
+				}
+			}
+
+			function tryInit() {
+				if (ready) return;
+				var rt = getRuntime();
+				if (rt && rt.running_layout && rt.types['t60'] && rt.types['t60'].instances &&
+					rt.types['t60'].instances.length && rt.types['t61'] && rt.types['t61'].instances &&
+					rt.types['t61'].instances.length) {
+					ready = true;
+					var cv = document.querySelector('canvas');
+					if (cv) {
+						cv.addEventListener('pointerdown', onPointer, true);
+						cv.addEventListener('mousedown', onPointer, true);
+					}
+				}
+			}
+			window.__ytGameTimers.setInterval(tryInit, 500);
+		})();
+    </script>
+</body> 
+</html> 

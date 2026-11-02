@@ -1,0 +1,1 @@
+/* 桥在入口已安装；framework 加载本文件后触发 onGPInit。 */

@@ -1,0 +1,18 @@
+Lava Run_Icon.png
+size:256,228
+filter:Linear,Linear
+fx/fx-circle-blur-01
+bounds:2,2,225,223
+offsets:11,12,249,248
+fx/fx-dot-blur
+bounds:229,200,25,25
+offsets:5,5,35,35
+sparks_1_left
+bounds:229,121,17,21
+offsets:2,2,21,25
+sparks_2_right
+bounds:229,170,19,28
+offsets:2,3,22,33
+sparks_3_left
+bounds:229,144,17,24
+offsets:2,3,21,29

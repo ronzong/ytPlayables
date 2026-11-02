@@ -1,0 +1,18 @@
+FX_gray_bubble.png
+size:214,262
+filter:Linear,Linear
+Bubble Chunk BigOutline FX
+bounds:2,2,91,190
+offsets:2,2,102,194
+rotate:90
+Bubble Chunk BigOutline FX Blur
+bounds:2,95,91,190
+offsets:2,2,96,194
+rotate:90
+Bubble Chunk BigOutline FX Line
+bounds:39,188,72,173
+offsets:0,1,86,177
+rotate:90
+fx/fx-blick-09-2
+bounds:2,226,35,34
+offsets:4,6,44,46

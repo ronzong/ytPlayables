@@ -1,0 +1,146 @@
+{
+  "date": "2026-11-02",
+  "scope": "本地官方测试套件；不代表正式账号跨设备或所有关卡/可选分支",
+  "games": [
+    {
+      "id": "HarvestIO",
+      "files": 600,
+      "bytes": 43735132,
+      "zipBytes": 31015655,
+      "deterministic": true,
+      "officialMust": "5/5",
+      "pause": "9/9",
+      "initialLoad": "Initial bundle size of 6.36 MiB",
+      "cloud": {
+        "loadSucceeded": true,
+        "loadedBytes": 488,
+        "successfulWrites": 2,
+        "failedWrites": 0,
+        "lastSavedBytes": 488
+      },
+      "restoredKeys": [
+        "harvest-io-data"
+      ],
+      "rejectedReward": false,
+      "grantedReward": true,
+      "consoleErrors": []
+    },
+    {
+      "id": "JigsawCards",
+      "files": 1955,
+      "bytes": 112252301,
+      "zipBytes": 104619770,
+      "deterministic": true,
+      "officialMust": "5/5",
+      "pause": "9/9",
+      "initialLoad": "Initial bundle size of 7.96 MiB",
+      "cloud": {
+        "loadSucceeded": true,
+        "loadedBytes": 2896,
+        "successfulWrites": 1,
+        "failedWrites": 0,
+        "lastSavedBytes": 2337
+      },
+      "restoredKeys": [
+        "pc_jigsolitaire_test_user_id",
+        "jigsolitaire_test_checksum",
+        "pc_jigsolitaire_test_sync_transport",
+        "pc_jigsolitaire_test_sync_session",
+        "jigsolitaire_test_client_session",
+        "jigsolitaire_test_data_version",
+        "jigsolitaire_test_kpi_logger",
+        "jigsolitaire_test",
+        "jigsolitaire_test_info",
+        "jigsolitaire_test_boosters_counter",
+        "jigsolitaire_test_periodicBonus",
+        "jigsolitaire_test_metrics",
+        "pc_jigsolitaire_test_metrics",
+        "jigsolitaire_test_play_session",
+        "jigsolitaire_test_missions_daily_reward",
+        "jigsolitaire_test_personal_best",
+        "jigsolitaire_test_placements",
+        "jigsolitaire_test_game_save"
+      ],
+      "rejectedReward": false,
+      "grantedReward": true,
+      "puzzle": {
+        "before": 8,
+        "after": 6
+      },
+      "consoleErrors": []
+    },
+    {
+      "id": "LumberjackForestEmpire",
+      "files": 39,
+      "bytes": 918905,
+      "zipBytes": 210336,
+      "deterministic": true,
+      "officialMust": "5/5",
+      "pause": "9/9",
+      "initialLoad": "Initial bundle size of 639.75 KiB",
+      "cloud": {
+        "loadSucceeded": true,
+        "loadedBytes": 1920,
+        "successfulWrites": 1,
+        "failedWrites": 0,
+        "lastSavedBytes": 1920
+      },
+      "restoredKeys": [
+        "lumberjack_save_v4",
+        "yandex-player"
+      ],
+      "rejectedReward": false,
+      "grantedReward": true,
+      "consoleErrors": []
+    },
+    {
+      "id": "Mecha",
+      "files": 1372,
+      "bytes": 50918413,
+      "zipBytes": 38872731,
+      "deterministic": true,
+      "officialMust": "5/5",
+      "pause": "9/9",
+      "initialLoad": "Initial bundle size of 1.78 MiB",
+      "cloud": {
+        "loadSucceeded": true,
+        "loadedBytes": 1268,
+        "successfulWrites": 1,
+        "failedWrites": 0,
+        "lastSavedBytes": 1268
+      },
+      "restoredKeys": [
+        "uuid",
+        "uuid_date",
+        "playerInfo",
+        "dailyTask_2026112"
+      ],
+      "rejectedReward": false,
+      "grantedReward": true,
+      "consoleErrors": []
+    },
+    {
+      "id": "MJBeautySalon",
+      "files": 124,
+      "bytes": 21293299,
+      "zipBytes": 14356851,
+      "deterministic": true,
+      "officialMust": "5/5",
+      "pause": "9/9",
+      "initialLoad": "Initial bundle size of 3.81 MiB",
+      "cloud": {
+        "loadSucceeded": true,
+        "loadedBytes": 836,
+        "successfulWrites": 1,
+        "failedWrites": 0,
+        "lastSavedBytes": 836
+      },
+      "restoredKeys": [
+        "game-db:c3-localstorage-llaez20j8nl:Save"
+      ],
+      "rejectedReward": false,
+      "grantedReward": true,
+      "consoleErrors": []
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+<script src="https://www.youtube.com/game_api/v1"></script>
+<script src="yt-bridge.js"></script>
+<script src="Build/brotli-decode.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- 铺满整屏：任意尺寸/比例的屏幕都用满视口，配合 TemplateData/style.css 的 .unity-mobile 规则 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Unity WebGL Player | Bounce Rescuers</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <!-- 本地单机版：广告适配层在 local-ads.js，页面不加载任何外部脚本 -->
+    
+  </head>
+  <body>
+    <div id="unity-container" class="unity-mobile">
+      <canvas id="unity-canvas" class="unity-mobile" width=580 height=928></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer" style="height:0;overflow: hidden;">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">Bounce Rescuers</div>
+      </div>
+    </div>
+    <script>
+      var myUnityInstance;
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var warningBanner = document.querySelector("#unity-warning");
+
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      function unityShowBanner(msg, type) {
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          window.__ytGameTimers.setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/FallToRescue.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/FallToRescue.data.brotli",
+        frameworkUrl: buildUrl + "/FallToRescue.framework.js",
+        codeUrl: buildUrl + "/FallToRescue.wasm.brotli",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "rongzong",
+        productName: "Bounce Rescuers",
+        productVersion: "2.0",
+        showBanner: unityShowBanner,
+      };
+
+      // 本地单机版：不再按 UA 区分桌面/移动，也不再写死 580x928；
+      // 画布始终铺满视口（container/canvas 用 .unity-mobile 规则，见 TemplateData/style.css），
+      // 由 Unity 自己在任意尺寸/比例下重排 UI，背景图随之铺满画布。
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+      container.style.width = "100%";
+      container.style.height = "100%";
+
+      loadingBar.style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = async () => {
+ await __ytCloudReady;[config.dataUrl,config.codeUrl]=await Promise.all([__ytDecodeAsset(config.dataUrl),__ytDecodeAsset(config.codeUrl)]);
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+        }).then((unityInstance) => {
+          myUnityInstance = unityInstance;
+          console.log("[ftr] Unity 实例就绪");
+          if (window.__ftrAds && window.__ftrAds.onUnityReady) window.__ftrAds.onUnityReady(unityInstance);
+          loadingBar.style.display = "none";
+          fullscreenButton.onclick = () => {
+            unityInstance.SetFullscreen(1);
+          };
+        }).catch((message) => {
+          alert(message);
+        });
+      };
+      document.body.appendChild(script);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+{
+  "en": {
+    "texts": {
+      "gameName": "Flower Garden: Bouquet Sorting",
+      "preloader": {
+        "progress": "{progress}%"
+      }
+    }
+  },
+
+  "ru": {
+    "texts": {
+      "gameName": "Сад Цветов: Сортировка Букетов",
+      "preloader": {
+        "progress": "{progress}%"
+      }
+    }
+  },
+
+  "tr": {
+    "texts": {
+      "gameName": "Çiçek Bahçesi: Buket Sıralama",
+      "preloader": {
+        "progress": "{progress}%"
+      }
+    }
+  },
+
+  "es": {
+    "texts": {
+      "gameName": "Jardín de Flores: Clasificación de Ramos",
+      "preloader": {
+        "progress": "{progress}%"
+      }
+    }
+  },
+
+  "de": {
+    "texts": {
+      "gameName": "Blumengarten: Strauß-Sortierung",
+      "preloader": {
+        "progress": "{progress}%"
+      }
+    }
+  },
+
+  "ar": {
+    "texts": {
+      "gameName": "حديقة الزهور: تصنيف الباقات",
+      "preloader": {
+        "progress": "{progress}%"
+      }
+    }
+  }
+}

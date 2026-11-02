@@ -1,0 +1,209 @@
+
+末日审判.png
+size: 2031,473
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+L_arm_big
+  rotate: true
+  xy: 1960, 5
+  size: 77, 65
+  orig: 77, 65
+  offset: 0, 0
+  index: -1
+L_arm_small
+  rotate: false
+  xy: 1821, 166
+  size: 148, 84
+  orig: 148, 84
+  offset: 0, 0
+  index: -1
+L_dun
+  rotate: false
+  xy: 439, 132
+  size: 233, 339
+  orig: 233, 339
+  offset: 0, 0
+  index: -1
+L_finger
+  rotate: false
+  xy: 1972, 354
+  size: 55, 33
+  orig: 55, 33
+  offset: 0, 0
+  index: -1
+L_foot
+  rotate: true
+  xy: 1736, 128
+  size: 101, 80
+  orig: 101, 80
+  offset: 0, 0
+  index: -1
+L_g
+  rotate: true
+  xy: 1336, 221
+  size: 250, 248
+  orig: 272, 271
+  offset: 10, 10
+  index: -1
+L_hand
+  rotate: true
+  xy: 1960, 84
+  size: 80, 69
+  orig: 80, 70
+  offset: 0, 0
+  index: -1
+L_jian
+  rotate: true
+  xy: 970, 7
+  size: 163, 157
+  orig: 163, 157
+  offset: 0, 0
+  index: -1
+L_leg_big
+  rotate: true
+  xy: 416, 21
+  size: 108, 96
+  orig: 108, 96
+  offset: 0, 0
+  index: -1
+L_leg_small
+  rotate: false
+  xy: 305, 18
+  size: 109, 111
+  orig: 109, 111
+  offset: 0, 0
+  index: -1
+L_paoguan
+  rotate: true
+  xy: 835, 172
+  size: 299, 210
+  orig: 299, 210
+  offset: 0, 0
+  index: -1
+L_paotai
+  rotate: true
+  xy: 1282, 25
+  size: 154, 72
+  orig: 154, 72
+  offset: 0, 0
+  index: -1
+R_arm_big
+  rotate: true
+  xy: 1597, 25
+  size: 139, 137
+  orig: 139, 158
+  offset: 0, 1
+  index: -1
+R_arm_small
+  rotate: false
+  xy: 188, 4
+  size: 115, 125
+  orig: 115, 125
+  offset: 0, 0
+  index: -1
+R_dun
+  rotate: false
+  xy: 2, 19
+  size: 184, 452
+  orig: 184, 452
+  offset: 0, 0
+  index: -1
+R_foot
+  rotate: true
+  xy: 514, 22
+  size: 108, 78
+  orig: 108, 79
+  offset: 0, 1
+  index: -1
+R_g
+  rotate: true
+  xy: 1047, 181
+  size: 290, 287
+  orig: 315, 313
+  offset: 12, 12
+  index: -1
+R_hand
+  rotate: false
+  xy: 1867, 64
+  size: 91, 100
+  orig: 91, 101
+  offset: 0, 0
+  index: -1
+R_jian
+  rotate: false
+  xy: 1129, 2
+  size: 151, 177
+  orig: 151, 177
+  offset: 0, 0
+  index: -1
+R_leg_big
+  rotate: true
+  xy: 594, 25
+  size: 105, 131
+  orig: 105, 131
+  offset: 0, 0
+  index: -1
+R_leg_small
+  rotate: true
+  xy: 1821, 252
+  size: 135, 149
+  orig: 138, 149
+  offset: 3, 0
+  index: -1
+R_paoguan
+  rotate: true
+  xy: 188, 131
+  size: 340, 249
+  orig: 340, 249
+  offset: 0, 0
+  index: -1
+R_paotai
+  rotate: false
+  xy: 1821, 389
+  size: 181, 82
+  orig: 181, 82
+  offset: 0, 0
+  index: -1
+YY
+  rotate: true
+  xy: 674, 164
+  size: 307, 159
+  orig: 307, 159
+  offset: 0, 0
+  index: -1
+body_s
+  rotate: false
+  xy: 1356, 6
+  size: 239, 213
+  orig: 239, 213
+  offset: 0, 0
+  index: -1
+body_x
+  rotate: false
+  xy: 1736, 25
+  size: 129, 101
+  orig: 129, 101
+  offset: 0, 0
+  index: -1
+body_z
+  rotate: true
+  xy: 880, 2
+  size: 168, 88
+  orig: 168, 88
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 727, 2
+  size: 151, 160
+  orig: 151, 160
+  offset: 0, 0
+  index: -1
+star
+  rotate: true
+  xy: 1586, 231
+  size: 240, 233
+  orig: 272, 272
+  offset: 13, 13
+  index: -1

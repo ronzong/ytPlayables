@@ -1,0 +1,10 @@
+BG Out of stars.png
+size:1488,544
+filter:Linear,Linear
+scale:0.5
+Outer
+bounds:1224,126,416,262
+rotate:90
+Palm_Right
+bounds:2,2,540,1220
+rotate:90

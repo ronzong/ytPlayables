@@ -1,0 +1,8 @@
+Clock.png
+size:86,75
+filter:Linear,Linear
+Clock BG
+bounds:2,2,72,71
+offsets:0,1,72,72
+Clock Hand
+bounds:76,50,8,23

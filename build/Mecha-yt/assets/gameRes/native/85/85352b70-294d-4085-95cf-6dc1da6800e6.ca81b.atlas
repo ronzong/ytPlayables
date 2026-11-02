@@ -1,0 +1,41 @@
+
+BaoDian_LanSe.png
+size: 802,178
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Lightning_0
+  rotate: false
+  xy: 373, 2
+  size: 152, 174
+  orig: 192, 180
+  offset: 33, 3
+  index: -1
+Lightning_1
+  rotate: false
+  xy: 2, 2
+  size: 184, 174
+  orig: 192, 180
+  offset: 4, 3
+  index: -1
+Lightning_2
+  rotate: false
+  xy: 188, 15
+  size: 183, 161
+  orig: 192, 180
+  offset: 5, 7
+  index: -1
+Lightning_3
+  rotate: true
+  xy: 527, 5
+  size: 171, 147
+  orig: 192, 180
+  offset: 10, 18
+  index: -1
+Lightning_4
+  rotate: true
+  xy: 676, 26
+  size: 150, 124
+  orig: 192, 180
+  offset: 32, 17
+  index: -1

@@ -1,0 +1,10 @@
+{
+  "files": [
+    {
+      "id": "PreloaderLogo",
+      "src": "assets/images/preloader/preloader_logo.png",
+      "fileType": "image",
+      "loadGroups": ["preload", "prepareGame"]
+    }
+  ]
+}

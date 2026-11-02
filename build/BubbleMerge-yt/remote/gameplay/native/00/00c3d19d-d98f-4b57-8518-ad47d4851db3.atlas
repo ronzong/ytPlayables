@@ -1,0 +1,27 @@
+FX_blue_bubble.png
+size:318,225
+filter:Linear,Linear
+Bubble 01 BigOutline FX
+bounds:2,98,125,248
+offsets:3,4,134,256
+rotate:90
+Bubble 01 BigOutline FX Line
+bounds:2,2,94,218
+offsets:0,1,102,220
+rotate:90
+Spark
+bounds:252,92,61,60
+rotate:90
+Spark Blur
+bounds:252,155,68,64
+offsets:3,3,74,70
+rotate:90
+fx-circle-blur-03
+bounds:222,50,40,40
+offsets:5,5,50,50
+fx-dot-01
+bounds:222,14,35,34
+offsets:4,6,44,46
+fx-dot-blur
+bounds:259,23,25,25
+offsets:5,5,35,35

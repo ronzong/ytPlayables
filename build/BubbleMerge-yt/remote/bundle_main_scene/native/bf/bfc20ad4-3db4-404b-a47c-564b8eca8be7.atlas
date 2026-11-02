@@ -1,0 +1,13 @@
+location_button_stars.png
+size:348,128
+filter:Linear,Linear
+Level stars
+bounds:2,2,250,124
+offsets:3,2,255,128
+fx-dot-blur (2)
+bounds:254,7,25,25
+offsets:5,5,35,35
+star
+bounds:254,34,92,89
+offsets:1,2,94,92
+rotate:90

@@ -1,0 +1,482 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+<script src="https://www.youtube.com/game_api/v1"></script>
+<script src="yt-bridge.js"></script>
+<meta charset="utf-8"/>
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+<!-- Made with Construct, the game and app creator :: https://www.construct.net -->
+<meta name="generator" content="Scirra Construct"/>
+<meta name="author" content="weloplay"/>
+<meta name="description" content="weloplay"/>
+<!-- <link rel="manifest" href="appmanifest.json"> -->
+<link rel="stylesheet" href="style.css"/>
+<!-- //xz Yandex Games SDK -->
+<script src="sdk.js"></script>
+<!-- //xz 鍔犺浇璇█鏂囦欢 -->
+<script src="language.js"></script>
+<!-- //xz 鍔犺浇澶栭儴鑴氭湰鍑芥暟 -->
+<script>
+		function loadScript(moduleName, cb) {
+        function scriptLoaded() {
+          document.body.removeChild(domScript);
+          domScript.removeEventListener('load', scriptLoaded, false);
+          cb && cb();
+        };
+        var domScript = document.createElement('script');
+        domScript.async = true;
+        domScript.src = moduleName;
+        domScript.addEventListener('load', scriptLoaded, false);
+        document.body.appendChild(domScript);
+      }
+	</script>
+<script src="poki-sdk-local.js"></script>
+<link rel="preload" href="bgimg.webp" as="image"/>
+<style>
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #6ccbff;
+        }
+
+        #custom-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #6ccbff;
+            z-index: 1000;
+            transition: opacity 0.5s;
+            opacity: 1;
+            background-image: url('bgimg.webp'), url('bgimg1.webp');
+            background-size: cover, cover;
+            background-repeat: repeat, repeat;
+            background-position: center, center;
+        }
+
+        @media (min-aspect-ratio: 1/1) {
+            #custom-loader {
+                background-size: auto 100%, auto 100%;
+            }
+        }
+
+        @media (max-aspect-ratio: 1/1) {
+            #custom-loader {
+                background-size: cover 100%, cover 100%;
+            }
+        }
+
+        .loading-bar-container {
+            position: absolute;
+            width: 70%;
+            height: 32px;
+            bottom: 80px;
+            left: 15%;
+            border: solid 0.2em #E97E04;
+            border-radius: 10em;
+            background: #FFCB8F;
+			user-select: none;
+        }
+
+        .loading-bar {
+            height: 32px;
+            width: 0%;
+            background: linear-gradient(to top, #F6A200, #F6C300);
+            border-radius: 10em;
+            transition: width 0.1s ease-in-out; /* 袩谢邪胁薪芯械 懈蟹屑械薪械薪懈械 褕懈褉懈薪褘 */
+			user-select: none;
+        }
+
+        .fade-out {
+            opacity: 1;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .progress-text-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+			user-select: none;
+        }
+
+        #progress-text {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin-bottom: 64px;
+			user-select: none;
+        }
+
+        #loading-img {
+            position: absolute;
+            bottom: 15px;
+            left: calc(50% - 25px);
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+			user-select: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+<body>
+<div id="custom-loader">
+<div class="loading-bar-container">
+<div class="loading-bar" id="loading-bar"></div>
+<div class="progress-text-container">
+<div id="progress-text">0%</div>
+</div>
+</div>
+<img src="loading.png" id="loading-img"/>
+</div>
+<script>
+		let sstart = 0; 
+		let counter = 0; 
+		let prog = 0;
+		let max_prog = 0;
+		let start_load = 0;
+		let full_load = 0;
+		let poki_init = false;
+		createFallingObject(-999,-999);
+document.addEventListener("click", (event) => {
+	if (full_load == 0) {
+	    createFallingObject(Math.random() * window.innerWidth, window.innerHeight + 45);
+	}
+});
+
+function createFallingObject(x, y) {
+    const object = new Image();
+    object.src = "particle.webp";  
+    object.style.position = "absolute";
+	let size = Math.random() * 60 + 30 + "px";
+	object.style.width  = size;  
+	object.style.height = size; 
+    object.style.left = `${x - 30}px`;   
+    object.style.top = `${y}px`;
+    object.style.zIndex = "1000";
+	object.style.userSelect = "none";
+
+    // 小谢褍褔邪泄薪褘泄 褍谐芯谢 芯褌 -15 写芯 15 谐褉邪写褍褋芯胁
+    const randomAngle = Math.random() * 30 - 15; 
+    object.style.transform = `rotate(${randomAngle}deg)`;
+
+    // 袛芯斜邪胁谢械薪懈械 芯斜褗械泻褌邪 薪邪 褋褌褉邪薪懈褑褍
+    document.body.appendChild(object);
+
+    // 小谢褍褔邪泄薪芯械 褋屑械褖械薪懈械 锌芯 X
+    const randomOffsetX = Math.random() * 200 - 100;
+
+    // 小谢褍褔邪泄薪芯械 胁褉械屑褟 卸懈蟹薪懈 懈 褋泻芯褉芯褋褌褜
+    const randomDuration = Math.random() * 2 + 2;  // 芯褌 2 写芯 5 褋械泻褍薪写
+    const randomLifetime = Math.random() * 2000 + randomDuration * 1000; // 芯褌 2 写芯 7 褋械泻褍薪写
+	const randomY = Math.random() * 1000;  
+
+    // 袚械薪械褉邪褑懈褟 褍薪懈泻邪谢褜薪芯谐芯 泻谢褞褔械胁芯谐芯 泻邪写褉邪
+    const animationName = `move${Math.random().toString(36).substr(2, 9)}`;
+
+    // 小芯蟹写邪薪懈械 邪薪懈屑邪褑懈懈
+    const styleSheet = document.styleSheets[0];
+    styleSheet.insertRule(`
+        @keyframes ${animationName} {
+            0% {
+                top: ${y}px;
+                left: ${x - 30}px;
+                opacity: 1;
+            }
+            50% {
+                left: ${x - 30 + randomOffsetX / 2}px;
+            }
+            100% {
+                top: ${y - randomY}px;
+                left: ${x - 30 + randomOffsetX}px;
+                opacity: 0;
+            }
+        }
+    `, styleSheet.cssRules.length);
+
+    // 袟邪锌褍褋泻 邪薪懈屑邪褑懈懈 褋 褋谢褍褔邪泄薪芯泄 褋泻芯褉芯褋褌褜褞
+    object.style.animation = `${animationName} ${randomDuration}s ease-in-out forwards`;
+
+    // 校写邪谢械薪懈械 芯斜褗械泻褌邪 锌芯褋谢械 蟹邪胁械褉褕械薪懈褟 邪薪懈屑邪褑懈懈
+    window.__ytGameTimers.setTimeout(() => {
+        object.remove();
+    }, randomLifetime); 
+}
+
+
+
+
+        window.addEventListener('keydown', ev => {
+            if (['ArrowDown', 'ArrowUp', ' '].includes(ev.key)) {
+                ev.preventDefault();
+            }
+        });
+        window.addEventListener('wheel', ev => ev.preventDefault(), { passive: false });
+		
+		
+		const intervalId = window.__ytGameTimers.setInterval(() => {
+			if (counter < 6) {
+				counter += 1; 
+				updateProgress(Math.floor(prog * 85) + start_load + counter);
+			} else {
+				window.__ytGameTimers.clearInterval(intervalId); 
+		}
+	}, 2000); 
+
+        function load_prog(numb) {
+            prog = numb;
+			if (prog !== 1 || full_load === 1) { 
+				updateProgress(Math.floor(prog * 85) + start_load + counter);
+			}
+			
+			if (poki_init && sstart == 0 && numb >= 1) {
+			 	sstart = 1
+				c3_callFunction("start");
+			}
+        }
+
+        function updateProgress(percent) {
+			if (prog !== 1 || full_load === 1) { 
+				if (percent > max_prog) {max_prog = percent}
+				const progressBar = document.getElementById('loading-bar');
+				const progressText = document.getElementById('progress-text');
+				progressText.innerText = max_prog + '%';
+				progressBar.style.width = max_prog + '%'; 
+			}
+        }
+
+	function onGameLoaded() {
+			max_prog = 100;
+			full_load = 1;
+			updateProgress(Math.floor(100));
+            var customLoader = document.getElementById('custom-loader');
+            customLoader.style.opacity = '0';
+			poki_gameLoadingFinished();
+             //xz yandexReady
+                if(!window.idReadyGame){
+                    window.idReadyGame = true;
+                    VolanSdk.yandexReady();
+                }
+            window.__ytGameTimers.setTimeout(() => {
+                customLoader.style.display = 'none';
+               
+            }, 500);
+     }
+	 
+
+
+		// PokiSDK.init().then(() => {
+		// 	poki_init = true;
+		// }).catch(() => {
+		// 	poki_init = true;
+		// });
+
+        //xz 鍔犺浇volansdk
+      loadScript('volan-sdk-local.js', () => {
+
+
+                //xz sdk鍒濆鍖?
+                //test
+                // VolanSdk.IS_FORCE_RELEASE = true;
+                // VolanSdk.IS_CHECK_REWARD_FAIL = true;
+
+                VolanSdk.GAME_YD_APPID = "477995";
+                VolanSdk.GAME_NAME = "mj-beauty-salon";
+
+                return VolanSdk.initVolan().then(()=>{
+
+					//test
+                    // VolanSdk.GAME_LANGUAGE = "hi";
+
+                    switch (VolanSdk.GAME_LANGUAGE) {
+                        case "en": VolanSdk.GAME_LANGUAGE = "en"; break;
+                        // case "ru": VolanSdk.GAME_LANGUAGE = "ru"; break;
+                        // case "es": VolanSdk.GAME_LANGUAGE = "es"; break;
+                        // case "tr": VolanSdk.GAME_LANGUAGE = "tr"; break;
+                        // case "pt": VolanSdk.GAME_LANGUAGE = "pt"; break;
+                        // case "ar": VolanSdk.GAME_LANGUAGE = "ar"; break;
+                        // case "id": VolanSdk.GAME_LANGUAGE = "id"; break;
+                        // case "fr": VolanSdk.GAME_LANGUAGE = "fr"; break;
+                        // case "ja": VolanSdk.GAME_LANGUAGE = "ja"; break;
+                        // case "it": VolanSdk.GAME_LANGUAGE = "it"; break;
+                        // case "de": VolanSdk.GAME_LANGUAGE = "de"; break;
+                        // case "hi": VolanSdk.GAME_LANGUAGE = "hi"; break;
+                        default: VolanSdk.GAME_LANGUAGE = "en"; break;
+                    }
+
+
+
+                    //娓告垙鍚姩浠ｇ爜
+                    window.PokiSDK.rewardedBreak = () => {
+                        return new Promise((resolve, reject) => {
+                            VolanSdk.showRewarded(() => {
+                                resolve(true)
+                            }, () => {
+                                resolve(false);
+                            })
+                        });
+                    }
+                    VolanSdk.gameplayStop = function() {
+                        console.log("===鐜╂硶缁撴潫===");
+                        VolanSdk.IsInLevelBatting = false;
+                        // VolanSdk.showInterstitial( () => {
+                        //     VolanSdk.showFullScreenGames();
+                        // }
+                        // );
+                    }
+                    poki_init = true;
+
+
+				});
+
+            
+          
+
+
+      })
+
+
+
+		function poki_gameLoadingFinished() {
+			if (poki_init) {
+				PokiSDK.gameLoadingFinished();
+			} else {
+				const checkInitInterval = window.__ytGameTimers.setInterval(function() {
+					if (poki_init) {
+						window.__ytGameTimers.clearInterval(checkInitInterval);
+						PokiSDK.gameLoadingFinished();
+					}
+				}, 100); 
+			}
+		}
+		
+	function poki_gameplayStart() {
+		PokiSDK.gameplayStart();
+	}
+
+	function poki_gameplayStop() {
+		PokiSDK.gameplayStop();
+	}
+	
+	function poki_rewardedBreak(adtype, runtime) {
+		c3_callFunction("pokiRewardedBreak", ["start"]);
+		PokiSDK.rewardedBreak({
+			size: adtype
+		}).then((success) => {
+			if (success) {
+				c3_callFunction("pokiRewardedBreak", ["get"]);
+			} else {
+				c3_callFunction("pokiRewardedBreak", ["error"]);
+			}
+			c3_callFunction("pokiRewardedBreak", ["finish"]);
+		}).catch((error) => {
+			c3_callFunction("pokiRewardedBreak", ["error"]);
+		});
+	}
+
+	
+	function poki_commercialBreak(runtime) {
+        //xz 鎻掑睆淇敼
+        c3_callFunction("pokiCommercialBreak", ["start"]);
+
+        var request_now = Date.parse(new Date());
+        if (window.xz_reQuestInterTimestamp) {
+            var request_off = request_now - window.xz_reQuestInterTimestamp;
+            let request_max = 60000;
+            if (request_off <= request_max) {
+                console.log('涓ゆ鎻掑睆骞垮憡鐨勮姹傞棿闅斾笉寰?60绉掞紒锛侊紒');
+                c3_callFunction("pokiCommercialBreak", ["finish"]);
+                return;
+            }
+        }
+        window.xz_reQuestInterTimestamp = Date.parse(new Date());
+
+        VolanSdk.showInterstitial(()=>{
+            c3_callFunction("pokiCommercialBreak", ["finish"]);
+        });
+
+		// PokiSDK.commercialBreak(() => {
+		//   c3_callFunction("pokiCommercialBreak", ["start"]);
+		// }).then(() => {
+		//   c3_callFunction("pokiCommercialBreak", ["finish"]);
+		// });
+	}
+
+        async function loadExternalResources() {
+            try {
+                await Promise.all([
+                    fetch('scripts/main.js').then(response => {
+                        if (response.ok) {
+                            start_load += 3;
+                			updateProgress(Math.floor(prog * 85) + start_load + counter);
+                        }
+                    }),
+                    fetch('data.json').then(response => {
+                        if (response.ok) {
+                            start_load += 2;
+                			updateProgress(Math.floor(prog * 85) + start_load + counter);
+                        }
+                    }),
+                    fetch('scripts/c3main.js').then(response => {
+                        if (response.ok) {
+                            start_load += 4;
+                			updateProgress(Math.floor(prog * 85) + start_load + counter);
+                        }
+                    })
+                ]);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        loadExternalResources();
+    </script>
+</body>
+<style>html{overflow:hidden;background:#151224}body{position:absolute!important;margin:0!important;overflow:hidden!important;width:min(100vw,56.25vh)!important;height:min(100vh,177.777778vw)!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)}canvas{max-width:100%;max-height:100%}</style></head>
+<body>
+<script>
+if (location.protocol.substr(0, 4) === "file")
+{
+	alert("Web exports won't work until you upload them. (When running on the file: protocol, browsers block many features from working for security reasons.)");
+}
+</script>
+<noscript>
+<div id="notSupportedWrap">
+<h2 id="notSupportedTitle">This content requires JavaScript</h2>
+<p class="notSupportedMessage">JavaScript appears to be disabled. Please enable it to view this content.</p>
+</div>
+</noscript>
+<script src="scripts/modernjscheck.js"></script>
+<script src="scripts/supportcheck.js"></script>
+<script>__ytCloudReady.then(function(){var s=document.createElement("script");s.type="module";s.src="scripts/main.js";document.body.appendChild(s)});</script>
+</body>
+</html>

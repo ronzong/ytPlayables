@@ -1,0 +1,83 @@
+
+level_2.png
+size: 356,519
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2_1
+  rotate: false
+  xy: 218, 85
+  size: 100, 37
+  orig: 101, 37
+  offset: 1, 0
+  index: -1
+2_2
+  rotate: false
+  xy: 204, 189
+  size: 111, 68
+  orig: 111, 68
+  offset: 0, 0
+  index: -1
+2_3
+  rotate: false
+  xy: 2, 263
+  size: 240, 254
+  orig: 240, 254
+  offset: 0, 0
+  index: -1
+2_di
+  rotate: true
+  xy: 244, 259
+  size: 83, 104
+  orig: 83, 104
+  offset: 0, 0
+  index: -1
+2_l_1
+  rotate: true
+  xy: 244, 344
+  size: 173, 110
+  orig: 173, 110
+  offset: 0, 0
+  index: -1
+2_l_2
+  rotate: false
+  xy: 32, 83
+  size: 184, 66
+  orig: 184, 66
+  offset: 0, 0
+  index: -1
+2_l_3
+  rotate: false
+  xy: 218, 124
+  size: 108, 63
+  orig: 108, 63
+  offset: 0, 0
+  index: -1
+2_r_1
+  rotate: false
+  xy: 32, 151
+  size: 170, 110
+  orig: 170, 110
+  offset: 0, 0
+  index: -1
+2_r_2
+  rotate: false
+  xy: 32, 15
+  size: 201, 66
+  orig: 201, 66
+  offset: 0, 0
+  index: -1
+2_r_3
+  rotate: false
+  xy: 235, 20
+  size: 108, 63
+  orig: 108, 63
+  offset: 0, 0
+  index: -1
+light_1
+  rotate: true
+  xy: 2, 2
+  size: 259, 28
+  orig: 259, 28
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,21 @@
+{
+  "disableLoadingLogo": true,
+  "advertisement": {
+    "minimumDelayBetweenInterstitial": 60
+  },
+  "leaderboards": [
+    {
+      "id": "main"
+    }
+  ],
+  "platforms": {
+    "yandex": {
+      "sendAnalyticsEvents": false
+    },
+    "crazy_games": {
+      "sendAnalyticsEvents": false
+    }
+  },
+  "forciblySetPlatformId": "yandex",
+  "sendAnalyticsEvents": false
+}

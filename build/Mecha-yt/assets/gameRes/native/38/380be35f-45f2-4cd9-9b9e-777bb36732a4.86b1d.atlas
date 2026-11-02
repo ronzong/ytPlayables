@@ -1,0 +1,167 @@
+
+TX_ShengQiShi.png
+size: 2032,711
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ChuXian_1
+  rotate: true
+  xy: 1098, 55
+  size: 110, 89
+  orig: 170, 115
+  offset: 30, 13
+  index: -1
+ChuXian_2
+  rotate: false
+  xy: 948, 68
+  size: 148, 97
+  orig: 170, 115
+  offset: 11, 9
+  index: -1
+ChuXian_3
+  rotate: false
+  xy: 1361, 2
+  size: 128, 45
+  orig: 170, 115
+  offset: 21, 35
+  index: -1
+ChuXian_4
+  rotate: false
+  xy: 1361, 49
+  size: 120, 45
+  orig: 170, 115
+  offset: 25, 35
+  index: -1
+ChuXian_5
+  rotate: true
+  xy: 1981, 67
+  size: 126, 47
+  orig: 170, 115
+  offset: 22, 34
+  index: -1
+ChuXian_6
+  rotate: true
+  xy: 1981, 195
+  size: 134, 49
+  orig: 170, 115
+  offset: 18, 33
+  index: -1
+ChuXian_7
+  rotate: false
+  xy: 948, 17
+  size: 136, 49
+  orig: 170, 115
+  offset: 17, 33
+  index: -1
+GuangYun
+  rotate: false
+  xy: 1758, 108
+  size: 221, 221
+  orig: 256, 256
+  offset: 18, 17
+  index: -1
+Ring
+  rotate: false
+  xy: 1812, 504
+  size: 205, 205
+  orig: 256, 256
+  offset: 26, 25
+  index: -1
+ZiDan_0
+  rotate: true
+  xy: 1488, 55
+  size: 58, 170
+  orig: 60, 170
+  offset: 2, 0
+  index: -1
+ZiDan_1
+  rotate: true
+  xy: 1189, 36
+  size: 58, 170
+  orig: 60, 170
+  offset: 2, 0
+  index: -1
+ZiDan_2
+  rotate: true
+  xy: 1660, 48
+  size: 58, 170
+  orig: 60, 170
+  offset: 2, 0
+  index: -1
+ZiDan_3
+  rotate: true
+  xy: 1832, 6
+  size: 59, 170
+  orig: 60, 170
+  offset: 1, 0
+  index: -1
+baodian0
+  rotate: true
+  xy: 1812, 331
+  size: 171, 191
+  orig: 300, 300
+  offset: 62, 58
+  index: -1
+baodian1
+  rotate: true
+  xy: 303, 8
+  size: 292, 272
+  orig: 300, 300
+  offset: 1, 11
+  index: -1
+baodian2
+  rotate: false
+  xy: 2, 3
+  size: 299, 297
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+baodian3
+  rotate: false
+  xy: 1196, 96
+  size: 290, 289
+  orig: 300, 300
+  offset: 1, 7
+  index: -1
+baodian4
+  rotate: false
+  xy: 1488, 115
+  size: 268, 270
+  orig: 300, 300
+  offset: 12, 13
+  index: -1
+baodian5
+  rotate: true
+  xy: 948, 167
+  size: 241, 246
+  orig: 300, 300
+  offset: 19, 35
+  index: -1
+chibang
+  rotate: false
+  xy: 2, 302
+  size: 542, 407
+  orig: 546, 423
+  offset: 1, 9
+  index: -1
+guang1
+  rotate: true
+  xy: 1196, 387
+  size: 322, 614
+  orig: 366, 630
+  offset: 22, 10
+  index: -1
+guang2
+  rotate: true
+  xy: 546, 410
+  size: 299, 648
+  orig: 304, 692
+  offset: 0, 35
+  index: -1
+guang3
+  rotate: false
+  xy: 577, 28
+  size: 369, 380
+  orig: 400, 388
+  offset: 2, 3
+  index: -1

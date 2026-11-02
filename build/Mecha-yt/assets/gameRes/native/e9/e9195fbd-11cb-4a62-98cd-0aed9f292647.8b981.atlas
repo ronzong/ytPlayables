@@ -1,0 +1,76 @@
+
+TX_ChongCi.png
+size: 1289,618
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chongci
+  rotate: false
+  xy: 1095, 30
+  size: 113, 227
+  orig: 132, 229
+  offset: 0, 1
+  index: -1
+chongci_di_0
+  rotate: true
+  xy: 746, 253
+  size: 363, 234
+  orig: 450, 300
+  offset: 29, 37
+  index: -1
+chongci_di_1
+  rotate: true
+  xy: 2, 197
+  size: 419, 245
+  orig: 450, 300
+  offset: 31, 27
+  index: -1
+chongci_di_2
+  rotate: true
+  xy: 249, 203
+  size: 413, 249
+  orig: 450, 300
+  offset: 37, 19
+  index: -1
+chongci_di_3
+  rotate: true
+  xy: 500, 217
+  size: 399, 244
+  orig: 450, 300
+  offset: 41, 21
+  index: -1
+chongci_di_4
+  rotate: false
+  xy: 721, 6
+  size: 372, 209
+  orig: 450, 300
+  offset: 41, 55
+  index: -1
+chongci_di_5
+  rotate: false
+  xy: 2, 2
+  size: 365, 193
+  orig: 450, 300
+  offset: 41, 67
+  index: -1
+chongci_di_6
+  rotate: false
+  xy: 369, 28
+  size: 350, 173
+  orig: 450, 300
+  offset: 46, 76
+  index: -1
+chongci_di_7
+  rotate: true
+  xy: 1130, 266
+  size: 350, 157
+  orig: 450, 300
+  offset: 51, 83
+  index: -1
+chongci_di_8
+  rotate: true
+  xy: 982, 259
+  size: 357, 146
+  orig: 450, 300
+  offset: 55, 85
+  index: -1

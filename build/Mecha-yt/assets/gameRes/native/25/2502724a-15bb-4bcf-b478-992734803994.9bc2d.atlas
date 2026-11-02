@@ -1,0 +1,90 @@
+
+gun_11.png
+size: 171,60
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+L
+  rotate: false
+  xy: 145, 2
+  size: 11, 16
+  orig: 13, 17
+  offset: 1, 0
+  index: -1
+L_eye
+  rotate: true
+  xy: 134, 8
+  size: 8, 9
+  orig: 8, 9
+  offset: 0, 0
+  index: -1
+L_foot
+  rotate: true
+  xy: 158, 6
+  size: 15, 10
+  orig: 15, 10
+  offset: 0, 0
+  index: -1
+R_foot
+  rotate: true
+  xy: 158, 6
+  size: 15, 10
+  orig: 15, 10
+  offset: 0, 0
+  index: -1
+L_jian
+  rotate: true
+  xy: 123, 18
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+L_leg
+  rotate: false
+  xy: 145, 20
+  size: 6, 16
+  orig: 6, 16
+  offset: 0, 0
+  index: -1
+R_eye
+  rotate: false
+  xy: 123, 7
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+R_leg
+  rotate: true
+  xy: 153, 23
+  size: 5, 16
+  orig: 5, 17
+  offset: 0, 1
+  index: -1
+body
+  rotate: true
+  xy: 2, 5
+  size: 53, 62
+  orig: 58, 62
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: true
+  xy: 123, 38
+  size: 20, 28
+  orig: 20, 28
+  offset: 0, 0
+  index: -1
+toukui
+  rotate: true
+  xy: 66, 2
+  size: 56, 55
+  orig: 56, 55
+  offset: 0, 0
+  index: -1
+toukui_1
+  rotate: false
+  xy: 153, 30
+  size: 15, 28
+  orig: 15, 28
+  offset: 0, 0
+  index: -1

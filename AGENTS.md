@@ -119,6 +119,11 @@
 
 | 工具 | 用途 |
 | --- | --- |
+| `tools/verify-fb-second-yt.cjs <游戏名>` | 第二批官方套件真实输入、云档刷新与广告分支验收 |
+| `tools/verify-fb-third-yt.cjs <游戏名>` | 第三批官方套件真实输入、云档刷新、广告分支和同源子画布暂停验收 |
+| `tools/verify-fb-fourth-yt.cjs <游戏名>` | 第四批真实操作、云档刷新、广告分支；MJBeautySalon 支持 `--layout` 四种视口检查 |
+| `tools/repack-unity-data.py` | Unity 数据包重组；保留全部条目，支持已授权的 RGBA4444 压缩 |
+| `tools/build-dominators-candidate.cjs` | 历史候选命令兼容入口；已统一生成 Dominators 正式压缩版 |
 | `tools/gen-certs.cjs` | 生成本地 https 自签证书（首次跑一次） |
 | `tools/gen-start-bats.cjs` | 按端口登记表生成各游戏的 `start-<游戏>.bat`（`--list` 只看表） |
 | `tools/stop-https.cjs <端口>` | 关闭该端口上的本地服务；`--list` 看占用（默认只结束 node 进程） |
@@ -196,3 +201,32 @@
 - 单个游戏的细节（来源、改造点、广告位、验证数据、待办）→ `docs/<游戏>接入说明.md`，并在 README 登记。
 - 跨游戏复用的规律、约定、工具入口 → 本文件；新工具同时更新第 5 节表格。
 - 废弃方案写明原因与替代做法，不要用旧结论覆盖最新结论。
+
+### 首批 FB 游戏复用工具（2026-11-01）
+
+- `tools/lib/build-fb-five.cjs`：五款 FB 本地版本构建公共实现；源 SHA256 清单位于 `tools/manifests/fb-five-sources.json`。
+- `tools/verify-fb-five-yt.cjs <游戏名>`：官方套件真实输入、暂停存档、刷新恢复、激励广告拒奖/授奖。
+- `tools/optimize-airport-assets.py`：Unity 音频重编码与资源重组，不删玩法资源/贴图，之后统一 Brotli；依赖与结果见 Airport 接入说明。
+- `tools/export-ad-image.ps1`：生成图等比裁切导出 540×756，源生成图保留。
+
+- 第二批构建公共实现：`tools/lib/build-fb-second.cjs`，源指纹：`tools/manifests/fb-second-sources.json`。
+- 官方套件固定页头会挡住 iframe 顶部；真实输入前把 iframe 顶部留到页头下方，避免点到语言/登录跳转。
+- Construct 自带 localforage 会在载入即探测数据库；Playables 下需在构造阶段替换为云档同调用面接口，不能等游戏启动后仅换 window.localStorage。
+- 云档恢复后动态注入原入口脚本时，要检查 window.onload 是否已错过；不能用超时 gameReady 遮盖黑屏。
+
+### 第三批复用结论（2026-11-02）
+
+- 构建公共实现 `tools/lib/build-fb-third.cjs`，源指纹 `tools/manifests/fb-third-sources.json`；五款的具体来源、补丁、范围见各游戏接入说明，验收摘要 `docs/第三批FB游戏验收摘要.json`。
+- Laya `.ltcb.ls` 可能是二进制 Cubemap，不能只凭 `.ls` 后缀按文本解码；识别 JSON 内容后再改引用，二进制指纹与复制保持原始字节。
+- 云档恢复后才动态加载模块时，原模块可能错过 DOMContentLoaded/load。用真实 document.readyState 判断调用原初始化回调，不能伪造加载事件或提前 gameReady。
+- 原游戏必须使用同源子文档时，在生产 CSP 下验证 srcdoc 与资源绝对同源路径；子文档独立冻结循环/输入/音频，共享父页唯一存储和云档，不能各自覆盖云档。输入事件不会跨 iframe 冒泡，暂停探针需监听可访问子文档；使用真实按下/抬起并至少间隔一帧。
+- 存档验收须区分已提交设置/教程状态与关卡中途内存进度，具体核验的键与未覆盖的结算分支写入单游戏文档。
+
+### 第四批复用结论（2026-11-02）
+
+- 公共构建 `tools/lib/build-fb-fourth.cjs`，只读源指纹 `tools/manifests/fb-fourth-sources.json`；具体补丁与证据边界放在单游戏接入说明，汇总 `docs/第四批FB游戏验收摘要.json`。
+- 定时器替换必须区分调用与类方法声明：`setTimeout(a,b,c){...}` 不能改成 `window.__ytGameTimers.setTimeout(...)`；编译检查原脚本能抓住此类错误。
+- 原包用 IIFE 封装内部模型时，`window.xxx` 不等于内部 `const xxx`；就绪与操作取证应显式提供只读观察入口，不能用超时或提前 ready 遮盖。
+- Cocos 首个 Login 场景可能还在加载；需要等后续 GameCenter 的实际可交互节点。原 blur/focus 的点击继续遮罩若会恢复引擎，需要移除该网页恢复通路，保留正常玩法输入。
+- Construct 在居中固定比例画布中运行时，必须同时修正运行时窗口尺寸和鼠标/指针/触摸坐标；不能只改 CSS。DOM 边框检查之外还要看实际截图和原生按钮操作。调用原项目 save 函数可在平台暂停时提交原存档，不修改业务数值。
+- 本地无头软件 WebGL 需 `--enable-unsafe-swiftshader`；原 Pixi 如果用 failIfMajorPerformanceCaveat 拒绝软件上下文，可以允许真实软件 WebGL，不得伪造上下文或改成假渲染。

@@ -1,0 +1,31 @@
+Reward.png
+size:192,144
+filter:Linear,Linear
+scale:0.5
+Markers(2)
+bounds:2,62,78,79
+offsets:1,0,80,80
+avatar
+bounds:110,2,64,73
+offsets:6,0,76,82
+rotate:90
+fx-circle-blur-02
+bounds:59,10,50,49
+offsets:5,5,58,58
+rotate:90
+fx-special_star
+bounds:167,102,9,10
+offsets:1,0,11,11
+fx-stripes_light
+bounds:153,68,12,73
+offsets:1,1,14,78
+level Romb BG
+bounds:82,71,69,70
+offsets:5,4,80,80
+level Romb Checker
+bounds:168,115,26,22
+offsets:0,0,26,22
+rotate:90
+level Romb Fill
+bounds:2,5,55,55
+offsets:12,12,80,80

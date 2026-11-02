@@ -1,0 +1,160 @@
+
+JuQuan.png
+size: 1896,502
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BUFF_0
+  rotate: false
+  xy: 654, 166
+  size: 324, 334
+  orig: 350, 350
+  offset: 19, 7
+  index: -1
+BUFF_4
+  rotate: false
+  xy: 654, 166
+  size: 324, 334
+  orig: 350, 350
+  offset: 19, 7
+  index: -1
+BUFF_1
+  rotate: true
+  xy: 980, 176
+  size: 324, 304
+  orig: 350, 350
+  offset: 19, 6
+  index: -1
+BUFF_5
+  rotate: true
+  xy: 980, 176
+  size: 324, 304
+  orig: 350, 350
+  offset: 19, 6
+  index: -1
+BUFF_2
+  rotate: false
+  xy: 328, 157
+  size: 324, 343
+  orig: 350, 350
+  offset: 19, 7
+  index: -1
+BUFF_6
+  rotate: false
+  xy: 328, 157
+  size: 324, 343
+  orig: 350, 350
+  offset: 19, 7
+  index: -1
+BUFF_3
+  rotate: false
+  xy: 2, 156
+  size: 324, 344
+  orig: 350, 350
+  offset: 19, 6
+  index: -1
+BaoZha_0
+  rotate: false
+  xy: 1196, 11
+  size: 210, 163
+  orig: 320, 210
+  offset: 56, 10
+  index: -1
+BaoZha_1
+  rotate: true
+  xy: 1682, 22
+  size: 227, 102
+  orig: 320, 210
+  offset: 49, 9
+  index: -1
+BaoZha_2
+  rotate: true
+  xy: 1602, 251
+  size: 249, 121
+  orig: 320, 210
+  offset: 38, 10
+  index: -1
+BaoZha_3
+  rotate: false
+  xy: 132, 24
+  size: 239, 130
+  orig: 320, 210
+  offset: 40, 20
+  index: -1
+BaoZha_4
+  rotate: false
+  xy: 648, 2
+  size: 245, 153
+  orig: 320, 210
+  offset: 45, 20
+  index: -1
+BaoZha_5
+  rotate: false
+  xy: 1408, 42
+  size: 272, 180
+  orig: 320, 210
+  offset: 31, 6
+  index: -1
+BaoZha_6
+  rotate: false
+  xy: 895, 8
+  size: 299, 156
+  orig: 320, 210
+  offset: 18, 45
+  index: -1
+BaoZha_7
+  rotate: true
+  xy: 2, 13
+  size: 141, 128
+  orig: 320, 210
+  offset: 120, 79
+  index: -1
+baodian_0
+  rotate: false
+  xy: 1725, 429
+  size: 163, 71
+  orig: 163, 96
+  offset: 0, 10
+  index: -1
+baodian_1
+  rotate: true
+  xy: 1786, 124
+  size: 110, 85
+  orig: 163, 96
+  offset: 27, 3
+  index: -1
+baodian_2
+  rotate: false
+  xy: 1786, 333
+  size: 108, 94
+  orig: 163, 96
+  offset: 23, 0
+  index: -1
+baodian_3
+  rotate: false
+  xy: 1786, 236
+  size: 106, 95
+  orig: 163, 96
+  offset: 27, 1
+  index: -1
+zidan_0
+  rotate: true
+  xy: 1286, 224
+  size: 276, 156
+  orig: 280, 171
+  offset: 0, 10
+  index: -1
+zidan_1
+  rotate: true
+  xy: 1444, 227
+  size: 273, 156
+  orig: 280, 171
+  offset: 0, 10
+  index: -1
+zidan_2
+  rotate: false
+  xy: 373, 2
+  size: 273, 153
+  orig: 280, 171
+  offset: 0, 10
+  index: -1

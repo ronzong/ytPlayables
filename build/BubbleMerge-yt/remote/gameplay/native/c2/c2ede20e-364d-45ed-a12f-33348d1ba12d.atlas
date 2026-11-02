@@ -1,0 +1,27 @@
+FX_orange_bubble.png
+size:616,389
+filter:Linear,Linear
+Bubble 04 BigOutline FX
+bounds:356,90,72,258
+offsets:8,3,82,268
+rotate:90
+Spark
+bounds:509,27,61,60
+rotate:90
+Spark Blur
+bounds:443,20,68,64
+offsets:3,3,74,70
+rotate:90
+fx-circle-blur
+bounds:2,8,379,352
+offsets:2,3,386,357
+rotate:90
+fx-dot-blur
+bounds:583,362,25,25
+offsets:5,5,35,35
+fx/fx-Blick_star_05
+bounds:356,2,85,86
+offsets:25,20,128,128
+fx/fx-circle-blur-01
+bounds:356,164,225,223
+offsets:11,12,249,248

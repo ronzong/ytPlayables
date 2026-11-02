@@ -1,0 +1,24 @@
+FX_green_bubble.png
+size:393,130
+filter:Linear,Linear
+Bubble 02 BigOutline FX
+bounds:2,7,121,282
+offsets:2,3,127,288
+rotate:90
+Bubble_small
+bounds:349,43,19,19
+offsets:1,1,21,21
+Spark
+bounds:286,2,61,60
+Spark Blur
+bounds:286,64,68,64
+offsets:3,3,74,70
+fx-dot-01
+bounds:356,94,35,34
+offsets:4,6,44,46
+fx/fx-blick-09-2
+bounds:356,94,35,34
+offsets:4,6,44,46
+fx-dot-blur
+bounds:356,67,25,25
+offsets:5,5,35,35

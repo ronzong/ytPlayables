@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script src="https://www.youtube.com/game_api/v1"></script>
+<script src="yt-bridge.js"></script>
+<!-- 本地 SDK 与外部请求守卫必须先于原引擎和平台桥加载。 -->
+
+
+
+<link rel="icon" href="data:,">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"/>
+<title>Boba: Bubble Tea DIY Drink Simulator</title>
+<style>
+  /* Balsamiq Sans из макета, лицензия SIL OFL - можно класть в архив игры.
+     Файлы урезаны до латиницы и кириллицы. Начертаний два: 400 и 700; жирность
+     800-900 в коде браузер отдаёт начертанию 700. */
+  @font-face{font-family:'Balsamiq Sans';src:url('font/balsamiq-sans-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:block;}
+  @font-face{font-family:'Balsamiq Sans';src:url('font/balsamiq-sans-bold.woff2') format('woff2');font-weight:700 1000;font-style:normal;font-display:block;}
+  /* Фон под сценой - фиолетовый, как низ стойки в макете (#4c1c9d): его
+     видно, если сцена где-то не дотягивается до края экрана. */
+  html,body{margin:0;padding:0;height:100%;background:#4c1c9d;overflow:hidden;overscroll-behavior:none;touch-action:none;-webkit-tap-highlight-color:transparent;font-family:'Balsamiq Sans','Trebuchet MS',Arial,sans-serif;}
+  /* Долгое нажатие нигде не выделяет и не открывает меню (правило Яндекс
+     Игр 1.6.1.8): на iPhone меню открывалось там, где нет холста, - например
+     на логотипе экрана загрузки, картинки iOS предлагает сохранить. */
+  *{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;}
+  /* Только своя картинка: правило на все img отключало и чужие - крестик
+     тестовой рекламы Яндекса тоже картинка, и закрыть рекламу было нельзя. */
+  .loading-logo{-webkit-user-drag:none;pointer-events:none;}
+  #wrap{position:fixed;inset:0;overflow:hidden;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:none;}
+  canvas{display:block;width:100%;height:100%;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:none;}
+  #wrap canvas{opacity:0;transition:opacity 180ms ease-out;}
+  #wrap.is-ready canvas{opacity:1;}
+  /* Экран загрузки из макета: паттерн плиткой, логотип и индикатор.
+     Размеры - доли эталонного экрана шириной 1080 px макета. --w - ширина
+     столбца 9:16, который помещается в окно: на телефоне это вся ширина,
+     на компьютере - как у игрового поля. */
+  #loading-screen{
+    --w:min(100vw,56.25vh);
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:grid;
+    place-items:center;
+    background:#fde1c9 url('sprites/loading-pattern.png') center top/var(--w) auto repeat;
+    color:#3a2a55;
+    transition:opacity 220ms ease-out,visibility 220ms;
+  }
+  #loading-screen.is-hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+  .loading-card{
+    width:calc(var(--w)*0.652);
+    text-align:center;
+  }
+  .loading-logo{
+    display:block;
+    width:calc(var(--w)*0.504);
+    height:auto;
+    margin:0 auto calc(var(--w)*0.05);
+  }
+  /* Индикатор как в макете (704x77 px): фиолетовая обводка 6, кремовое
+     поле, розовая полоса с отступом 8 и круглыми концами. */
+  .loading-track{
+    box-sizing:border-box;
+    height:calc(var(--w)*0.0713);
+    padding:calc(var(--w)*0.0074);
+    border:max(2px,calc(var(--w)*0.0056)) solid #7b45b5;
+    border-radius:999px;
+    background:#fef6e3;
+    overflow:hidden;
+  }
+  #loading-progress{
+    width:0%;
+    min-width:calc(var(--w)*0.045);
+    height:100%;
+    border-radius:999px;
+    background:#fc5b87;
+    transition:width 160ms ease-out;
+  }
+  #loading-retry{
+    display:none;
+    margin:18px auto 0;
+    padding:11px 20px;
+    border:3px solid #7b45b5;
+    border-radius:10px;
+    background:#35bf6b;
+    color:#fff;
+    box-shadow:0 5px 0 rgba(65,45,105,0.22);
+    font:700 17px 'Balsamiq Sans','Trebuchet MS',Arial,sans-serif;
+  }
+</style>
+<!-- Playgama Bridge: свой файл, не чужой CDN. Это полная сборка из
+     npm-пакета: модули всех площадок внутри, во время игры SDK ничего не
+     догружает - CSP страницы игры на Яндексе запрещает скрипты с чужих
+     адресов. Лицензия SDK (LGPL) проще, когда он отдельным файлом, а не
+     внутри нашего бандла. Обновлять через tools/update-bridge.sh. Если файл
+     не загрузился, игра работает автономно: без рекламы и с локальным
+     сохранением. В сборке для YouTube (--mode youtube) этот тег вместе с
+     комментарием заменяется на SDK YouTube Playables - см. vite.config.ts. -->
+
+<script type="module" crossorigin="" src="./assets/index-Dli42aJU.js"></script>
+</head>
+<body>
+<div id="wrap"></div>
+<div id="loading-screen" role="status" aria-label="Loading game">
+<div class="loading-card">
+<img class="loading-logo" src="sprites/loading-logo.png" width="544" height="700" alt="Boba: Bubble Tea DIY Drink Simulator"/>
+<div class="loading-track">
+<div id="loading-progress"></div>
+</div>
+<button id="loading-retry" type="button">Reload game</button>
+</div>
+</div>
+</body>
+</html>

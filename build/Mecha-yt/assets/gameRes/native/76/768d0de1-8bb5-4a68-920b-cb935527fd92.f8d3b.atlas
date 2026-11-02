@@ -1,0 +1,13 @@
+
+UI_tx_JianTou.png
+size: 60,85
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiantou
+  rotate: false
+  xy: 2, 2
+  size: 56, 81
+  orig: 60, 87
+  offset: 2, 4
+  index: -1

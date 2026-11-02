@@ -1,0 +1,19 @@
+Reaction_Icons.png
+size:342,179
+filter:Linear,Linear
+Blur-LivesRegular1
+bounds:261,22,74,63
+offsets:0,1,76,65
+rotate:90
+Currency Icons(2)
+bounds:173,79,98,86
+offsets:1,2,100,100
+rotate:90
+Icon UI-Emerald_120x120
+bounds:2,2,169,175
+offsets:18,4,200,200
+Icon_UI-Lives_Unlimited-blur
+bounds:173,3,86,74
+offsets:4,4,94,82
+fx-circle-line
+bounds:261,98,79,79

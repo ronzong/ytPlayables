@@ -1,0 +1,307 @@
+
+浩劫立绘.png
+size: 1984,1010
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 1548, 751
+  size: 213, 257
+  orig: 288, 278
+  offset: 0, 21
+  index: -1
+10
+  rotate: false
+  xy: 1505, 2
+  size: 176, 180
+  orig: 288, 278
+  offset: 9, 6
+  index: -1
+11
+  rotate: false
+  xy: 1681, 491
+  size: 168, 168
+  orig: 288, 278
+  offset: 8, 1
+  index: -1
+12
+  rotate: false
+  xy: 453, 389
+  size: 117, 72
+  orig: 288, 278
+  offset: 8, 6
+  index: -1
+13
+  rotate: true
+  xy: 844, 465
+  size: 71, 43
+  orig: 288, 278
+  offset: 8, 2
+  index: -1
+2
+  rotate: true
+  xy: 1763, 796
+  size: 212, 218
+  orig: 288, 278
+  offset: 76, 60
+  index: -1
+2_00
+  rotate: true
+  xy: 844, 538
+  size: 470, 212
+  orig: 632, 538
+  offset: 153, 189
+  index: -1
+3
+  rotate: true
+  xy: 1242, 206
+  size: 263, 254
+  orig: 288, 278
+  offset: 17, 23
+  index: -1
+4
+  rotate: false
+  xy: 1451, 487
+  size: 228, 258
+  orig: 288, 278
+  offset: 23, 20
+  index: -1
+5
+  rotate: true
+  xy: 1242, 12
+  size: 192, 261
+  orig: 288, 278
+  offset: 8, 0
+  index: -1
+8
+  rotate: true
+  xy: 1242, 12
+  size: 192, 261
+  orig: 288, 278
+  offset: 8, 0
+  index: -1
+6
+  rotate: false
+  xy: 1330, 747
+  size: 216, 261
+  orig: 288, 278
+  offset: 8, 5
+  index: -1
+7
+  rotate: false
+  xy: 1498, 229
+  size: 192, 256
+  orig: 288, 278
+  offset: 9, 3
+  index: -1
+9
+  rotate: true
+  xy: 1058, 539
+  size: 182, 258
+  orig: 288, 278
+  offset: 8, 6
+  index: -1
+L_arm_dowe
+  rotate: true
+  xy: 1051, 468
+  size: 68, 58
+  orig: 68, 58
+  offset: 0, 0
+  index: -1
+L_arm_up
+  rotate: true
+  xy: 1791, 251
+  size: 59, 55
+  orig: 59, 55
+  offset: 0, 0
+  index: -1
+L_bijia
+  rotate: true
+  xy: 1779, 125
+  size: 74, 44
+  orig: 74, 44
+  offset: 0, 0
+  index: -1
+L_dao
+  rotate: true
+  xy: 1058, 723
+  size: 285, 270
+  orig: 288, 273
+  offset: 2, 1
+  index: -1
+L_foot
+  rotate: false
+  xy: 1205, 471
+  size: 75, 66
+  orig: 75, 66
+  offset: 0, 0
+  index: -1
+L_hand
+  rotate: false
+  xy: 1791, 201
+  size: 53, 48
+  orig: 53, 48
+  offset: 0, 0
+  index: -1
+L_jianjia
+  rotate: false
+  xy: 1774, 35
+  size: 74, 88
+  orig: 74, 88
+  offset: 0, 0
+  index: -1
+L_pao
+  rotate: true
+  xy: 1318, 473
+  size: 248, 131
+  orig: 248, 131
+  offset: 0, 0
+  index: -1
+L_shank
+  rotate: true
+  xy: 1692, 220
+  size: 90, 97
+  orig: 90, 97
+  offset: 0, 0
+  index: -1
+L_thigh
+  rotate: true
+  xy: 1850, 13
+  size: 83, 74
+  orig: 83, 74
+  offset: 0, 0
+  index: -1
+R_arm_dowe
+  rotate: false
+  xy: 1681, 661
+  size: 79, 88
+  orig: 79, 88
+  offset: 0, 0
+  index: -1
+R_arm_up
+  rotate: true
+  xy: 1683, 132
+  size: 86, 94
+  orig: 86, 94
+  offset: 0, 0
+  index: -1
+R_bijia
+  rotate: false
+  xy: 377, 388
+  size: 74, 73
+  orig: 74, 73
+  offset: 0, 0
+  index: -1
+R_dao
+  rotate: false
+  xy: 1110, 43
+  size: 130, 423
+  orig: 132, 428
+  offset: 0, 3
+  index: -1
+R_foot
+  rotate: true
+  xy: 1683, 43
+  size: 87, 89
+  orig: 87, 89
+  offset: 0, 0
+  index: -1
+R_hand
+  rotate: false
+  xy: 889, 467
+  size: 64, 69
+  orig: 64, 69
+  offset: 0, 0
+  index: -1
+R_jianjia
+  rotate: false
+  xy: 1111, 470
+  size: 92, 67
+  orig: 92, 67
+  offset: 0, 0
+  index: -1
+R_jianpao
+  rotate: true
+  xy: 1692, 312
+  size: 177, 157
+  orig: 177, 157
+  offset: 0, 0
+  index: -1
+R_shank
+  rotate: false
+  xy: 1851, 443
+  size: 119, 136
+  orig: 119, 137
+  offset: 0, 0
+  index: -1
+R_thigh
+  rotate: true
+  xy: 1850, 98
+  size: 84, 87
+  orig: 84, 87
+  offset: 0, 0
+  index: -1
+R_xiongjia
+  rotate: false
+  xy: 955, 468
+  size: 94, 68
+  orig: 94, 68
+  offset: 0, 0
+  index: -1
+bg
+  rotate: false
+  xy: 1763, 680
+  size: 189, 114
+  orig: 189, 114
+  offset: 0, 0
+  index: -1
+crotch
+  rotate: false
+  xy: 1851, 351
+  size: 113, 90
+  orig: 113, 90
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 1851, 581
+  size: 131, 97
+  orig: 131, 97
+  offset: 0, 0
+  index: -1
+light4
+  rotate: true
+  xy: 572, 5
+  size: 456, 536
+  orig: 462, 536
+  offset: 3, 0
+  index: -1
+light5
+  rotate: true
+  xy: 2, 388
+  size: 620, 373
+  orig: 630, 377
+  offset: 4, 0
+  index: -1
+light_dowe
+  rotate: true
+  xy: 377, 463
+  size: 545, 465
+  orig: 556, 474
+  offset: 5, 4
+  index: -1
+light_up
+  rotate: false
+  xy: 2, 25
+  size: 532, 361
+  orig: 539, 369
+  offset: 4, 4
+  index: -1
+xiong
+  rotate: true
+  xy: 1851, 184
+  size: 165, 103
+  orig: 165, 103
+  offset: 0, 0
+  index: -1

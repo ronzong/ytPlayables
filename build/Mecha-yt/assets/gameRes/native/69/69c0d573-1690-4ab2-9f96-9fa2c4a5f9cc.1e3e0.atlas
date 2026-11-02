@@ -1,0 +1,419 @@
+
+圣骑士.png
+size: 411,1032
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+L_arm
+  rotate: false
+  xy: 117, 47
+  size: 40, 65
+  orig: 44, 70
+  offset: 4, 4
+  index: -1
+L_chi_1
+  rotate: true
+  xy: 164, 378
+  size: 27, 75
+  orig: 43, 82
+  offset: 8, 0
+  index: -1
+L_chi_2
+  rotate: true
+  xy: 202, 806
+  size: 46, 85
+  orig: 46, 87
+  offset: 0, 2
+  index: -1
+L_chi_3
+  rotate: true
+  xy: 202, 963
+  size: 34, 96
+  orig: 36, 97
+  offset: 1, 1
+  index: -1
+L_chi_4
+  rotate: true
+  xy: 183, 565
+  size: 33, 83
+  orig: 34, 85
+  offset: 0, 1
+  index: -1
+L_foot
+  rotate: true
+  xy: 241, 369
+  size: 36, 23
+  orig: 37, 27
+  offset: 0, 0
+  index: -1
+L_foot2
+  rotate: false
+  xy: 197, 116
+  size: 47, 24
+  orig: 57, 25
+  offset: 7, 0
+  index: -1
+R_foot
+  rotate: false
+  xy: 197, 116
+  size: 47, 24
+  orig: 57, 24
+  offset: 7, 0
+  index: -1
+L_hand_1
+  rotate: true
+  xy: 159, 278
+  size: 32, 69
+  orig: 32, 69
+  offset: 0, 0
+  index: -1
+L_hand_2
+  rotate: true
+  xy: 246, 116
+  size: 24, 27
+  orig: 27, 69
+  offset: 2, 0
+  index: -1
+L_hand_3
+  rotate: true
+  xy: 230, 269
+  size: 31, 33
+  orig: 33, 33
+  offset: 2, 0
+  index: -1
+L_hand_4
+  rotate: true
+  xy: 275, 120
+  size: 29, 35
+  orig: 38, 36
+  offset: 9, 1
+  index: -1
+L_jian
+  rotate: true
+  xy: 161, 2
+  size: 44, 64
+  orig: 50, 70
+  offset: 3, 5
+  index: -1
+L_leg_big
+  rotate: true
+  xy: 367, 171
+  size: 39, 42
+  orig: 41, 43
+  offset: 1, 0
+  index: -1
+L_leg_big2
+  rotate: false
+  xy: 281, 5
+  size: 35, 47
+  orig: 35, 47
+  offset: 0, 0
+  index: -1
+R_leg_big
+  rotate: false
+  xy: 281, 5
+  size: 35, 47
+  orig: 35, 47
+  offset: 0, 0
+  index: -1
+L_leg_small
+  rotate: false
+  xy: 318, 4
+  size: 39, 56
+  orig: 39, 57
+  offset: 0, 1
+  index: -1
+L_leg_small2
+  rotate: true
+  xy: 227, 5
+  size: 47, 52
+  orig: 50, 55
+  offset: 0, 0
+  index: -1
+R_arm
+  rotate: false
+  xy: 326, 68
+  size: 39, 51
+  orig: 39, 51
+  offset: 0, 0
+  index: -1
+R_chi_1
+  rotate: true
+  xy: 164, 351
+  size: 25, 75
+  orig: 30, 90
+  offset: 3, 12
+  index: -1
+R_chi_2
+  rotate: true
+  xy: 184, 776
+  size: 28, 85
+  orig: 29, 87
+  offset: 0, 1
+  index: -1
+R_chi_3
+  rotate: true
+  xy: 202, 926
+  size: 35, 91
+  orig: 35, 93
+  offset: 0, 1
+  index: -1
+R_chi_4
+  rotate: true
+  xy: 159, 312
+  size: 37, 72
+  orig: 38, 75
+  offset: 0, 1
+  index: -1
+R_finger_1
+  rotate: false
+  xy: 241, 338
+  size: 22, 29
+  orig: 22, 29
+  offset: 0, 0
+  index: -1
+R_finger_2
+  rotate: false
+  xy: 295, 945
+  size: 11, 16
+  orig: 11, 16
+  offset: 0, 0
+  index: -1
+R_finger_3
+  rotate: false
+  xy: 341, 189
+  size: 24, 21
+  orig: 26, 29
+  offset: 1, 0
+  index: -1
+R_hand_1
+  rotate: true
+  xy: 312, 121
+  size: 28, 27
+  orig: 32, 30
+  offset: 4, 3
+  index: -1
+R_hand_2
+  rotate: true
+  xy: 165, 115
+  size: 25, 30
+  orig: 27, 32
+  offset: 2, 2
+  index: -1
+R_hand_3
+  rotate: true
+  xy: 233, 302
+  size: 34, 30
+  orig: 34, 30
+  offset: 0, 0
+  index: -1
+R_jian
+  rotate: false
+  xy: 367, 118
+  size: 39, 51
+  orig: 39, 51
+  offset: 0, 0
+  index: -1
+R_leg_small
+  rotate: false
+  xy: 284, 62
+  size: 40, 56
+  orig: 40, 56
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 264, 151
+  size: 59, 59
+  orig: 59, 59
+  offset: 0, 0
+  index: -1
+gun_0
+  rotate: false
+  xy: 300, 996
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+gun_1
+  rotate: false
+  xy: 2, 5
+  size: 113, 107
+  orig: 115, 115
+  offset: 2, 5
+  index: -1
+gun_10
+  rotate: false
+  xy: 2, 363
+  size: 160, 49
+  orig: 160, 49
+  offset: 0, 0
+  index: -1
+gun_11
+  rotate: false
+  xy: 266, 348
+  size: 142, 33
+  orig: 142, 33
+  offset: 0, 0
+  index: -1
+gun_12
+  rotate: false
+  xy: 2, 242
+  size: 135, 57
+  orig: 135, 57
+  offset: 0, 0
+  index: -1
+gun_1_1
+  rotate: false
+  xy: 2, 301
+  size: 155, 60
+  orig: 155, 60
+  offset: 0, 0
+  index: -1
+gun_2
+  rotate: false
+  xy: 289, 792
+  size: 116, 116
+  orig: 120, 120
+  offset: 0, 1
+  index: -1
+gun_2_1
+  rotate: false
+  xy: 2, 114
+  size: 131, 126
+  orig: 131, 126
+  offset: 0, 0
+  index: -1
+gun_3
+  rotate: false
+  xy: 266, 383
+  size: 143, 108
+  orig: 155, 125
+  offset: 12, 17
+  index: -1
+gun_3_1
+  rotate: true
+  xy: 184, 600
+  size: 174, 84
+  orig: 174, 85
+  offset: 0, 1
+  index: -1
+gun_4
+  rotate: false
+  xy: 139, 142
+  size: 123, 125
+  orig: 125, 125
+  offset: 1, 0
+  index: -1
+gun_4_1
+  rotate: false
+  xy: 2, 414
+  size: 168, 73
+  orig: 168, 73
+  offset: 0, 0
+  index: -1
+gun_5
+  rotate: false
+  xy: 271, 650
+  size: 138, 140
+  orig: 138, 140
+  offset: 0, 0
+  index: -1
+gun_5_1
+  rotate: true
+  xy: 183, 407
+  size: 156, 81
+  orig: 156, 81
+  offset: 0, 0
+  index: -1
+gun_6
+  rotate: false
+  xy: 265, 212
+  size: 135, 134
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+gun_6_1
+  rotate: false
+  xy: 2, 641
+  size: 180, 179
+  orig: 183, 183
+  offset: 1, 2
+  index: -1
+gun_7
+  rotate: true
+  xy: 270, 493
+  size: 155, 136
+  orig: 156, 137
+  offset: 0, 1
+  index: -1
+gun_7_1
+  rotate: false
+  xy: 2, 999
+  size: 305, 31
+  orig: 308, 37
+  offset: 2, 3
+  index: -1
+gun_8
+  rotate: true
+  xy: 202, 854
+  size: 70, 85
+  orig: 120, 120
+  offset: 27, 19
+  index: -1
+gun_8_1
+  rotate: false
+  xy: 309, 910
+  size: 100, 120
+  orig: 120, 120
+  offset: 16, 0
+  index: -1
+gun_8_2
+  rotate: false
+  xy: 117, 2
+  size: 42, 43
+  orig: 120, 120
+  offset: 35, 42
+  index: -1
+gun_8_3
+  rotate: true
+  xy: 159, 48
+  size: 64, 61
+  orig: 120, 120
+  offset: 31, 26
+  index: -1
+gun_9
+  rotate: true
+  xy: 2, 489
+  size: 150, 179
+  orig: 150, 179
+  offset: 0, 0
+  index: -1
+gun_9_1
+  rotate: true
+  xy: 2, 822
+  size: 175, 198
+  orig: 180, 200
+  offset: 2, 1
+  index: -1
+head
+  rotate: false
+  xy: 222, 54
+  size: 60, 60
+  orig: 65, 63
+  offset: 0, 0
+  index: -1
+kua_1
+  rotate: true
+  xy: 367, 72
+  size: 44, 38
+  orig: 45, 38
+  offset: 1, 0
+  index: -1
+kua_2
+  rotate: false
+  xy: 135, 114
+  size: 28, 26
+  orig: 28, 26
+  offset: 0, 0
+  index: -1

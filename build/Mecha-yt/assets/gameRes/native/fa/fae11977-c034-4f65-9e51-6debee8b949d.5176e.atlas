@@ -1,0 +1,83 @@
+
+TX_ChouJiang.png
+size: 730,598
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Ring1
+  rotate: false
+  xy: 2, 2
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
+Ring2
+  rotate: false
+  xy: 446, 446
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
+guanghuan
+  rotate: false
+  xy: 2, 154
+  size: 442, 442
+  orig: 442, 442
+  offset: 0, 0
+  index: -1
+zhuandong_0
+  rotate: false
+  xy: 154, 12
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+zhuandong_1
+  rotate: false
+  xy: 446, 304
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+zhuandong_2
+  rotate: false
+  xy: 296, 12
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+zhuandong_3
+  rotate: false
+  xy: 446, 162
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+zhuandong_4
+  rotate: false
+  xy: 588, 304
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+zhuandong_5
+  rotate: false
+  xy: 588, 162
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+zhuandong_6
+  rotate: false
+  xy: 438, 12
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+zhuandong_7
+  rotate: false
+  xy: 580, 20
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,2 @@
+/* 原门户只用初始化完成事件作为引擎启动门；此处仅保留本地契约，不加载门户 SDK。 */
+(function(){'use strict';var listeners={};window.miniplay={initAsync:()=>Promise.resolve()};window.ID={Event:{subscribe:function(n,cb){(listeners[n]||(listeners[n]=[])).push(cb)}},init:function(){__ytGameTimers.setTimeout(function(){(listeners['id.init']||[]).forEach(cb=>cb())},0)},getLoginStatus:function(){},login:function(){}};if(window.idAsyncInit)idAsyncInit();})();

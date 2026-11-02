@@ -1,0 +1,31 @@
+{
+  "appName": "flowers-sort",
+  "appVersion": 0,
+  "sizeArea": {
+    "x": 0,
+    "y": 0,
+    "width": 720,
+    "height": 1280
+  },
+  "locale": "ru",
+  "files": [
+    {
+      "id": "assetsConfigFile",
+      "src": "assets/assets.json",
+      "fileType": "text",
+      "loadGroups": ["config"]
+    },
+    {
+      "id": "localeConfigFile",
+      "src": "assets/locales/texts.json",
+      "fileType": "text",
+      "loadGroups": ["config"]
+    },
+    {
+      "id": "staticItemsFile",
+      "src": "assets/static.json",
+      "fileType": "text",
+      "loadGroups": ["config"]
+    }
+  ]
+}

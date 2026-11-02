@@ -1,0 +1,13 @@
+@font-face
+{
+    font-family: YSF-UI-Text-Regular;
+    src: url(assets/fonts/SF-UI-Text-Regular.ttf) format('truetype');
+}
+
+html, body
+{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+}

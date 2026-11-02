@@ -1,0 +1,83 @@
+
+XianDanQiang.png
+size: 1426,222
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+XianDanQiang_BaoDian_0
+  rotate: true
+  xy: 1310, 101
+  size: 119, 114
+  orig: 230, 230
+  offset: 56, 53
+  index: -1
+XianDanQiang_BaoDian_1
+  rotate: false
+  xy: 920, 43
+  size: 182, 177
+  orig: 230, 230
+  offset: 28, 28
+  index: -1
+XianDanQiang_BaoDian_2
+  rotate: false
+  xy: 2, 2
+  size: 230, 218
+  orig: 230, 230
+  offset: 0, 2
+  index: -1
+XianDanQiang_BaoDian_3
+  rotate: false
+  xy: 234, 6
+  size: 228, 214
+  orig: 230, 230
+  offset: 2, 6
+  index: -1
+XianDanQiang_BaoDian_4
+  rotate: false
+  xy: 690, 7
+  size: 228, 213
+  orig: 230, 230
+  offset: 2, 8
+  index: -1
+XianDanQiang_BaoDian_5
+  rotate: false
+  xy: 464, 6
+  size: 224, 214
+  orig: 230, 230
+  offset: 6, 10
+  index: -1
+XianDanQiang_BaoDian_6
+  rotate: false
+  xy: 1104, 47
+  size: 204, 173
+  orig: 230, 230
+  offset: 26, 27
+  index: -1
+XianDanQiang_ZiDan_0
+  rotate: false
+  xy: 1310, 59
+  size: 94, 40
+  orig: 97, 40
+  offset: 2, 0
+  index: -1
+XianDanQiang_ZiDan_1
+  rotate: false
+  xy: 1310, 17
+  size: 94, 40
+  orig: 97, 40
+  offset: 2, 0
+  index: -1
+XianDanQiang_ZiDan_2
+  rotate: false
+  xy: 1104, 5
+  size: 94, 40
+  orig: 97, 40
+  offset: 2, 0
+  index: -1
+XianDanQiang_ZiDan_3
+  rotate: false
+  xy: 1200, 5
+  size: 94, 40
+  orig: 97, 40
+  offset: 2, 0
+  index: -1

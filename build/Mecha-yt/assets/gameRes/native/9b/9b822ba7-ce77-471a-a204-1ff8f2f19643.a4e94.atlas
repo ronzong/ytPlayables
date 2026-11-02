@@ -1,0 +1,34 @@
+
+UI_TX_ZhanDouLi.png
+size: 1458,898
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Light1
+  rotate: false
+  xy: 2, 2
+  size: 1334, 204
+  orig: 1334, 280
+  offset: 0, 38
+  index: -1
+Light2
+  rotate: false
+  xy: 2, 208
+  size: 1102, 688
+  orig: 1124, 750
+  offset: 11, 31
+  index: -1
+Light3
+  rotate: true
+  xy: 1248, 659
+  size: 237, 208
+  orig: 237, 212
+  offset: 0, 2
+  index: -1
+hei
+  rotate: true
+  xy: 1106, 246
+  size: 650, 140
+  orig: 667, 140
+  offset: 10, 0
+  index: -1

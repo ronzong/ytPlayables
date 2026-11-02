@@ -1,0 +1,20 @@
+
+TX_wudi.png
+size: 432,209
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hudun
+  rotate: true
+  xy: 2, 5
+  size: 202, 220
+  orig: 240, 240
+  offset: 22, 15
+  index: -1
+hudun_Ring
+  rotate: false
+  xy: 224, 2
+  size: 206, 205
+  orig: 240, 240
+  offset: 20, 20
+  index: -1

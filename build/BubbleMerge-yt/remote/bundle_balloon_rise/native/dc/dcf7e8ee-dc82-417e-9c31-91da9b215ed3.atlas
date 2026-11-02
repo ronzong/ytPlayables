@@ -1,0 +1,21 @@
+1 step.png
+size:1015,336
+filter:Linear,Linear
+Arrow_Blue
+bounds:869,2,113,186
+Arrow_Pink
+bounds:760,33,77,77
+Arrow_Purple
+bounds:645,33,77,113
+rotate:90
+Arrow_Yellow
+bounds:645,112,222,222
+Arrows_Green
+bounds:337,29,306,305
+BG_01
+bounds:2,2,332,333
+offsets:5,5,342,340
+rotate:90
+Check decor
+bounds:869,190,144,144
+offsets:3,2,149,149

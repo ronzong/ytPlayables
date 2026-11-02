@@ -1,0 +1,81 @@
+Cracked.png
+size:1110,237
+filter:Linear,Linear
+Cracked 222x222/Bubbles CrackedDark 222 x 222
+bounds:226,18,79,217
+offsets:0,0,80,217
+Cracked 222x222/Bubbles CrackedDarkLeft 222 x 222
+bounds:307,2,57,66
+Cracked 222x222/Bubbles CrackedDarkLeftTop 222 x 222
+bounds:790,100,81,17
+offsets:1,0,83,17
+Cracked 222x222/Bubbles CrackedDarkRight 222 x 222
+bounds:863,119,48,116
+Cracked 222x222/Bubbles CrackedLight1 222 x 222
+bounds:433,2,68,48
+rotate:90
+Cracked 222x222/Bubbles CrackedLight2 222 x 222
+bounds:1032,98,52,73
+rotate:90
+Cracked 222x222/Bubbles CrackedLight3 222 x 222
+bounds:366,3,65,65
+Cracked 222x222/Bubbles CrackedLight4 222 x 222
+bounds:913,102,60,45
+Cracked 222x222/Bubbles CrackedRed1 222 x 222
+bounds:939,16,84,59
+offsets:2,3,88,62
+rotate:90
+Cracked 222x222/Bubbles CrackedRed2 222 x 222
+bounds:778,11,72,87
+offsets:2,2,76,90
+Cracked 222x222/Bubbles CrackedRed3 222 x 222
+bounds:913,149,84,86
+offsets:1,3,88,91
+Cracked 222x222/Bubbles CrackedRed4 222 x 222
+bounds:1000,16,80,62
+offsets:2,0,84,63
+rotate:90
+Cracked 222x222/Bubbles CrackedRedLeft 222 x 222
+bounds:1032,152,76,83
+offsets:2,3,80,87
+Cracked 222x222/Bubbles CrackedRedLeftTop 222 x 222
+bounds:483,6,91,64
+offsets:2,3,95,67
+Cracked 222x222/Bubbles CrackedRedRight 222 x 222
+bounds:576,5,88,125
+offsets:2,4,90,130
+rotate:90
+Cracked 222x222/Bubbles RedBacklight 1
+bounds:2,13,222,222
+Cracked 222x222/Group 2
+bounds:307,70,70,165
+offsets:3,1,76,171
+Cracked 222x222/Layer 3
+bounds:1064,63,33,33
+Cracked 222x222/Layer 3 copy
+bounds:2,2,9,9
+Cracked 222x222/p_1
+bounds:379,72,139,163
+offsets:2,0,141,163
+Cracked 222x222/p_2
+bounds:790,119,116,71
+offsets:3,1,120,72
+rotate:90
+Cracked 222x222/p_3
+bounds:520,95,133,140
+offsets:0,1,133,141
+Cracked 222x222/p_4
+bounds:703,2,96,73
+offsets:0,0,101,73
+rotate:90
+Cracked 222x222/p_5
+bounds:975,102,45,55
+offsets:2,3,47,58
+rotate:90
+Cracked 222x222/p_6
+bounds:655,100,135,133
+offsets:0,0,136,133
+rotate:90
+fx/fx-Blick_star_05
+bounds:852,12,85,86
+offsets:25,20,128,128

@@ -1,0 +1,62 @@
+
+UI_TX_ShengliZhiLu.png
+size: 1186,130
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+UI_0
+  rotate: false
+  xy: 2, 66
+  size: 294, 62
+  orig: 320, 80
+  offset: 13, 9
+  index: -1
+UI_1
+  rotate: false
+  xy: 2, 2
+  size: 294, 62
+  orig: 320, 80
+  offset: 13, 9
+  index: -1
+UI_2
+  rotate: false
+  xy: 298, 66
+  size: 294, 62
+  orig: 320, 80
+  offset: 13, 9
+  index: -1
+UI_3
+  rotate: false
+  xy: 298, 2
+  size: 294, 62
+  orig: 320, 80
+  offset: 13, 9
+  index: -1
+UI_4
+  rotate: false
+  xy: 594, 66
+  size: 294, 62
+  orig: 320, 80
+  offset: 13, 9
+  index: -1
+UI_5
+  rotate: false
+  xy: 594, 2
+  size: 294, 62
+  orig: 320, 80
+  offset: 13, 9
+  index: -1
+UI_6
+  rotate: false
+  xy: 890, 66
+  size: 294, 62
+  orig: 320, 80
+  offset: 13, 9
+  index: -1
+UI_7
+  rotate: false
+  xy: 890, 2
+  size: 294, 62
+  orig: 320, 80
+  offset: 13, 9
+  index: -1

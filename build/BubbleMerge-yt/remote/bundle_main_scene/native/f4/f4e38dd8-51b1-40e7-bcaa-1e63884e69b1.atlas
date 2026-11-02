@@ -1,0 +1,52 @@
+location_button.png
+size:616,956
+filter:Linear,Linear
+BG - Active Btn
+bounds:2,696,258,260
+offsets:4,4,266,266
+rotate:90
+BG - Active Btn_3
+bounds:264,696,258,260
+offsets:3,3,264,264
+rotate:90
+LEVEL DISABLED Button - Small
+bounds:2,455,239,240
+offsets:13,17,264,264
+rotate:90
+LEVEL PLAY Button - Small
+bounds:244,455,239,240
+offsets:13,17,264,264
+rotate:90
+LEVEL REPLAY Button - Small
+bounds:2,214,239,240
+offsets:13,17,264,264
+rotate:90
+Level Play Btn - Green
+bounds:244,17,211,211
+offsets:2,2,214,214
+Level Play Btn - Orange
+bounds:2,2,210,212
+offsets:1,1,212,214
+rotate:90
+Level Play base bottom Green
+bounds:486,435,228,126
+rotate:90
+Level Play base top Green
+bounds:526,742,212,39
+rotate:90
+Level Play base top Orange
+bounds:471,205,228,126
+rotate:90
+Level Play base top Orange2
+bounds:567,742,212,39
+rotate:90
+fx-circle-blur-01
+bounds:244,230,225,223
+offsets:11,12,249,248
+fx-circle-line
+bounds:526,665,75,75
+offsets:2,2,79,79
+glow_123
+bounds:457,81,122,128
+offsets:5,0,128,128
+rotate:90

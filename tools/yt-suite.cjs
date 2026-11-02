@@ -688,16 +688,24 @@ async function verifyPauseLocal(opts) {
   const pictureMovingBefore = shotA1 !== shotA2;
   console.log('暂停前两张截图是否不同 = ' + pictureMovingBefore);
 
-  // 输入是否被拦：在 document 上装一个探针，统计实际收到的 pointerdown
+  // 输入是否被拦：同源内联子文档的事件不冒泡到父 document，也须统计真实 pointerdown。
   await s.eval(`(() => {
     window.__probeHits = 0;
-    document.addEventListener('pointerdown', () => { window.__probeHits++; }, true);
+    const root = window;
+    function attach(w) {
+      w.document.addEventListener('pointerdown', () => { root.__probeHits++; }, true);
+      for (const frame of w.document.querySelectorAll('iframe')) {
+        try { if (frame.contentWindow.document) attach(frame.contentWindow); } catch (_) { /* 只检查可访问的同源子页 */ }
+      }
+    }
+    attach(window);
     return 'probe-ready';
   })()`);
   const probeHits = () => s.eval('window.__probeHits');
   const clickCenter = async () => {
-    await s.send('Input.dispatchMouseEvent', { type: 'mousePressed', x: 600, y: 400, button: 'left', clickCount: 1 });
-    await s.send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: 600, y: 400, button: 'left', clickCount: 1 });
+    await s.send('Input.dispatchMouseEvent', { type: 'mousePressed', x: 600, y: 400, button: 'left', buttons: 1, clickCount: 1 });
+    await sleep(150);
+    await s.send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: 600, y: 400, button: 'left', buttons: 0, clickCount: 1 });
   };
   await clickCenter();
   await sleep(300);

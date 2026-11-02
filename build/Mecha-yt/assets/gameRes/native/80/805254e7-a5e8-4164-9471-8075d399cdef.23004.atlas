@@ -1,0 +1,153 @@
+
+TX_JiGuangPao.png
+size: 1538,586
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BG_Light_02_000
+  rotate: false
+  xy: 924, 71
+  size: 87, 256
+  orig: 128, 256
+  offset: 24, 0
+  index: -1
+BG_Light_02_001
+  rotate: false
+  xy: 621, 328
+  size: 113, 256
+  orig: 128, 256
+  offset: 15, 0
+  index: -1
+BG_Light_02_002
+  rotate: false
+  xy: 818, 71
+  size: 104, 256
+  orig: 128, 256
+  offset: 0, 0
+  index: -1
+BG_Light_02_003
+  rotate: false
+  xy: 586, 16
+  size: 117, 256
+  orig: 128, 256
+  offset: 4, 0
+  index: -1
+BG_Light_02_004
+  rotate: false
+  xy: 458, 16
+  size: 126, 256
+  orig: 128, 256
+  offset: 2, 0
+  index: -1
+BG_Light_02_005
+  rotate: false
+  xy: 328, 5
+  size: 128, 256
+  orig: 128, 256
+  offset: 0, 0
+  index: -1
+BG_Light_02_006
+  rotate: false
+  xy: 705, 70
+  size: 111, 256
+  orig: 128, 256
+  offset: 0, 0
+  index: -1
+BG_Light_02_007
+  rotate: false
+  xy: 1013, 71
+  size: 83, 256
+  orig: 128, 256
+  offset: 19, 0
+  index: -1
+Light1
+  rotate: false
+  xy: 736, 434
+  size: 800, 150
+  orig: 800, 150
+  offset: 0, 0
+  index: -1
+Light2
+  rotate: false
+  xy: 736, 329
+  size: 800, 103
+  orig: 800, 150
+  offset: 0, 18
+  index: -1
+baodian_0
+  rotate: false
+  xy: 1387, 196
+  size: 131, 131
+  orig: 150, 150
+  offset: 4, 4
+  index: -1
+baodian_1
+  rotate: true
+  xy: 1249, 25
+  size: 150, 146
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
+baodian_2
+  rotate: true
+  xy: 1098, 25
+  size: 150, 149
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
+baodian_3
+  rotate: false
+  xy: 1098, 177
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
+baodian_4
+  rotate: false
+  xy: 1250, 191
+  size: 135, 136
+  orig: 150, 150
+  offset: 7, 12
+  index: -1
+baodian_5
+  rotate: true
+  xy: 1397, 75
+  size: 119, 129
+  orig: 150, 150
+  offset: 13, 16
+  index: -1
+baodian_6
+  rotate: true
+  xy: 1397, 2
+  size: 71, 110
+  orig: 150, 150
+  offset: 33, 21
+  index: -1
+爆点_0
+  rotate: false
+  xy: 2, 28
+  size: 324, 227
+  orig: 350, 230
+  offset: 20, 0
+  index: -1
+爆点_1
+  rotate: true
+  xy: 2, 257
+  size: 327, 230
+  orig: 350, 230
+  offset: 17, 0
+  index: -1
+爆点_2
+  rotate: true
+  xy: 234, 263
+  size: 321, 190
+  orig: 350, 230
+  offset: 20, 35
+  index: -1
+爆点_3
+  rotate: true
+  xy: 426, 274
+  size: 310, 193
+  orig: 350, 230
+  offset: 25, 32
+  index: -1

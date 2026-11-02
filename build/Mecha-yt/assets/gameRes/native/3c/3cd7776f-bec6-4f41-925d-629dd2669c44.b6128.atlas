@@ -1,0 +1,76 @@
+
+屠夫钩子.png
+size: 81,297
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+L_hand_1
+  rotate: false
+  xy: 2, 2
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1
+L_hand_2
+  rotate: false
+  xy: 2, 88
+  size: 70, 45
+  orig: 70, 45
+  offset: 0, 0
+  index: -1
+L_hand_3
+  rotate: false
+  xy: 2, 135
+  size: 74, 48
+  orig: 74, 48
+  offset: 0, 0
+  index: -1
+L_hand_4
+  rotate: true
+  xy: 36, 2
+  size: 31, 32
+  orig: 31, 32
+  offset: 0, 0
+  index: -1
+gouzi_1
+  rotate: true
+  xy: 62, 264
+  size: 31, 14
+  orig: 31, 14
+  offset: 0, 0
+  index: -1
+gouzi_2
+  rotate: false
+  xy: 2, 58
+  size: 76, 28
+  orig: 76, 28
+  offset: 0, 0
+  index: -1
+gouzi_3
+  rotate: true
+  xy: 62, 209
+  size: 20, 17
+  orig: 20, 17
+  offset: 0, 0
+  index: -1
+gouzi_4
+  rotate: false
+  xy: 2, 35
+  size: 72, 21
+  orig: 72, 21
+  offset: 0, 0
+  index: -1
+gouzi_5
+  rotate: true
+  xy: 62, 231
+  size: 31, 14
+  orig: 31, 14
+  offset: 0, 0
+  index: -1
+gouzi_Light
+  rotate: false
+  xy: 2, 185
+  size: 58, 110
+  orig: 75, 110
+  offset: 17, 0
+  index: -1

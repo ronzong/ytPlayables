@@ -1,0 +1,69 @@
+
+Sence_TX_WuQi_BaiFang.png
+size: 365,1082
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Light
+  rotate: true
+  xy: 2, 696
+  size: 384, 182
+  orig: 478, 226
+  offset: 47, 0
+  index: -1
+WuQiBaiFang_0
+  rotate: true
+  xy: 2, 16
+  size: 228, 135
+  orig: 250, 200
+  offset: 12, 0
+  index: -1
+WuQiBaiFang_1
+  rotate: true
+  xy: 2, 246
+  size: 228, 157
+  orig: 250, 200
+  offset: 12, 0
+  index: -1
+WuQiBaiFang_2
+  rotate: true
+  xy: 186, 856
+  size: 224, 169
+  orig: 250, 200
+  offset: 14, 0
+  index: -1
+WuQiBaiFang_3
+  rotate: true
+  xy: 2, 476
+  size: 218, 171
+  orig: 250, 200
+  offset: 17, 0
+  index: -1
+WuQiBaiFang_4
+  rotate: true
+  xy: 186, 642
+  size: 212, 177
+  orig: 250, 200
+  offset: 20, 0
+  index: -1
+WuQiBaiFang_5
+  rotate: true
+  xy: 175, 422
+  size: 218, 186
+  orig: 250, 200
+  offset: 17, 0
+  index: -1
+WuQiBaiFang_6
+  rotate: true
+  xy: 161, 196
+  size: 224, 192
+  orig: 250, 200
+  offset: 14, 0
+  index: -1
+WuQiBaiFang_7
+  rotate: false
+  xy: 139, 2
+  size: 224, 192
+  orig: 250, 200
+  offset: 14, 0
+  index: -1

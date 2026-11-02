@@ -1,0 +1,62 @@
+
+结算宝箱.png
+size: 628,1014
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+B
+  rotate: false
+  xy: 570, 462
+  size: 46, 70
+  orig: 48, 71
+  offset: 2, 1
+  index: -1
+L
+  rotate: true
+  xy: 372, 366
+  size: 166, 196
+  orig: 175, 196
+  offset: 0, 0
+  index: -1
+R
+  rotate: true
+  xy: 384, 534
+  size: 168, 228
+  orig: 168, 228
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 384, 704
+  size: 308, 239
+  orig: 337, 239
+  offset: 29, 0
+  index: -1
+guang2_00
+  rotate: false
+  xy: 2, 338
+  size: 368, 331
+  orig: 380, 380
+  offset: 12, 16
+  index: -1
+guang2_01
+  rotate: false
+  xy: 2, 671
+  size: 380, 341
+  orig: 380, 380
+  offset: 0, 13
+  index: -1
+guang3
+  rotate: false
+  xy: 309, 17
+  size: 317, 319
+  orig: 380, 380
+  offset: 57, 10
+  index: -1
+guang_00
+  rotate: false
+  xy: 2, 2
+  size: 305, 334
+  orig: 400, 400
+  offset: 2, 50
+  index: -1

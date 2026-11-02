@@ -1,0 +1,62 @@
+
+TX_JinJie_BingXuePao.png
+size: 1652,206
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bingdong_0
+  rotate: false
+  xy: 2, 2
+  size: 210, 202
+  orig: 220, 210
+  offset: 4, 3
+  index: -1
+bingdong_1
+  rotate: false
+  xy: 1051, 2
+  size: 199, 202
+  orig: 220, 210
+  offset: 19, 3
+  index: -1
+bingdong_2
+  rotate: false
+  xy: 844, 2
+  size: 205, 202
+  orig: 220, 210
+  offset: 15, 3
+  index: -1
+bingdong_3
+  rotate: false
+  xy: 1252, 2
+  size: 198, 202
+  orig: 220, 210
+  offset: 22, 3
+  index: -1
+bingdong_4
+  rotate: false
+  xy: 1452, 2
+  size: 198, 202
+  orig: 220, 210
+  offset: 17, 3
+  index: -1
+bingdong_5
+  rotate: false
+  xy: 636, 2
+  size: 206, 202
+  orig: 220, 210
+  offset: 13, 3
+  index: -1
+bingdong_6
+  rotate: false
+  xy: 214, 2
+  size: 210, 202
+  orig: 220, 210
+  offset: 10, 3
+  index: -1
+bingdong_7
+  rotate: false
+  xy: 426, 2
+  size: 208, 202
+  orig: 220, 210
+  offset: 5, 3
+  index: -1

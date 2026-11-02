@@ -1,0 +1,515 @@
+<!DOCTYPE html><html lang="en" style="height:100%;height:100dvh;overflow:hidden;"><head>
+<script src="https://www.youtube.com/game_api/v1"></script>
+<script src="yt-bridge.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Garden Slide — a delightful sliding puzzle game. Slide through the garden to leave a trail and fill every tile!">
+    <title>Garden Slide</title>
+
+    <!-- CrazyGames SDK v3 (must load before game scripts) -->
+    
+
+
+  <script>__ytCloudReady.then(function(){var s=document.createElement("script");s.type="module";s.src="./assets/index-DfOSjgH0.js";document.head.appendChild(s)});</script>
+  <link rel="modulepreload" crossorigin="" href="./assets/levels-CsMdlfNd.js">
+  <link rel="stylesheet" crossorigin="" href="./assets/index-BlnZsjCf.css">
+<link rel="canonical" href="https://www.crazygames.com/game/garden-slide"></head>
+
+<body style="-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;">
+
+    <!-- SVG Symbols -->
+    <svg style="display:none">
+        <symbol id="coin-m" viewBox="0 0 100 100">
+            <image href="UI/wreath.png" x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid meet"></image>
+        </symbol>
+        <symbol id="ad-icon" viewBox="0 0 100 100">
+            <!-- Rectangular Rewarded Ad Badge with Play Symbol (CrazyGames Standard) -->
+            <rect x="6" y="16" width="88" height="68" rx="14" fill="#0f172a" stroke="rgba(255,255,255,0.4)" stroke-width="4"></rect>
+            <path d="M40 33 L68 50 L40 67 Z" fill="#ffffff"></path>
+        </symbol>
+    </svg>
+
+    <!-- Background image layer -->
+    <div id="bg-image-layer"></div>
+
+    <!-- Floating deco tile layer -->
+    <div id="deco-layer"></div>
+
+    <!-- Global Coin HUD -->
+    <div class="coin-hud">
+        <svg class="coin-icon">
+            <use xlink:href="#coin-m"></use>
+        </svg>
+        <span id="global-coin-count">0</span>
+    </div>
+
+    <!-- ── MENU SCREEN ── -->
+    <div id="menu-screen" class="screen active">
+        <img id="menu-logo" src="UI/logo.webp" alt="Garden Slide">
+        <div class="mascot-container">
+            <canvas id="menu-dog-canvas"></canvas>
+
+            <div class="float-wrap float-tl">
+                <button id="btn-daily-reward" class="floating-btn" onclick="showDailyRewards()">
+                    <img src="UI/calendar.png" alt="Reward">
+                    <div class="notification-dot"></div>
+                </button>
+            </div>
+
+            <div class="float-wrap float-bl">
+                <button id="btn-lucky-spin" class="floating-btn" onclick="showLuckySpin()">
+                    <img src="UI/fortune-wheel.png" alt="Spin">
+                    <div class="notification-dot"></div>
+                </button>
+            </div>
+
+            <div class="float-wrap float-tr">
+                <button id="btn-quests" class="floating-btn" onclick="showQuests()">
+                    <img src="UI/quest.png" alt="Quests">
+                    <div class="notification-dot"></div>
+                </button>
+            </div>
+
+
+        </div>
+        <button id="btn-play" onclick="startGame()"><img src="UI/play.png" alt="Play" style="width: 24px; height: 24px; margin-right: 8px; vertical-align: middle;"> Play</button>
+        <button id="btn-levels" onclick="showLevelSelect()"><img src="UI/star.png" alt="Level Select" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;"> Level Select</button>
+        <div class="menu-sub-btns-container">
+            <button id="btn-customize" onclick="showCustomize()"><img src="UI/color-plate.png" alt="Skin" style="width: 20px; height: 20px; margin-right: 6px; vertical-align: middle;"> Skin</button>
+            <button id="btn-shop" onclick="showShop()"><img src="UI/shopping-cart.png" alt="Shop" style="width: 20px; height: 20px; margin-right: 6px; vertical-align: middle;"> Shop</button>
+            <button id="btn-howto" onclick="showHowTo()"><img src="UI/love.png" alt="Help" style="width: 20px; height: 20px; margin-right: 6px; vertical-align: middle;"> Help</button>
+        </div>
+    </div>
+
+    <!-- ── HOW TO PLAY POPUP ── -->
+    <div id="howto-popup" class="modal-overlay">
+        <div class="modal-box">
+            <div class="shop-header" style="padding: 12px 16px 8px; min-height: unset;">
+                <div class="shop-title" style="font-size: 1.3rem; flex:1; text-align:center; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                    <img src="UI/lightbulb.png" alt="Help" style="width: 24px; height: 24px; vertical-align: middle;">
+                    How to Play</div>
+            </div>
+            <div class="howto-content">
+                <div class="howto-step">
+                    <div class="step-icon"><img src="UI/left-click.png" alt="Swipe" style="width: 32px; height: 32px; display: block; object-fit: contain;"></div>
+                    <div class="step-text"><b>SWIPE TO SLIDE:</b> Swipe or use <b>WASD / Arrows</b> to slide. Worms slide until hitting a wall.</div>
+                </div>
+                <div class="howto-step">
+                    <div class="step-icon"><img src="UI/target.png" alt="Target" style="width: 32px; height: 32px; display: block; object-fit: contain;"></div>
+                    <div class="step-text"><b>FILL WITHIN LIMITS:</b> Grow each worm to fill all tiles within its target length limit (top HUD).</div>
+                </div>
+                <div class="howto-step">
+                    <div class="step-icon"><img src="UI/spacebar.png" alt="Switch" style="width: 32px; height: 32px; display: block; object-fit: contain;"></div>
+                    <div class="step-text"><b>SWITCH WORMS:</b> Tap the other worm or press <b>SPACE</b> to switch active control!</div>
+                </div>
+                <div class="howto-step">
+                    <div class="step-icon"><img src="UI/lightbulb.png" alt="Hint" style="width: 32px; height: 32px; display: block; object-fit: contain;"></div>
+                    <div class="step-text"><b>HINTS &amp; RESTART:</b> Use <b>HINT</b> if you get stuck, or tap <b>↺</b> to restart anytime.</div>
+                </div>
+                <div class="howto-step">
+                    <div class="step-icon"><img src="UI/wreath.png" alt="Wreath" style="width: 32px; height: 32px; display: block; object-fit: contain;"></div>
+                    <div class="step-text"><b>EARN REWARDS:</b> Clear stages to earn Wreaths &amp; unlock fun new skins in the shop!</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal" onclick="closeHowTo()">Got it!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── LEVEL SELECT SCREEN ── -->
+    <div id="level-select-screen" class="screen">
+        <div id="ls-header">
+            <div id="ls-title">🌿 Stages</div>
+            <button id="btn-back-menu" onclick="showMenu()">← Shop</button>
+        </div>
+        <div id="level-grid"></div>
+        <button id="btn-scroll-top" onclick="document.getElementById('level-select-screen').scrollTo({top:0, behavior:'smooth'})">↑</button>
+    </div>
+
+    <!-- ── GAME SCREEN ── -->
+    <div id="game-screen" class="screen">
+
+        <!-- Canvas (center) -->
+        <div id="canvas-wrap" style="position: relative;">
+            <!-- Worm Length Marker HUD (Anchored directly to top edge of level board) -->
+            <div id="worm-length-hud" style="position: absolute; top: -42px; left: 50%; transform: translateX(-50%); background: rgba(30, 41, 59, 0.88); backdrop-filter: blur(8px); border: 2px solid #ffffff; border-radius: 50px; padding: 4px 14px; display: flex; align-items: center; gap: 12px; z-index: 100; box-shadow: 0 6px 18px rgba(0,0,0,0.25); font-family: 'Fredoka One', cursive; pointer-events: auto; white-space: nowrap; transition: opacity 0.4s ease; opacity: 1;">
+
+                <!-- Worm 1 -->
+                <div id="worm1-hud-group" onclick="selectWorm(0)" style="display: flex; align-items: center; gap: 6px; transition: all 0.2s ease; cursor: pointer; pointer-events: auto; padding: 2px 4px; border-radius: 20px;">
+                    <span id="worm1-hud-label" style="font-size: 12px; color: #fbbf24; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">W1</span>
+                    <div id="worm1-bar-box" style="width: 55px; height: 9px; background: rgba(0, 0, 0, 0.4); border-radius: 10px; overflow: hidden; position: relative; border: 1px solid rgba(251, 191, 36, 0.4);">
+                        <div id="worm1-bar-fill" style="width: 0%; height: 100%; background: #fbbf24; border-radius: 10px; transition: width 0.2s ease, background 0.2s ease;">
+                        </div>
+                    </div>
+                    <span id="worm1-length-num" style="font-size: 13px; color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.6); min-width: 26px;">0/0</span>
+                </div>
+
+                <!-- Separator -->
+                <div id="worm-hud-sep" style="width: 2px; height: 16px; background: rgba(255,255,255,0.2); border-radius: 2px;"></div>
+
+                <!-- Worm 2 -->
+                <div id="worm2-hud-group" onclick="selectWorm(1)" style="display: flex; align-items: center; gap: 6px; transition: all 0.2s ease; cursor: pointer; pointer-events: auto; padding: 2px 4px; border-radius: 20px;">
+                    <span id="worm2-hud-label" style="font-size: 12px; color: #a855f7; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">W2</span>
+                    <div id="worm2-bar-box" style="width: 55px; height: 9px; background: rgba(0, 0, 0, 0.4); border-radius: 10px; overflow: hidden; position: relative; border: 1px solid rgba(168, 85, 247, 0.4);">
+                        <div id="worm2-bar-fill" style="width: 0%; height: 100%; background: #a855f7; border-radius: 10px; transition: width 0.2s ease, background 0.2s ease;">
+                        </div>
+                    </div>
+                    <span id="worm2-length-num" style="font-size: 13px; color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.6); min-width: 26px;">0/0</span>
+                </div>
+
+            </div>
+            <canvas id="gameCanvas"></canvas>
+        </div>
+
+        <!-- Win/Stuck overlay -->
+        <div id="overlay">
+            <canvas id="overlay-dog-canvas"></canvas>
+            <img id="overlay-success-img" src="UI/success.png" alt="Victory!" style="display:none;">
+            <div id="overlay-title">Delicious!</div>
+            <div id="overlay-sub">Every tile is creamy!</div>
+            <div class="overlay-btns" id="overlay-btns">
+                <button class="overlay-btn" onclick="nextLevel()">Next Stage →</button>
+                <button class="overlay-btn secondary" onclick="resetLevel()">↺ Reset</button>
+            </div>
+        </div>
+
+        <!-- Level flash (appears briefly on level change) -->
+        <div id="level-flash"></div>
+
+        <!-- Hidden tracking -->
+        <div id="hid" style="display:none">
+            <span id="move-count">0</span>
+            <span id="level-num">1</span>
+            <span id="fill-current">0</span>
+            <span id="fill-total">0</span>
+            <div id="fill-bar-inner"></div>
+            <div id="level-dots"></div>
+        </div>
+
+        <!-- Top Left Controls -->
+        <div class="hud-top-left">
+            <!-- Hint button row: button + label beside it (label never touches button UI) -->
+            <div style="display:flex;align-items:center;gap:6px;">
+                <button class="btn icon-btn" id="btn-hint" onclick="toggleHint()">
+                    <svg width="60%" height="60%" viewBox="0 0 100 100">
+                        <use xlink:href="#ad-icon"></use>
+                    </svg>
+                </button>
+                <!-- Label beside the button — shows HINT/MAX state -->
+                <span id="hint-label" style="font-size:22px;font-weight:900;letter-spacing:1px;color:#fff;-webkit-text-stroke:0.8px #000;white-space:nowrap;pointer-events:none;">HINT</span>
+            </div>
+            <div id="reset-wrapper" style="display:flex;align-items:center;gap:6px;">
+                <button class="btn icon-btn" id="btn-reset" onclick="resetLevel()">↺</button>
+                <span id="reset-shortcut-label" style="font-size:22px;font-weight:900;letter-spacing:1px;color:#fff;-webkit-text-stroke:0.8px #000;white-space:nowrap;pointer-events:none;">R</span>
+            </div>
+
+            <!-- HUD Lucky Spin: spawns only when Free Spin is ready -->
+            <div id="hud-lucky-spin-wrapper" style="display:none;align-items:center;gap:6px;">
+                <button class="btn icon-btn" id="hud-btn-lucky-spin" onclick="showLuckySpin()">
+                    <img src="UI/fortune-wheel.png" style="width: 60%; height: 60%; pointer-events: none;">
+                    <div class="notification-dot"></div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Top Right Controls -->
+        <div class="hud-top-right">
+            <div class="sound-split-btn icon-btn" id="btn-sound-split">
+                <button class="split-half split-music" id="btn-music" onclick="toggleMusic()" title="Music">
+                    <span class="split-icon-wrapper">
+                        <img src="UI/musical-note.png" class="split-icon" id="icon-music" alt="Music">
+                        <div class="mute-line"></div>
+                    </span>
+                </button>
+                <button class="split-half split-sfx" id="btn-sfx" onclick="toggleSFX()" title="SFX">
+                    <span class="split-icon-wrapper">
+                        <img src="UI/volume.png" class="split-icon" id="icon-sfx" alt="SFX">
+                        <div class="mute-line"></div>
+                    </span>
+                </button>
+                <div class="split-diagonal"></div>
+            </div>
+            <button class="btn icon-btn" id="btn-pause" onclick="showMenu()">
+                <span class="icon-bars"><span></span><span></span></span>
+            </button>
+            <!-- HUD Quests: spawns only when a reward is ready to claim -->
+            <button class="btn icon-btn" id="hud-btn-quests" onclick="showQuests()" style="display:none;">
+                <img src="UI/quest.png" style="width: 60%; height: 60%; pointer-events: none;">
+                <div class="notification-dot"></div>
+            </button>
+        </div>
+
+        <!-- Hint panel (above controls) -->
+        <div id="hint-panel"></div>
+
+        <!-- Tutorial banner — top-center, first play only -->
+        <div id="tutorial-banner"></div>
+
+    </div>
+
+    <!-- ── SHOP SCREEN (Coins only) ── -->
+    <div id="shop-screen">
+        <div class="shop-header">
+            <button id="btn-close-shop" class="btn icon-btn" onclick="closeShop()">✕</button>
+            <div class="shop-title">🏪 Garden Shop</div>
+        </div>
+        <!-- Coins -->
+        <div class="shop-container" id="coins-tab">
+            <div class="shop-card premium">
+                <div class="card-tag">Free!</div>
+                <div class="card-icons">
+                    <svg class="coin-icon small">
+                        <use xlink:href="#coin-m"></use>
+                    </svg>
+                    <svg class="coin-icon">
+                        <use xlink:href="#coin-m"></use>
+                    </svg>
+                    <svg class="coin-icon small">
+                        <use xlink:href="#coin-m"></use>
+                    </svg>
+                </div>
+                <div class="card-value">500</div>
+                <button class="claim-btn" id="btn-free-pack" onclick="claimFreePack()">
+                    <svg width="28" height="28">
+                        <use xlink:href="#ad-icon"></use>
+                    </svg>
+                    Ad
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── SKIN SCREEN ── -->
+    <div id="skin-screen">
+        <div class="shop-header">
+            <button id="btn-close-skin" class="btn icon-btn" onclick="closeSkin()">✕</button>
+            <div class="shop-title">🌿 My Skins</div>
+        </div>
+        <div class="skin-tabs-container">
+            <div class="skin-tabs-track">
+                <div id="skin-tab-slider" class="skin-tab-slider"></div>
+                <button id="skin-tab-char1" class="skin-tab active" onclick="selectSkinCharTab(1)">Worm 1</button>
+                <button id="skin-tab-char2" class="skin-tab" onclick="selectSkinCharTab(2)">Worm 2</button>
+            </div>
+        </div>
+        <div class="skin-scroll-body">
+            <!-- ── COMMON SECTION ── -->
+            <div class="skin-section-header rarity-common-header">
+                <span class="section-label"><span class="section-dot"></span> Common</span>
+            </div>
+            <div class="skin-grid">
+                <div class="skin-card rarity-common" id="skin-card-yellow">
+                    <div class="skin-preview"><canvas id="skin-preview-yellow" width="80" height="80"></canvas></div>
+                    <div class="skin-name">Yellow</div>
+                    <div class="skin-cost" style="visibility: hidden;"><svg class="coin-icon" style="width:20px;height:20px">
+                            <use xlink:href="#coin-m"></use>
+                        </svg> 0</div>
+                    <button class="skin-btn free-tag" id="skin-btn-yellow">Free</button>
+                </div>
+                <div class="skin-card rarity-common" id="skin-card-purple">
+                    <div class="skin-preview"><canvas id="skin-preview-purple" width="80" height="80"></canvas></div>
+                    <div class="skin-name">Purple</div>
+                    <div class="skin-cost"><svg class="coin-icon" style="width:20px;height:20px">
+                            <use xlink:href="#coin-m"></use>
+                        </svg> 500</div>
+                    <button class="skin-btn buy" id="skin-btn-purple" onclick="buySkin('purple', 500)">Buy</button>
+                    <button class="skin-btn try-btn" id="skin-try-purple" onclick="watchAdToTry('purple')"><svg width="20" height="20" style="margin-right:6px;">
+                            <use xlink:href="#ad-icon"></use>
+                        </svg> Try</button>
+                </div>
+                <div class="skin-card rarity-common" id="skin-card-orange">
+                    <div class="skin-preview"><canvas id="skin-preview-orange" width="80" height="80"></canvas></div>
+                    <div class="skin-name">Orange</div>
+                    <div class="skin-cost"><svg class="coin-icon" style="width:20px;height:20px">
+                            <use xlink:href="#coin-m"></use>
+                        </svg> 300</div>
+                    <button class="skin-btn buy" id="skin-btn-orange" onclick="buySkin('orange', 300)">Buy</button>
+                    <button class="skin-btn try-btn" id="skin-try-orange" onclick="watchAdToTry('orange')"><svg width="20" height="20" style="margin-right:6px;">
+                            <use xlink:href="#ad-icon"></use>
+                        </svg> Try</button>
+                </div>
+                <div class="skin-card rarity-common" id="skin-card-red">
+                    <div class="skin-preview"><canvas id="skin-preview-red" width="80" height="80"></canvas></div>
+                    <div class="skin-name">Red</div>
+                    <div class="skin-cost"><svg class="coin-icon" style="width:20px;height:20px">
+                            <use xlink:href="#coin-m"></use>
+                        </svg> 800</div>
+                    <button class="skin-btn buy" id="skin-btn-red" onclick="buySkin('red', 800)">Buy</button>
+                    <button class="skin-btn try-btn" id="skin-try-red" onclick="watchAdToTry('red')"><svg width="20" height="20" style="margin-right:6px;">
+                            <use xlink:href="#ad-icon"></use>
+                        </svg> Try</button>
+                </div>
+                <div class="skin-card rarity-common" id="skin-card-blue">
+                    <div class="skin-preview"><canvas id="skin-preview-blue" width="80" height="80"></canvas></div>
+                    <div class="skin-name">Blue</div>
+                    <div class="skin-cost"><svg class="coin-icon" style="width:20px;height:20px">
+                            <use xlink:href="#coin-m"></use>
+                        </svg> 1000</div>
+                    <button class="skin-btn buy" id="skin-btn-blue" onclick="buySkin('blue', 1000)">Buy</button>
+                    <button class="skin-btn try-btn" id="skin-try-blue" onclick="watchAdToTry('blue')"><svg width="20" height="20" style="margin-right:6px;">
+                            <use xlink:href="#ad-icon"></use>
+                        </svg> Try</button>
+                </div>
+                <div class="skin-card rarity-common" id="skin-card-green">
+                    <div class="skin-preview"><canvas id="skin-preview-green" width="80" height="80"></canvas></div>
+                    <div class="skin-name">Green</div>
+                    <div class="skin-cost"><svg class="coin-icon" style="width:20px;height:20px">
+                            <use xlink:href="#coin-m"></use>
+                        </svg> 1200</div>
+                    <button class="skin-btn buy" id="skin-btn-green" onclick="buySkin('green', 1200)">Buy</button>
+                    <button class="skin-btn try-btn" id="skin-try-green" onclick="watchAdToTry('green')"><svg width="20" height="20" style="margin-right:6px;">
+                            <use xlink:href="#ad-icon"></use>
+                        </svg> Try</button>
+                </div>
+            </div>
+
+        </div><!-- end skin-scroll-body -->
+    </div>
+
+    <!-- ── DAILY REWARDS POPUP ── -->
+    <div id="daily-rewards-popup" class="modal-overlay">
+        <div class="modal-box">
+            <div class="shop-header" style="padding: 12px 16px 8px; min-height: unset;">
+                <button class="btn icon-btn" id="btn-close-daily" onclick="closeDailyRewards()" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; border: 2px solid #e0e0e0; background: #f0f0f0; box-shadow: none;">✕</button>
+                <div class="shop-title" style="font-size: 1.3rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                    <img src="UI/calendar.png" style="width: 24px; height: 24px; vertical-align: middle;"> Daily Gift
+                </div>
+            </div>
+            <div class="howto-content" style="gap: 10px; padding: 16px 16px 8px;">
+                <div class="daily-rewards-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%;">
+                    <div class="day-card" id="day-1-card">
+                        <div class="day-num">Day 1</div>
+                        <div class="day-reward-icon" style="display: flex; align-items: center; justify-content: center; height: 32px;"><svg class="coin-icon" style="width: 28px; height: 28px;">
+                                <use xlink:href="#coin-m"></use>
+                            </svg></div>
+                        <div class="day-reward-val">20</div>
+                    </div>
+                    <div class="day-card" id="day-2-card">
+                        <div class="day-num">Day 2</div>
+                        <div class="day-reward-icon" style="display: flex; align-items: center; justify-content: center; height: 32px;"><svg class="coin-icon" style="width: 28px; height: 28px;">
+                                <use xlink:href="#coin-m"></use>
+                            </svg></div>
+                        <div class="day-reward-val">30</div>
+                    </div>
+                    <div class="day-card" id="day-3-card">
+                        <div class="day-num">Day 3</div>
+                        <div class="day-reward-icon" style="display: flex; align-items: center; justify-content: center; height: 32px;"><svg class="coin-icon" style="width: 28px; height: 28px;">
+                                <use xlink:href="#coin-m"></use>
+                            </svg></div>
+                        <div class="day-reward-val">40</div>
+                    </div>
+                    <div class="day-card" id="day-4-card">
+                        <div class="day-num">Day 4</div>
+                        <div class="day-reward-icon" style="display: flex; align-items: center; justify-content: center; height: 32px;"><svg class="coin-icon" style="width: 28px; height: 28px;">
+                                <use xlink:href="#coin-m"></use>
+                            </svg></div>
+                        <div class="day-reward-val">50</div>
+                    </div>
+                    <div class="day-card" id="day-5-card">
+                        <div class="day-num">Day 5</div>
+                        <div class="day-reward-icon" style="display: flex; align-items: center; justify-content: center; height: 32px;"><svg class="coin-icon" style="width: 28px; height: 28px;">
+                                <use xlink:href="#coin-m"></use>
+                            </svg></div>
+                        <div class="day-reward-val">60</div>
+                    </div>
+                    <div class="day-card" id="day-6-card">
+                        <div class="day-num">Day 6</div>
+                        <div class="day-reward-icon" style="display: flex; align-items: center; justify-content: center; height: 32px;"><svg class="coin-icon" style="width: 28px; height: 28px;">
+                                <use xlink:href="#coin-m"></use>
+                            </svg></div>
+                        <div class="day-reward-val">70</div>
+                    </div>
+                </div>
+                <div class="day-card day-7-card" id="day-7-card" style="grid-column: span 3; width: 100%; display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 12px 20px;">
+                    <div style="text-align: left;">
+                        <div class="day-num" style="font-size: 1.1rem; color: #b45309;">Day 7 (Grand Prize)</div>
+                        <div class="day-reward-desc" style="font-size: 0.85rem; color: #b45309; font-weight: 700;">
+                            Grand Prize Skin!</div>
+                    </div>
+                    <div class="day-reward-icon" style="display: flex; align-items: center; justify-content: center; height: 60px;"><canvas id="day-7-skin-preview" width="60" height="60" style="width: 60px; height: 60px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal" id="btn-claim-daily" onclick="claimDailyReward()">Claim Reward</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── LUCKY SPIN POPUP ── -->
+    <div id="lucky-spin-popup" class="modal-overlay">
+        <div class="modal-box" style="max-width: 380px;">
+            <div class="shop-header" style="padding: 12px 16px 8px; min-height: unset;">
+                <button class="btn icon-btn" id="btn-close-spin-wheel" onclick="closeLuckySpin()" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; border: 2px solid #e0e0e0; background: #f0f0f0; box-shadow: none;">✕</button>
+                <div class="shop-title" style="font-size: 1.3rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                    <img src="UI/fortune-wheel.png" style="width: 24px; height: 24px; vertical-align: middle;"> Lucky Spin
+                </div>
+            </div>
+            <div class="howto-content" style="align-items: center; padding: 12px 20px 12px; gap: 12px;">
+                <div class="wheel-container" style="position: relative; width: 220px; height: 220px; max-width: 65vw; aspect-ratio: 1 / 1; margin: 5px auto; display: flex; align-items: center; justify-content: center;">
+                    <canvas id="wheel-canvas" style="width: 100%; height: 100%; border-radius: 50%; box-shadow: 0 8px 24px rgba(0,0,0,0.15); transition: transform 4s cubic-bezier(0.15, 0.85, 0.2, 1); display: block;"></canvas>
+                    <div class="wheel-pointer" style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 20px solid #ef4444; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); z-index: 10; pointer-events: none;">
+                    </div>
+                    <div class="wheel-center-pin" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 28px; height: 28px; background: #fff; border: 4px solid var(--accent); border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.2); z-index: 5; pointer-events: none;">
+                    </div>
+                </div>
+                <div id="spin-timer-label" style="font-size: 0.85rem; font-weight: 800; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; text-align: center;">
+                    Ready to Spin!</div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal" id="btn-spin-action" onclick="handleSpinClick()" style="width: 100%;">SPIN FREE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── QUESTS & ACHIEVEMENTS POPUP ── -->
+    <div id="quests-popup" class="modal-overlay">
+        <div class="modal-box" style="max-width: 420px; height: 75vh; max-height: 550px; position: relative;">
+            <button class="btn icon-btn" id="btn-close-quests" onclick="closeQuests()" style="position: absolute; right: 14px; top: 14px; z-index: 10; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; border: 2px solid #e0e0e0; background: #f0f0f0; box-shadow: none; cursor: pointer;">✕</button>
+            <div class="shop-header" style="padding: 24px 20px 0; justify-content: flex-start;">
+                <div style="display: flex; gap: 15px; font-family: 'Fredoka One', cursive; font-size: 1.25rem; margin-left: 5px; padding-right: 45px; flex-wrap: wrap; align-items: center; width: 100%; box-sizing: border-box;">
+                    <div class="quest-tab active" id="tab-quests" onclick="switchQuestTab('quests')" style="cursor: pointer; opacity: 1; transition: opacity 0.2s; display: flex; align-items: center; gap: 6px;">
+                        <img src="UI/quest.png" style="width: 22px; height: 22px; vertical-align: middle;"> Quests
+                    </div>
+                    <div class="quest-tab" id="tab-achievements" onclick="switchQuestTab('achievements')" style="cursor: pointer; opacity: 0.5; transition: opacity 0.2s; display: flex; align-items: center; gap: 6px;">
+                        <img src="UI/trophy.png" style="width: 22px; height: 22px; vertical-align: middle;">
+                        Achievements
+                    </div>
+                </div>
+            </div>
+            <!-- Quests Tab Body -->
+            <div class="howto-content" id="quests-tab-content" style="padding: 16px; flex: 1; gap: 12px; overflow-y: auto;">
+                <div id="daily-quests-list" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                    <!-- Populated by JS -->
+                </div>
+                <div id="quests-reset-timer" style="font-size: 0.8rem; font-weight: 800; color: #999; text-align: center; margin-top: 10px; letter-spacing: 1px;">
+                    RESETS IN: 00:00:00</div>
+            </div>
+            <!-- Achievements Tab Body -->
+            <div class="howto-content" id="achievements-tab-content" style="padding: 16px; flex: 1; gap: 12px; overflow-y: auto; display: none;">
+                <div id="achievements-list" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <!-- Sparkle canvas (full screen, above everything) -->
+    <canvas id="sparkleCanvas"></canvas>
+
+    <!-- CrazyGames Banner Ad — OUTSIDE all screens to avoid overflow:hidden clipping.
+         position:fixed, hidden by default, shown/hidden by CG.startBannerRefresh/stopBannerRefresh. -->
+    <div id="cg-banner-wrapper" style="position:fixed;bottom:0;left:0;right:0;display:none;justify-content:center;align-items:flex-end;pointer-events:none;z-index:9999;background:transparent;">
+        <div id="cg-banner-container" style="pointer-events:auto;max-width:100vw;background:transparent;"></div>
+    </div>
+
+
+
+
+</body></html>

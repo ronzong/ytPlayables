@@ -1,0 +1,13 @@
+
+star.png
+size: 44,47
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+star_8
+  rotate: false
+  xy: 2, 2
+  size: 40, 43
+  orig: 41, 43
+  offset: 1, 0
+  index: -1

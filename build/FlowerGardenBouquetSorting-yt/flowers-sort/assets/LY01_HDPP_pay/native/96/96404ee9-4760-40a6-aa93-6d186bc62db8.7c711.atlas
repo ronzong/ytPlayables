@@ -1,0 +1,20 @@
+
+ui_vip_biaoqian.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+line
+  rotate: false
+  xy: 160, 107
+  size: 29, 50
+  orig: 29, 50
+  offset: 0, 0
+  index: -1
+tips
+  rotate: false
+  xy: 1, 1
+  size: 157, 156
+  orig: 157, 156
+  offset: 0, 0
+  index: -1

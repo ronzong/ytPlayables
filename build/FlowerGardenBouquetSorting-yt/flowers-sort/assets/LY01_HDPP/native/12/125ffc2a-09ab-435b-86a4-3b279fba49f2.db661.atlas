@@ -1,0 +1,20 @@
+
+jinbiDH.png
+size: 191,99
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+coin
+  rotate: false
+  xy: 101, 3
+  size: 89, 95
+  orig: 89, 95
+  offset: 0, 0
+  index: -1
+star
+  rotate: true
+  xy: 1, 1
+  size: 97, 98
+  orig: 97, 98
+  offset: 0, 0
+  index: -1

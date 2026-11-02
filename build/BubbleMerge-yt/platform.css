@@ -1,0 +1,40 @@
+body.v-fb_instant {
+	background-color: #32334b !important;
+}
+
+body.with-banner.v-fb_instant #GameDiv {
+	margin: 0 auto !important;
+	position: relative;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Keep game area exactly equal to viewport minus banner. */
+body.with-banner.v-fb_instant #GameArea {
+	flex: 0 0 calc(var(--app-height) - var(--banner-h));
+	height: calc(var(--app-height) - var(--banner-h));
+	min-height: calc(var(--app-height) - var(--banner-h));
+	max-height: calc(var(--app-height) - var(--banner-h));
+}
+
+body.v-fb_instant #GameArea {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+body:not(.with-banner).v-fb_instant #GameDiv {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+body:not(.with-banner).v-fb_instant #Cocos3dGameContainer {
+	margin: 0 auto !important;
+}
