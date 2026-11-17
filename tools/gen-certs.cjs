@@ -13,11 +13,36 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 
 const CERT_DIR = path.join(__dirname, 'certs');
-const CANDIDATES = [
-  'openssl',
-  'C:/Program Files/Git/usr/bin/openssl.exe',
-  'C:/Program Files (x86)/Git/usr/bin/openssl.exe',
+function addGitOpenSslCandidates(target, gitExe) {
+  if (!gitExe) return;
+  // Git for Windows 的 git.exe 通常位于 <Git>\cmd 或 <Git>\bin，
+  // OpenSSL 位于同一安装目录下的 usr\bin。
+  const gitRoot = path.dirname(path.dirname(gitExe));
+  target.push(path.join(gitRoot, 'usr', 'bin', 'openssl.exe'));
+}
+
+const CANDIDATES = ['openssl'];
+const programFiles = [
+  process.env.ProgramFiles,
+  process.env['ProgramFiles(x86)'],
+  process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA, 'Programs'),
 ];
+for (const base of programFiles.filter(Boolean)) {
+  CANDIDATES.push(path.join(base, 'Git', 'usr', 'bin', 'openssl.exe'));
+}
+
+// 不假设 Git 一定安装在 C 盘：沿当前机器 PATH 中的 git.exe 推导 OpenSSL 位置。
+try {
+  const output = execFileSync('where.exe', ['git.exe'], {
+    encoding: 'utf8',
+    windowsHide: true,
+  });
+  for (const gitExe of output.split(/\r?\n/).map((s) => s.trim()).filter(Boolean)) {
+    addGitOpenSslCandidates(CANDIDATES, gitExe);
+  }
+} catch {
+  /* PATH 中没有 Git 时继续使用常规候选路径 */
+}
 
 function findOpenssl() {
   for (const c of CANDIDATES) {
